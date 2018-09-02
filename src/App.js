@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Section1  from './secion1/Section1'
+import Globals from './utils/Globals'
+
+import { css } from 'glamor';
+
+
+css.global('html, body', {
+  padding: 0,
+  margin: 0,
+  fontFamily: 'Rajdhani, sans-serif',
+  background: Globals.colors.transparent,
+  overflowX: 'hidden',
+});
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Section1 />
       </div>
     );
   }
