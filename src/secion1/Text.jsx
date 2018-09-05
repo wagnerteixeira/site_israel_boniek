@@ -11,7 +11,7 @@ const styles = {
         fontSize : '80px',        
         '> .left' : {
             textAlign: 'right',
-            color : 'white',
+            color : 'red',
             marginRight : '2px'
         },
         '> .right' : {
