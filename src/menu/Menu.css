@@ -1,0 +1,42 @@
+.flex-container {
+    background-color: #0f1726;          
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;    
+    width: 100%;
+    height: 50px;
+    z-index: 5;    
+    position: fixed;      
+  }
+  
+.navbar {
+    overflow: hidden;
+    background-color: #0f1726;
+    position: center;
+    top: 0;
+    width: 800px;
+    z-index: 6;   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;    
+  }
+  
+  .navbar a {
+    float: left;
+    display: block;
+    cursor: pointer; 
+    margin: 0 auto;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;    
+    font-size: 17px;    
+    z-index: 7;  
+  }
+  
+  .navbar a:hover {    
+    color: green;
+  }    
+    

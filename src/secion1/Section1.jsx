@@ -1,17 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { css } from 'glamor';
-
-import VideoPlayer from './VideoPlayer'
-import Text from './Text'
-import Logo from './Logo'
 
 import Globals from '../utils/Globals'
 import './section1.css'
 
 import Fundo from '../media/images/fundo.jpg'
+import Pattern from '../media/images/bg_pattern.png'
 
 const styles = {
-    container : css({
+    container: css({
         background: Globals.colors.transparent,
         color: Globals.colors.primary,
         width: '100%',
@@ -20,9 +17,10 @@ const styles = {
         alignItems: 'center',
         flexDirection: 'row',
         height: '100vh',
-        justifyContent: 'space-between',  
+        maxHeight: '100vh',
+        justifyContent: 'space-between',
     }),
-    imageBg : css({
+    imageBg: css({
         backgroundImage: `url(${Fundo})`,
         backgroundRepeat: 'no-repeat',
         /*animation: '60s ease 0s normal none infinite back_animation',*/
@@ -45,14 +43,14 @@ const styles = {
     })
 }
 
-class Section1 extends PureComponent {
-    state = {  }
+class Section1 extends Component {
+    state = {}
     render() {
         return (
             <div {...styles.container}>
-                <div className='image-bg' style={{backgroundImage: `url(${Fundo})`,}}></div>
-                <Text />
-            </div>
+                <div className="image_overlay" style={{ backgroundImage: `url(${Pattern})` }}></div>
+                <div className='image-bg' style={{ backgroundImage: `url(${Fundo})`, }}></div>
+            </div>        
         )
     }
 }
