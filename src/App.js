@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Section1  from './secion1/Section1';
-import Section2  from './section2/Section2';
-import Section3  from './section3/Section3';
-import Menu  from './menu/Menu';
-import Footer  from './footer/Footer';
-import Globals from './utils/Globals';
-
 import { css } from 'glamor';
+
+import Section1 from './secion1/Section1';
+import Section2 from './section2/Section2';
+import Section3 from './section3/Section3';
+import Menu from './menu/Menu';
+import Footer from './footer/Footer';
+import Globals from './utils/Globals';
 
 css.global('html, body', {
   padding: 0,

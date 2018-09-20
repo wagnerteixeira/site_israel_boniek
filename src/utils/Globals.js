@@ -1,6 +1,6 @@
 const Globals = {
-  colors :{
-    transparent : 'transparent',
+  colors: {
+    transparent: 'transparent',
     primary: '#222',
   }
 };
