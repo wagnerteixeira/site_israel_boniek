@@ -1,8 +1,8 @@
 const Globals = {
-    colors :{
-        transparent : 'transparent',
-        primary: '#222',
-    }
-}
+  colors :{
+    transparent : 'transparent',
+    primary: '#222',
+  }
+};
 
-export default Globals
+export default Globals;

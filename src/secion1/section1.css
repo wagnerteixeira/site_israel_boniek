@@ -9,7 +9,18 @@
     top: 0;
     left: 0;
 	width: 100%;
-	z-index: 2;
+	z-index: -999999;
+}
+
+
+.image_overlay {
+    background-color: rgba(33, 39, 57, 0.5);
+    height: 100vh - 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-repeat: repeat;
 }
 
 @-webkit-keyframes back_animation {
@@ -63,15 +74,4 @@
 	100% {
 	transform: scale(1) ;
 	}
-}
-
-.image_overlay {
-    background-color: rgba(33, 39, 57, 0.5);
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-repeat: repeat;
-    z-index: 4;
 }

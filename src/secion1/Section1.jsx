@@ -17,8 +17,7 @@ const styles = {
         alignItems: 'center',
         flexDirection: 'row',
         height: '100vh',
-        maxHeight: '100vh',
-        justifyContent: 'space-between',
+        justifyContent: 'stretch',
     }),
     imageBg: css({
         backgroundImage: `url(${Fundo})`,
