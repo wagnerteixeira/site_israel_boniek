@@ -20,7 +20,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-repeat: repeat;
+	background-repeat: repeat;
+	z-index:1;
 }
 
 @-webkit-keyframes back_animation {

@@ -46,7 +46,7 @@ class Section1 extends Component {
     state = {}
     render() {
         return (
-            <div {...styles.container}>
+            <div id="home" {...styles.container}>
                 <div className="image_overlay" style={{ backgroundImage: `url(${Pattern})` }}></div>
                 <div className='image-bg' style={{ backgroundImage: `url(${Fundo})`, }}></div>
             </div>        

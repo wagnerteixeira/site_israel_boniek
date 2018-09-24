@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { css } from 'glamor';
 
 import Section1 from './secion1/Section1';
-import Section2 from './section2/Section2';
-import Section3 from './section3/Section3';
+import Fides from './fides/Fides';
+import Publication from './publication/Publication';
 import Menu from './menu/Menu';
 import Footer from './footer/Footer';
 import Globals from './utils/Globals';
@@ -22,8 +22,8 @@ class App extends Component {
       <div>
         <Menu />            
         <Section1 />  
-        <Section2 />                 
-        <Section3 />  
+        <Fides />               
+        <Publication />  
         <Footer />          
       </div>
     );
