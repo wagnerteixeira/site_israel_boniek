@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import './Menu.css'
+import './Menu.css';
 
-export default class Menu extends Component {
+class Menu extends Component {
     render() {
         return (
             <div className="flex-container">
@@ -14,6 +14,8 @@ export default class Menu extends Component {
                     <a href="#contact">CONTATO</a>
                 </div>
             </div>
-        )
+        );
     }
 }
+
+export default Menu;
