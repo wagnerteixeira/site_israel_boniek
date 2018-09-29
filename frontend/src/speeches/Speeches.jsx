@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-import './Publication.css';
+import './Speeches.css';
 
-class Publication extends Component {
+class Speeches extends Component {
     render() {
         return (
-            <div id="publication" className="Publication"> 
+            <div id="speeches" className="speeches"> 
             <div>Conteúdo dinâmico</div>
             </div>
         );
     }
 }
 
-export default Publication;
+export default Speeches;
