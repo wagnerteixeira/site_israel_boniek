@@ -1,45 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import logo from './logo.svg';
-import './App.css';
+//import './App.css';
 import { getPublications, createPublication } from './services/publicationService';
-import { getImages, createImage, createImage2, createFileImage } from './services/imageService';
+import { getImages, createImage, createFileImage, deleteImage } from './services/imageService';
 import { getShedules, createShedule } from './services/sheduleService';
 import { getSpeeches, createSpeech } from './services/speechService';
 import { getUsers, createUser } from './services/userService';
 import firebase from 'firebase';
 
-import image from './media/1.png'
-
 class App extends Component {
   constructor(props){
     super(props);
     this.state = { docs : {} };
+    this.fetchImages.bind(this)
   }
-
-  /*getPublications(){
-    publicationService.getPublications()
-      .then(querySnapshot => {
-        this.setState({ docs: querySnapshot.docs })      
+  fetchImages(){
+    getImages()
+      .then(docs => {
+        console.log(docs)
+        this.setState({ docs: docs })      
       })
       .catch( error => console.log(error));
+    this.renderImages();  
   }
 
   componentWillMount(){
-    this.getPublications();
-  }*/
-
-  uidv4() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    )
+    this.fetchImages();
   }
+
+  uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  
 
   saveImage(file){    
     console.log(file)
     let image = {
       url: 'url da imagem',
       description: 'Descrição da imagem', 
-      fileName: this.uidv4()
+      fileName: this.uuidv4()
     }
 
     var uploadTask = createFileImage(image, file);
@@ -65,16 +67,37 @@ class App extends Component {
       uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
         console.log('File available at', downloadURL);
         image.url = downloadURL;
-        createImage2(image)
+        createImage(image)
           .then((document) => {
              console.log('Criado')
              console.log(document)
+             this.fetchImages();             
           })
           .catch((error) => console.log(error))
       });
     });    
   }
 
+  deleteImage(key){
+    deleteImage(key)
+    .then(function() {
+      console.log("Document successfully deleted!");
+  }).catch(function(error) {
+      console.error("Error removing document: ", error);
+  });
+  this.fetchImages();
+
+  }
+
+  renderImages() {
+    return Object.keys(this.state.docs).map(key =>
+      <p>
+        <a href={this.state.docs[key].url}>{this.state.docs[key].url}</a><br />
+        
+        <button onClick={() => this.deleteImage(key)}> Excluir</button>
+      </p>
+    );
+  }
   render() {      
     //getPublications.then(docs => console.log(docs));    
     
@@ -126,18 +149,14 @@ class App extends Component {
     */
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <input type="file" onChange={ (e) => this.saveImage(e.target.files[0]) } />
-        <p>{JSON.stringify(this.state.docs)}</p>
+        <p>{this.renderImages()}</p>
       </div>
     );
   }
 }
 
-export default App;
+export default App
