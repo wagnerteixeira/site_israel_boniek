@@ -1,5 +1,7 @@
 import React from 'react';
-import { SocialIcon } from 'react-social-icons';
+import FacebookIcon from '../media/images/facebook.svg';
+import InstagramIcon from '../media/images/instagram.svg';
+import YoutubeIcon from '../media/images/youtube.svg';
 
 const styles = {  
   row: {
@@ -10,16 +12,18 @@ const styles = {
     width: '250px'
   },
   icons: {
-    margin: '10px'
+    margin: '10px',
+    width: '40px',
+    height: '40px'
   }
 };
 
-const IconAvatars = () => (
+const IconsSocial = () => (
     <div style={styles.row}>
-      <SocialIcon style={styles.icons} url="https://www.facebook.com/educar.israelboniek/" />
-      <SocialIcon style={styles.icons} url="https://www.youtube.com/channel/UCUZxNDBqvVp0p9d7kUYsVpQ" />      
-      <SocialIcon style={styles.icons} url="https://www.instagram.com/israelboniek/?hl=pt-br" />      
+      <a target="blank" href="https://www.facebook.com/educar.israelboniek/"><img src={FacebookIcon} style={styles.icons} /></a>
+      <a target="blank" href="https://www.youtube.com/channel/UCUZxNDBqvVp0p9d7kUYsVpQ"><img src={YoutubeIcon} style={styles.icons} /></a>
+      <a target="blank" href="https://www.instagram.com/israelboniek/?hl=pt-br"><img src={InstagramIcon} style={styles.icons} /></a>
     </div>
 );
 
-export default IconAvatars;
+export default IconsSocial;
