@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import logo from './logo.svg';
 //import './App.css';
-import { getPublications, createPublication } from './services/publicationService';
 import { getImages, createImage, createFileImage, deleteImage, changeImage } from './services/imageService';
-import { getShedules, createShedule } from './services/sheduleService';
-import { getSpeeches, createSpeech } from './services/speechService';
-import { getUsers, createUser } from './services/userService';
 import  baseService from './services/baseService' ;
 import firebase from 'firebase';
 
 var publicationService = baseService('publications');
+var scheduleService = baseService('schedules');
+var speechService = baseService('speeches');
+var userService = baseService('users');
 
 class App extends Component {
   constructor(props){
@@ -166,7 +165,12 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <input type="file" onChange={ (e) => this.saveImage(e.target.files[0]) } />
-        <p>{this.renderImages()}</p>
+        <div >
+          <h1> Palestra</h1>
+          Titulo: <input type="text" name="fname"/><br/>
+          Sinopse: <input type="text" name="lname"/><br/>
+          <button> Incluir</button>
+        </div>
       </div>
     );
   }
