@@ -6,7 +6,10 @@ import { getImages, createImage, createFileImage, deleteImage, changeImage } fro
 import { getShedules, createShedule } from './services/sheduleService';
 import { getSpeeches, createSpeech } from './services/speechService';
 import { getUsers, createUser } from './services/userService';
+import  baseService from './services/baseService' ;
 import firebase from 'firebase';
+
+var publicationService = baseService('publications');
 
 class App extends Component {
   constructor(props){
@@ -111,14 +114,20 @@ class App extends Component {
       .catch(error => console.log(error));*/
 
 
-    /*let publication = {      
+    let publication = {      
       title: "Titulo",
       subtitle: 'Subtítulo',
       urlImage: 'url da imagem',
       sinopsys: 'sinópse da publicação',      
     };
+    
+    console.log(publicationService);
+    publicationService.createDoc(publication)
+      .then((doc) => console.log(doc))
+      .catch(error => console.log(error));
+    
 
-    createPublication(publication)
+    /*createPublication(publication)
       .then(() => console.log("Criado"))
       .catch(error => console.log(error));
 
