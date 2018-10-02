@@ -1,0 +1,13 @@
+.row {
+    padding: 5px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    width: 250px;
+  }
+
+.icons {
+    margin: 5px;
+    width: 30px;
+    height: 30px;    
+  }

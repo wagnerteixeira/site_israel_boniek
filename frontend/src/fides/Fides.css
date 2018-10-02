@@ -1,6 +1,58 @@
-.Fides {    
-    z-index: 20;
-    height: 100vh;
-    width: 100%;
-    background-color: white;
+.fides {
+    align-self: flex-end;
+    background: white;
+    width: 100vw;  
+    display: flex; 
+    height: 100vh;                     
+}
+
+.imgContainer {
+    width: 100%;    
+    display: flex;
+    margin: 0 auto;
+    max-height: 650px;
+}
+
+.imgContainer > img {
+    max-width: 100%;    
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.textContainer {
+    display: flex;    
+}
+
+.subtitleContainer {
+    display: flex;    
+}
+
+@media screen and (max-width: 1224px) {
+    .fides {
+        align-self: auto;
+    }
+}
+
+@media screen and (min-width: 1224px) {
+    .imgContainer {
+        width: 50%;
+        display: flex;
+        float: left;
+        padding: 1em;
+        margin: 3em 0 3em 0;
+        border: 1px solid lightgray;
+    }
+    .textContainer {
+        padding: 2em 3em 0 3em;
+        display: flex;
+        line-height: 2;
+        text-align: left;
+    }
+    .subtitleContainer {
+        padding: 0 3em;
+        display: flex;
+        line-height: 2;
+        text-align: left;
+        color: rgba(0,0,0,0.6);
+    }
 }

@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
-
+import Text from '../utils/Text';
+import Globals from '../utils/Globals';
+import imgFides from '../media/images/fides.jpg';
 import './Fides.css';
 
 class Fides extends Component {
     render() {
-        return (
-            <div id="fides" className="Fides">A Fides Educacional é uma empresa que promove e organiza eventos educacionais, cursos e consultoria educacional, levando renomados palestrantes nacionais a todo país.
-            Sua finalidade é cultivar o melhor desempenho e crescimento das diversas redes educacionais do Brasil, além de fomentar conhecimento e parcerias, ampliar e atualizar o processo educacional, capacitando educadores e gestores.
-            Seu objetivo é propiciar ambientes e processos de capacitação e desenvolvimento profissional para educadores e oportunizar a troca de conhecimento entre todos aqueles que fazem parte da Educação.
-            A Fides Educacional contribui, através de seus diversos parceiros, para o desenvolvimento e o futuro da educação no Brasil.
-            Faça um contato conosco e conheça nossos cursos, palestrantes e parceiros.
-            fideseducacional@hotmail.com</div>            
+        return (  
+            <div>
+            <div className="fides">
+                <Text title="FIDES Educacional">
+                    <h3 className="notranslate">
+                        Abordagem educacional por Princípios
+                    </h3>
+                    <div />
+                    <div className="imgContainer">
+                        <img src={imgFides} alt="Fides Educacional" />
+                    </div>
+                    <p className="textContainer">
+                        {Globals.fides.text}
+                    </p>
+                    <p className="subtitleContainer">
+                        {Globals.fides.subtitle}
+                    </p>
+                    <p className="subtitleContainer">
+                        {Globals.fides.email}
+                    </p>
+                </Text>
+            </div>   
+            </div>                      
         );
     }
 }

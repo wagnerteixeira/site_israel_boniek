@@ -1,0 +1,61 @@
+.container {
+    width: 100%;
+    font-weight: lighter;
+    max-width: 1000px;
+    margin: 2em auto;
+    text-align: center;    
+}      
+
+.container > h1 {
+    font-size: 3.998em;
+    margin: 0;
+}
+
+.container > h2 {
+    margin: 0;
+    font-size: 2.827em;
+}
+
+.container > h3 {
+    font-weight: lighter;
+    font-size: 1.999em;
+    margin: 0;
+}
+
+.container > h4 {
+    color: #222;
+    margin: 1em;
+    font-weight: lighter;
+    font-size: 1.414em;
+}
+
+.container > h5 {
+    color: #222;
+    margin: 1em;
+    font-weight: lighter;
+    font-size: 1em;
+}
+
+.container > p {
+    margin: 1em;
+    font-size: 1em;
+}
+
+.container > span {
+    color: #222;
+    display: inline-block;
+    margin: 1em;
+    font-size: 1em;
+}
+
+.container > p span {
+    font-size: 1em;
+    color: #222;
+    display: inline-block;
+    margin: 1em;
+}
+
+.container > img {
+    max-width: 100%;      
+}
+  
