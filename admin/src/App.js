@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logo from './logo.svg';
 //import './App.css';
 import { getPublications, createPublication } from './services/publicationService';
-import { getImages, createImage, createFileImage, deleteImage } from './services/imageService';
+import { getImages, createImage, createFileImage, deleteImage, changeImage } from './services/imageService';
 import { getShedules, createShedule } from './services/sheduleService';
 import { getSpeeches, createSpeech } from './services/speechService';
 import { getUsers, createUser } from './services/userService';
@@ -28,23 +28,10 @@ class App extends Component {
     this.fetchImages();
   }
 
-  uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
-  
-
-  saveImage(file){    
-    console.log(file)
-    let image = {
-      url: 'url da imagem',
-      description: 'Descrição da imagem', 
-      fileName: this.uuidv4()
-    }
-
-    var uploadTask = createFileImage(image, file);
+  saveFileImage(image, file){
+    console.log('saveFileImage');
+    console.log(image)
+    var uploadTask = createFileImage(image.id, file);
 
     uploadTask.on('state_changed', function(snapshot){
       // Observe state change events such as progress, pause, and resume
@@ -59,46 +46,63 @@ class App extends Component {
           console.log('Upload is running');
           break;
       }
-    }, function(error) {
-      // Handle unsuccessful uploads
-    }, function() {
+    }, error => {
+      console.log('error in save file image ' + error)// Handle unsuccessful uploads
+    }, () => {
       // Handle successful uploads on complete
       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-      uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+      uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
         console.log('File available at', downloadURL);
-        image.url = downloadURL;
-        createImage(image)
-          .then((document) => {
-             console.log('Criado')
-             console.log(document)
-             this.fetchImages();             
+        image.data.url = downloadURL;
+        changeImage(image)
+          .then(() => {
+              console.log('Alterado');
+              this.fetchImages();
           })
-          .catch((error) => console.log(error))
+          .catch((error) => console.log(error)) 
       });
-    });    
+    }); 
+  }  
+
+  saveImage(file){    
+    console.log(file)
+    let image = {
+      id : 0,
+      data : {
+        description: 'Descrição da imagem'
+      }
+    }
+
+    createImage(image)
+      .then((doc) => {
+          console.log('Criado')
+          image.id = doc.id;
+          this.saveFileImage(image, file);
+      })
+      .catch((error) => console.log(error))       
   }
 
   deleteImage(key){
-    deleteImage(key)
-    .then(function() {
-      console.log("Document successfully deleted!");
-  }).catch(function(error) {
-      console.error("Error removing document: ", error);
-  });
-  this.fetchImages();
-
+      deleteImage(key)
+      .then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+    this.fetchImages();
   }
 
   renderImages() {
     return Object.keys(this.state.docs).map(key =>
-      <p>
-        <a href={this.state.docs[key].url}>{this.state.docs[key].url}</a><br />
-        
-        <button onClick={() => this.deleteImage(key)}> Excluir</button>
+      <p key={this.state.docs[key].id}>
+        <a href={this.state.docs[key].data.url}>{this.state.docs[key].data.url}</a><br />        
+        <img src={this.state.docs[key].data.url} /><br />
+        <button onClick={() => this.deleteImage(this.state.docs[key].id)}> Excluir</button>
       </p>
     );
   }
   render() {      
+   
     //getPublications.then(docs => console.log(docs));    
     
 
