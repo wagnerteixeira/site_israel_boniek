@@ -13,8 +13,10 @@ var userService = baseService('users');
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = { docs : {} };
+    this.state = { docs : {}, schedules: { title: '', sinopsys: ''} };
     this.fetchImages.bind(this)
+    this.handleScheduleChange.bind(this)
+    this.handleScheduleSubmit.bind(this)
   }
   fetchImages(){
     getImages()
@@ -103,6 +105,21 @@ class App extends Component {
       </p>
     );
   }
+
+  handleScheduleChange = name => event => {
+    this.setState({...this.state, schedules: {...this.state.schedules, [name] : event.target.value }});
+  }
+
+  handleScheduleSubmit() {
+    console.log(this.state.schedules);
+    scheduleService.createDoc({...this.state.schedules})
+      .then(() => { 
+        console.log("fudeu")
+        this.setState({...this.state, schedules:  { title: '', sinopsys: ''}});
+      })
+      .catch(error => console.error("Erro ao incluir uma palestra:", error));
+  }
+
   render() {      
    
     //getPublications.then(docs => console.log(docs));    
@@ -120,7 +137,7 @@ class App extends Component {
       sinopsys: 'sinópse da publicação',      
     };
     
-    console.log(publicationService);
+  /*  console.log(publicationService);
     publicationService.createDoc(publication)
       .then((doc) => console.log(doc))
       .catch(error => console.log(error));
@@ -167,9 +184,9 @@ class App extends Component {
         <input type="file" onChange={ (e) => this.saveImage(e.target.files[0]) } />
         <div >
           <h1> Palestra</h1>
-          Titulo: <input type="text" name="fname"/><br/>
-          Sinopse: <input type="text" name="lname"/><br/>
-          <button> Incluir</button>
+          Titulo: <input type="text" name="titulo" onChange={this.handleScheduleChange('title')} value={this.state.schedules.title}/><br/>
+          Sinopse: <input type="text" name="sinopse" onChange={this.handleScheduleChange('sinopsys')} value={this.state.schedules.sinopsys}/><br/>
+          <button onClick={() => this.handleScheduleSubmit()}> Incluir</button>
         </div>
       </div>
     );
