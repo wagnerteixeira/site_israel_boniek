@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg';
 //import './App.css';
-import { getImages, createImage, createFileImage, deleteImage, changeImage } from './services/imageService';
+import imageService from './services/imageService';
 import  baseService from './services/baseService' ;
 import firebase from 'firebase';
 
@@ -18,8 +18,8 @@ class App extends Component {
     this.handleScheduleChange.bind(this)
     this.handleScheduleSubmit.bind(this)
   }
-  fetchImages(){
-    getImages()
+  fetchImages(){    
+    imageService.getDocs()
       .then(docs => {
         console.log(docs)
         this.setState({ docs: docs })      
@@ -34,8 +34,8 @@ class App extends Component {
 
   saveFileImage(image, file){
     console.log('saveFileImage');
-    console.log(image)
-    var uploadTask = createFileImage(image.id, file);
+    console.log(image)    
+    var uploadTask = imageService.createFileImage(image.id, file);
 
     uploadTask.on('state_changed', function(snapshot){
       // Observe state change events such as progress, pause, and resume
@@ -57,8 +57,8 @@ class App extends Component {
       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
       uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
         console.log('File available at', downloadURL);
-        image.data.url = downloadURL;
-        changeImage(image)
+        image.data.url = downloadURL;        
+        imageService.updateDoc(image)
           .then(() => {
               console.log('Alterado');
               this.fetchImages();
@@ -77,7 +77,7 @@ class App extends Component {
       }
     }
 
-    createImage(image)
+    imageService.createDoc(image)
       .then((doc) => {
           console.log('Criado')
           image.id = doc.id;
@@ -86,8 +86,8 @@ class App extends Component {
       .catch((error) => console.log(error))       
   }
 
-  deleteImage(key){
-      deleteImage(key)
+  deleteImage(id){
+    imageService.deleteDoc(id)
       .then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
