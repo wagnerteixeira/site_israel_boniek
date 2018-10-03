@@ -8,7 +8,7 @@ import Menu from './components/layout/Menu';
 import Lecture from './components/Lecture';
 import Image from './components/Image';
 import Publication from './components/Publication';
-import Shedule from './components/Shedule';
+import Shedule from './components/shedule/Shedule';
 import Users from './components/Users';
 
 /*const styles = theme => ({
@@ -39,7 +39,7 @@ const muiTheme = createMuiTheme({
 });
 
 class App extends Component {    
-  render() {              
+  render() {       
     return (
       <BrowserRouter>
         <MuiThemeProvider theme={muiTheme}>

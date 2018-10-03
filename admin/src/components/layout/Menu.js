@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   content: {
     top: theme.spacing.unit * 5,
-    paddingTop: theme.spacing.unit * 6,
+    paddingTop: theme.spacing.unit * 8,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
