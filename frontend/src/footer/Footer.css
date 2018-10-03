@@ -1,5 +1,5 @@
 .footer {
-    background-color: #0f1726;          
+    background-color: #ffcc00;          
     display: block;
     text-align: center;
     margin: 0 auto;    
@@ -9,8 +9,9 @@
 }
 
 .footer a {
-      color: white;
+      color: #333333;
       text-decoration: none;
       font-family: 'OpenSans';  
-      font-size: 12px;        
+      font-size: 12px;      
+      font-weight: bold;  
 }

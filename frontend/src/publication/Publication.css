@@ -2,5 +2,6 @@
     z-index: 20;
     height: 100vh;
     width: 100%;
-    background-color: darkslategrey;
+    background-color: white;
+    color: #333333;
 }
