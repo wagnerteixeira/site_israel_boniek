@@ -7,7 +7,7 @@ import './Fides.css';
 class Fides extends Component {
     render() {
         return (  
-            <div>
+            <div id="fides">
             <div className="fides">
                 <Text title="FIDES Educacional">
                     <h3 className="notranslate">

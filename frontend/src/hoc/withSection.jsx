@@ -1,17 +1,9 @@
-import React from 'react'
-
-const styles = {
-    container : {
-        height: '100vh',
-        top: 0,
-        left: 0,
-        width: '100%'
-    }    
-}
+import React from 'react';
+import './withSection.css';
 
 const withSection = (WrappedComponent) => (props) => {
     return (
-      <div style={styles.container}>
+      <div className="container-section">
         <WrappedComponent {...props}>          
         </WrappedComponent>
       </div>
