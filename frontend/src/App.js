@@ -14,7 +14,7 @@ class App extends Component {
       <div>
         <Menu />            
         <Principal />  
-        <Fides />               
+        <Fides />                       
         <Publication />  
         <Footer />          
       </div>
