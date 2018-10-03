@@ -1,0 +1,25 @@
+schedules:
+    date: Date,
+    title: string,
+    location: GeoPoint,
+    urlFolder: string,
+
+lectures:
+    title: string,
+    sinopsys: string,
+    
+images:
+    description: string,
+    url: string,
+
+publications: 
+    title: string,
+    subtitle: string,
+    urlImage: string,
+    sinopsys: string,
+
+users:
+    name: string,
+    email: string,
+    senha: string,
+

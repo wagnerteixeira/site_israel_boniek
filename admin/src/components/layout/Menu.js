@@ -19,13 +19,18 @@ const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,    
-    overflow: 'hidden',
-    position: 'absolute',
     display: 'flex',
-    width: "100%",
+    width: '100%',
     height: '100%',
-   },
+  },
+  mainContent: {
+    width: '100%',
+    height: '100%'
+  },
+  content: {
+    top: theme.spacing.unit * 5,
+    paddingTop: theme.spacing.unit * 6,
+  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -62,7 +67,7 @@ const styles = theme => ({
       marginTop: -10
     },
   },
-  listItemTextClassName : {
+  listItemTextClassName: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
@@ -102,39 +107,30 @@ const styles = theme => ({
 });
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { drawerOpen: false };
+    this.handleDrawer.bind(this);
+  }
+
+  handleDrawer(value) {
+    this.setState({ drawerOpen: value });
+  }
   
   render() {
-    const { classes } = this.props;
-    const drawerOpen = true;
+    const { classes } = this.props;    
     return (
       <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(classes.appBar, drawerOpen && classes.appBarShift)}
-        >
-          <Toolbar disableGutters={!drawerOpen}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => /*this.props.handleDrawer(true)*/ console.log('open drwaer')}
-              className={classNames(classes.menuButton, drawerOpen && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography className={classes.typographyDawerOpen} variant="title" color="inherit" noWrap>
-              Admin
-            </Typography>
-          </Toolbar>
-        </AppBar>
         <Drawer 
           variant="permanent"
           classes={{
-            paper: classNames(classes.drawerPaper, !drawerOpen && classes.drawerPaperClose),
+            paper: classNames(classes.drawerPaper, 
+                             !this.state.drawerOpen && classes.drawerPaperClose),
           }}
-          open={drawerOpen}
+          open={this.state.drawerOpen}
         >
           <div className={classes.toolbar}>
-            <IconButton onClick={() => /*this.props.handleDrawer(false)*/ console.log('Close drawer') } color="inherit">
+            <IconButton onClick={() => this.handleDrawer(false)} color="inherit">
                <ChevronLeft />
             </IconButton>
           </div>
@@ -159,7 +155,7 @@ class Header extends React.Component {
               listItemTextClassName={classes.listItemTextClassName}
             />             
             <IconListButton 
-              linkTo='/speech' 
+              linkTo='/lecture' 
               iconType='accessibility_new' 
               onClickButton={this.clickList}  
               primaryText='Palestras' 
@@ -176,8 +172,43 @@ class Header extends React.Component {
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
             />
+            <IconListButton 
+              linkTo='/user' 
+              iconType='person' 
+              onClickButton={this.clickList}  
+              primaryText='Usuários' 
+              listItemClassName={classes.listItemClassName} 
+              iconClassName={classes.iconClassName}
+              listItemTextClassName={classes.listItemTextClassName}
+            />
           </List>          
-        </Drawer>        
+        </Drawer>             
+        <div className={classes.mainContent}>
+          <AppBar
+            className={classNames(classes.appBar, this.state.drawerOpen && classes.appBarShift)}
+          >
+            <Toolbar disableGutters={!this.state.drawerOpen}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={() => this.handleDrawer(true)}
+                className={classNames(classes.menuButton, this.state.drawerOpen && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography 
+                className={classes.typographyDawerOpen} 
+                variant="title" color="inherit" 
+                noWrap
+              >
+                Admin
+              </Typography>
+            </Toolbar>
+          </AppBar>    
+          <div className={classes.content}>
+            {this.props.children}
+          </div>
+        </div>
       </div>
     );
   }
