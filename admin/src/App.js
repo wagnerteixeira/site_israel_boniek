@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import { blueGrey } from '@material-ui/core/colors';
+import { blue, red, green } from '@material-ui/core/colors';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Menu from './components/layout/Menu';
 import Lecture from './components/Lecture';
 import Image from './components/Image';
 import Publication from './components/Publication';
-import Shedule from './components/shedule/Shedule';
+import Schedule from './components/schedule/Schedule';
 import Users from './components/Users';
 
 /*const styles = theme => ({
@@ -26,26 +26,36 @@ const muiTheme = createMuiTheme({
   fontFamily: 'Roboto, sans-serif',
   palette: {
     primary: {
-      light: '#0099BC',
-      main: '#0078D7',
-      dark: '#0063B',
+      light: blue[500],
+      main: blue[600],
+      dark: blue[700],
+      contrastText: '#fff',
     },
     secondary: {
-      light: blueGrey[600],
-      main: blueGrey[700],
-      dark: blueGrey[800],
+      light: red[600],
+      main: red[700],
+      dark: red[800],
+      contrastText: '#000',
     },     
+    buttonEdit: {
+      light: green[500],
+      main: green[600],
+      dark: green[700],
+      contrastText: '#fff',
+    }
   } 
 });
 
+
 class App extends Component {    
-  render() {       
+  render() {    
+    console.log(muiTheme);
     return (
       <BrowserRouter>
         <MuiThemeProvider theme={muiTheme}>
           <Menu theme={muiTheme}>
             <Switch>
-              <Route path="/" exact component={Shedule} />
+              <Route path="/" exact component={Schedule} />
               <Route path="/image" component={Image} />
               <Route path="/lecture" component={Lecture} />              
               <Route path="/publication" component={Publication} />

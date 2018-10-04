@@ -94,7 +94,7 @@ class EditShedule extends React.Component {
                 </Button>           
                 <Button 
                     variant="outlined" 
-                    color="default" 
+                    color="secondary" 
                     className={classes.button}
                     onClick={handleCancel}
                 >

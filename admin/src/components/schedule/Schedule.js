@@ -1,24 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import EditShedule from './EditSchedule';
+import ViewSchedule from './ViewSchedule';
 
-import EditShedule from './EditShedule';
-
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+import scheduleService from '../../services/scheduleService';
 
 const styles = theme => ({
   root: {
@@ -31,21 +19,40 @@ const styles = theme => ({
   },
 });
 
-class SimpleTabs extends React.Component {
+class Schedule extends React.Component {
     constructor(props) {
         super(props);        
         this.state = {
-            value: 'EDIT',
+            value: 'LIST',
             emAlteracao: false,
             dataValue: new Date().toISOString().slice(0, 16),
             titleValue: '',
             fileValue: '',
-            file: {}
+            file: {},
+            selectedIndex: '',
+            docs: []
         };        
     }
 
-    handleSave = () => {    
-      console.log(this.state)  
+    componentWillMount() {
+      this.fetchImages();
+    }
+
+    fetchImages() {    
+      scheduleService.getDocs()
+        .then(documents => {          
+          this.setState({ ...this.state, docs: documents, selectedIndex: documents[0].id });            
+        })
+        .catch(error => console.log(error));
+      //this.renderImages();  
+    }
+
+    handleClick = (event, id) => {
+      this.setState({ ...this.state, selectedIndex: id });
+    }
+
+    handleSave() {    
+      console.log(this.state);
       this.setState({ 
         ...this.state, 
         dataValue: new Date().toISOString().slice(0, 16),
@@ -55,8 +62,8 @@ class SimpleTabs extends React.Component {
       });
     }
 
-    handleCancel = () => {
-      console.log(this.state)
+    handleCancel() {
+      console.log(this.state);
       this.setState({ 
         ...this.state, 
         dataValue: new Date().toISOString().slice(0, 16),
@@ -66,7 +73,7 @@ class SimpleTabs extends React.Component {
       });
     }
 
-    handleFileValue = (fileObject) => {
+    handleFileValue(fileObject) {
       console.log(fileObject);      
 
       this.setState({ ...this.state, fileValue: fileObject.name, file: fileObject });
@@ -102,23 +109,31 @@ class SimpleTabs extends React.Component {
                      {!emAlteracao && <Tab value='LIST' label='LISTAR' />}
                      <Tab value='EDIT' label={emAlteracao ? 'ALTERAR' : 'INCLUIR'} />                    
                 </Tabs>                
-                {value === 'LIST' && <TabContainer>Item One</TabContainer>}
-                {value === 'EDIT' && <EditShedule 
-                                        handleValueChange={this.handleValueChange}
-                                        dataValue={dataValue}
-                                        titleValue={titleValue}
-                                        fileValue={fileValue}
-                                        handleCancel={this.handleCancel}
-                                        handleSave={this.handleSave}
-                                        handleFileValue={this.handleFileValue}
-                                     />}                
+                {value === 'LIST' && 
+                  <ViewSchedule 
+                    selectedIndex={this.state.selectedIndex} 
+                    handleClick={this.handleClick} 
+                    docs={this.state.docs}
+                  />
+                }
+                {value === 'EDIT' && 
+                  <EditShedule 
+                    handleValueChange={this.handleValueChange}
+                    dataValue={dataValue}
+                    titleValue={titleValue}
+                    fileValue={fileValue}
+                    handleCancel={this.handleCancel}
+                    handleSave={this.handleSave}
+                    handleFileValue={this.handleFileValue}
+                  />
+                }                
             </div>
         );
     }
 }
 
-SimpleTabs.propTypes = {
+Schedule.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleTabs);
+export default withStyles(styles)(Schedule);

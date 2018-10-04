@@ -3,8 +3,8 @@ import imageService from './services/imageService';
 import baseService from './services/baseService';
 import firebase from './firebase';
 
-let publicationService = baseService('publications');
-let scheduleService = baseService('schedules');
+const publicationService = baseService('publications');
+const scheduleService = './services/scheduleService';
 let speechService = baseService('speeches');
 let userService = baseService('users');
 
