@@ -7,13 +7,25 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     container: {
-        display: 'flex',
-        flexWrap: 'wrap',                
+        display: 'blcok',        
     },
-    textField: {
+    back: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        //width: 200,
+        display: 'flex',
+        flexWrap: 'wrap',  
+        flexDirection: 'column',  
+        padding: theme.spacing.unit, 
+        borderColor: '#C0C0C0',
+        borderStyle: 'solid',      
+        borderWidth: '1px',
+        width: '50%',
+        [theme.breakpoints.between('xs', 'sm')]: {
+            width: '90%',
+          }
+    },
+    textField: {        
+        width: '100%'
     },
     inputFile: {
         display: 'none',
@@ -36,21 +48,19 @@ class EditShedule extends React.Component {
             } = this.props;
         return (
             <div>
-                <form className={classes.container} noValidate autoComplete="off">                
+                <form className={classes.container} noValidate autoComplete="off">    
+                <div className={classes.back}>
                     <TextField
                         id='data'
                         label='Data'
                         type='datetime-local'
                         value={dataValue}      
                         onChange={handleValueChange('dataValue')}                                  
-                        className={classes.textField}
-                        style={{ width: 200 }}
-                        fullWidth
+                        width='80px'
                         InputLabelProps={{
                             shrink: true,
                         }}
-                    />
-                    
+                    />                    
                     <TextField
                         id="title"
                         label="Título"
@@ -59,31 +69,33 @@ class EditShedule extends React.Component {
                         onChange={handleValueChange('titleValue')}
                         margin="normal"
                         fullWidth
-                    />
-                    <input
-                        accept="image/*"
-                        className={classes.inputFile}
-                        id="outlined-button-file"                        
-                        type="file"
-                        onChange={(e) => handleFileValue(e.target.files[0])}
-                    />                
-                    <label htmlFor="outlined-button-file">
-                        <div className={classes.containerFile}>
-                            <Button variant="outlined" component="span" className={classes.button}>
-                                Selecionar Arquivo
-                            </Button>                            
-                        </div>
-                    </label>    
-                    <TextField                    
-                        style={{ flex: 1 }}                    
-                        id="file-name"
-                        className={classes.textField}
-                        margin="normal"
-                        fullWidth
-                        value={fileValue}
-                    />  
+                    />                    
+                        <TextField                    
+                            style={{ flex: 1 }}                    
+                            id="file-name"
+                            label="Imagem"
+                            className={classes.textField}
+                            margin="normal"
+                            fullWidth
+                            value={fileValue}
+                        /> 
+                        <input
+                            accept="image/*"
+                            className={classes.inputFile}
+                            id="outlined-button-file"                        
+                            type="file"
+                            onChange={(e) => handleFileValue(e.target.files[0])}
+                        />                
+                        <label htmlFor="outlined-button-file">
+                            <div className={classes.containerFile}>
+                                <Button variant="outlined" component="span" className={classes.button}>
+                                    ...
+                                </Button>                            
+                            </div>
+                        </label>  
+                    </div>                    
                 </form>
-                <br />            
+                <br />                            
                 <Button 
                     variant="outlined" 
                     color="primary" 
