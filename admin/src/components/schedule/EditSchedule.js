@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     container: {
-        display: 'blcok',        
+        display: 'block',        
     },
     back: {
         marginLeft: theme.spacing.unit,
