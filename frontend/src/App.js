@@ -7,9 +7,14 @@ import Publication from './publication/Publication';
 import Menu from './menu/Menu';
 import Footer from './footer/Footer';
 
+import baseService from './services/baseService';
+
+const teste = baseService('teste');
+
 
 class App extends Component {
   render() {
+    teste.getDocs().then(docs => console.log(docs));
     return (
       <div>
         <Menu />            
