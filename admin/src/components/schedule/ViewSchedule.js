@@ -33,7 +33,7 @@ const styles = theme => ({
     },
   },
   acoes: {
-      paddingLeft: theme.spacing.unit * 8
+      paddingLeft: theme.spacing.unit * 6
   }
 });
 
@@ -52,28 +52,29 @@ function ViewSchedule(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-            {docs.map(doc => (
+            {Object.keys(docs).map(key => (
                     <TableRow 
-                        key={doc.id}
+                        key={key}
                         hover
-                        onClick={event => handleClick(event, doc.id)}
-                        selected={selectedIndex === doc.id}
+                        onClick={event => handleClick(event, key)}
+                        selected={selectedIndex === key}
                     >
-                        <TableCell>{dateAndTimeFormat(doc.data.date.seconds)}</TableCell>
-                        <TableCell>{doc.data.title}</TableCell>
-                        <TableCell>{doc.data.location}</TableCell>
-                        <TableCell>{doc.data.urlFolder}</TableCell>                    
-                        <TableCell>                            
+                        <TableCell>{dateAndTimeFormat(docs[key].data.date)}</TableCell>
+                        <TableCell>{docs[key].data.title}</TableCell>
+                        <TableCell>{docs[key].data.location}</TableCell>
+                        <TableCell>
                             <Button 
                                 variant="fab" 
-                                color="primary" 
-                                aria-label="Add" 
-                                className={classes.button}            
-                                mini    
-                                onClick={() => console.log('Add')}
+                                color="default" 
+                                aria-label="Edit" 
+                                className={classes.button}
+                                mini
+                                onClick={() => console.log(docs[key].data.urlFolder)}
                             >
-                                <Icon fontSize="small">add_icon</Icon>                                
+                                <Icon fontSize="small">photo_camera</Icon>                                
                             </Button>
+                        </TableCell>                    
+                        <TableCell>                                                        
                             <Button 
                                 variant="fab" 
                                 color="primary" 

@@ -42,13 +42,13 @@ class EditSchedule extends React.Component {
     render() {
         const { classes, 
                 handleValueChange, 
-                dataValue,
-                titleValue,   
-                fileValue,     
+                data,  
+                file,
                 handleSave,
                 handleCancel,
                 handleFileValue
             } = this.props;
+        const fileName = file.name != null ? file.name : '';
         return (
             <div>
                 <form className={classes.container} noValidate autoComplete="off">    
@@ -57,8 +57,8 @@ class EditSchedule extends React.Component {
                             id='data'
                             label='Data'
                             type='datetime-local'
-                            value={dataValue}      
-                            onChange={handleValueChange('dataValue')}                                  
+                            value={data.date}      
+                            onChange={handleValueChange('date')}                                  
                             width='80px'
                             InputLabelProps={{
                                 shrink: true,
@@ -68,8 +68,8 @@ class EditSchedule extends React.Component {
                             id="title"
                             label="Título"
                             className={classes.textField}
-                            value={titleValue}
-                            onChange={handleValueChange('titleValue')}
+                            value={data.title}
+                            onChange={handleValueChange('title')}
                             margin="normal"
                             fullWidth
                         />   
@@ -81,7 +81,7 @@ class EditSchedule extends React.Component {
                                 className={classes.textField}
                                 margin="normal"
                                 fullWidth
-                                value={fileValue}
+                                value={fileName}
                             /> 
                             <input
                                 accept="image/*"
@@ -127,9 +127,7 @@ class EditSchedule extends React.Component {
 EditSchedule.propTypes = {
     classes: PropTypes.object.isRequired,
     handleValueChange: PropTypes.func.isRequired,
-    dataValue: PropTypes.string.isRequired,
-    titleValue: PropTypes.string.isRequired,
-    fileValue: PropTypes.string.isRequired,
+    data: PropTypes.object.isRequired,
     handleSave: PropTypes.func.isRequired,
     handleCancel: PropTypes.func.isRequired,
     handleFileValue: PropTypes.func.isRequired,
