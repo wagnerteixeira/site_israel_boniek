@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     container: {
+        marginTop: theme.spacing.unit * 3,
         display: 'block',        
     },
     back: {
@@ -14,7 +15,7 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',  
         flexDirection: 'column',  
-        padding: theme.spacing.unit, 
+        padding: theme.spacing.unit * 2, 
         borderColor: '#C0C0C0',
         borderStyle: 'solid',      
         borderWidth: '1px',
@@ -35,15 +36,16 @@ const styles = theme => ({
     divRow: {
         display: 'flex',
         flexDirection: 'row',
-    }
+    },
 });
 
-class EditSchedule extends React.Component {
+class EditPublication extends Component {
     render() {
         const { classes, 
                 handleValueChange, 
-                dataValue,
-                titleValue,   
+                titleValue,
+                subtitleValue,
+                sinopsysValue,   
                 fileValue,     
                 handleSave,
                 handleCancel,
@@ -54,17 +56,6 @@ class EditSchedule extends React.Component {
                 <form className={classes.container} noValidate autoComplete="off">    
                     <div className={classes.back}>
                         <TextField
-                            id='data'
-                            label='Data'
-                            type='datetime-local'
-                            value={dataValue}      
-                            onChange={handleValueChange('dataValue')}                                  
-                            width='80px'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />                    
-                        <TextField
                             id="title"
                             label="Título"
                             className={classes.textField}
@@ -72,7 +63,16 @@ class EditSchedule extends React.Component {
                             onChange={handleValueChange('titleValue')}
                             margin="normal"
                             fullWidth
-                        />   
+                        />
+                        <TextField
+                            id="subtitle"
+                            label="Subtítulo"
+                            className={classes.textField}
+                            value={subtitleValue}
+                            onChange={handleValueChange('subtitleValue')}
+                            margin="normal"
+                            fullWidth
+                        />                         
                         <div className={classes.divRow}>
                             <TextField                    
                                 style={{ flex: 1 }}                    
@@ -96,8 +96,18 @@ class EditSchedule extends React.Component {
                                         ...
                                     </Button>                            
                                 </div>
-                        </label>  
-                        </div>       
+                            </label>
+                        </div>
+                        <TextField
+                            id="sinopsys"
+                            label="Sinopse"
+                            rows="6"
+                            className={classes.textField}
+                            value={sinopsysValue}
+                            onChange={handleValueChange('sinopsysValue')}
+                            margin="normal"
+                            multiline
+                        />         
                         <br />
                         <div className={classes.divRow}>
                             <Button 
@@ -116,7 +126,7 @@ class EditSchedule extends React.Component {
                             >
                                 Cancelar
                             </Button>           
-                        </div>              
+                        </div>    
                     </div>                    
                 </form>
             </div>       
@@ -124,7 +134,7 @@ class EditSchedule extends React.Component {
     }
 }
 
-EditSchedule.propTypes = {
+EditPublication.propTypes = {
     classes: PropTypes.object.isRequired,
     handleValueChange: PropTypes.func.isRequired,
     dataValue: PropTypes.string.isRequired,
@@ -135,4 +145,4 @@ EditSchedule.propTypes = {
     handleFileValue: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(EditSchedule);
+export default withStyles(styles)(EditPublication);
