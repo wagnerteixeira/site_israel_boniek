@@ -12,14 +12,7 @@ export default (collection) => {
 
     const deleteDoc = (id) => firebase.db.baseApi.doDelete(collection, id);
 
-    const updateDoc = (doc) => {
-            return new Promise((resolve, reject) => {
-                firebase.db.baseApi.doUpdate(collection, doc)
-                .then(doc => resolve(doc.id)
-                    )
-                    .catch(error => reject(error));
-            });
-        };
+    const updateDoc = (data) => firebase.db.baseApi.doUpdate(collection, data);
 
     const getDocs = () => {
         return new Promise((resolve, reject) => {
