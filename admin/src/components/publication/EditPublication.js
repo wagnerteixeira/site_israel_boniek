@@ -43,13 +43,14 @@ class EditPublication extends Component {
     render() {
         const { classes, 
                 handleValueChange, 
-                titleValue,
-                subtitleValue,
-                sinopsysValue,   
-                fileValue,     
+                title,
+                subtitle,
+                sinopsys,   
+                file,    
                 handleSave,
                 handleCancel,
-                handleFileValue
+                handleFileValue,
+                emAlteracao,
             } = this.props;
         return (
             <div>
@@ -59,8 +60,8 @@ class EditPublication extends Component {
                             id="title"
                             label="Título"
                             className={classes.textField}
-                            value={titleValue}
-                            onChange={handleValueChange('titleValue')}
+                            value={title}
+                            onChange={handleValueChange('title')}
                             margin="normal"
                             fullWidth
                         />
@@ -68,8 +69,8 @@ class EditPublication extends Component {
                             id="subtitle"
                             label="Subtítulo"
                             className={classes.textField}
-                            value={subtitleValue}
-                            onChange={handleValueChange('subtitleValue')}
+                            value={subtitle}
+                            onChange={handleValueChange('subtitle')}
                             margin="normal"
                             fullWidth
                         />                         
@@ -81,7 +82,8 @@ class EditPublication extends Component {
                                 className={classes.textField}
                                 margin="normal"
                                 fullWidth
-                                value={fileValue}
+                                value={file}
+                                disabled={emAlteracao}
                             /> 
                             <input
                                 accept="image/*"
@@ -92,7 +94,7 @@ class EditPublication extends Component {
                             />                
                             <label htmlFor="outlined-button-file">
                                 <div className={classes.containerFile}>
-                                    <Button variant="outlined" component="span" className={classes.button}>
+                                    <Button variant="outlined" component="span" className={classes.button} disabled={emAlteracao}>
                                         ...
                                     </Button>                            
                                 </div>
@@ -103,8 +105,8 @@ class EditPublication extends Component {
                             label="Sinopse"
                             rows="6"
                             className={classes.textField}
-                            value={sinopsysValue}
-                            onChange={handleValueChange('sinopsysValue')}
+                            value={sinopsys}
+                            onChange={handleValueChange('sinopsys')}
                             margin="normal"
                             multiline
                         />         
@@ -137,9 +139,9 @@ class EditPublication extends Component {
 EditPublication.propTypes = {
     classes: PropTypes.object.isRequired,
     handleValueChange: PropTypes.func.isRequired,
-    dataValue: PropTypes.string.isRequired,
-    titleValue: PropTypes.string.isRequired,
-    fileValue: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    sinopsys: PropTypes.string.isRequired,    
     handleSave: PropTypes.func.isRequired,
     handleCancel: PropTypes.func.isRequired,
     handleFileValue: PropTypes.func.isRequired,

@@ -36,7 +36,7 @@ const styles = theme => ({
 });
 
 function ViewPublication(props) {
-  const { classes, handleClick, selectedIndex, docs } = props;
+  const { classes, handleEdit, handleDelete, selectedIndex, docs } = props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -44,8 +44,7 @@ function ViewPublication(props) {
           <TableRow>
             <TableCell>Título</TableCell>
             <TableCell>Subtítulo</TableCell>
-            <TableCell>Sinopse</TableCell>
-            <TableCell>Imagem</TableCell>               
+            <TableCell>Sinopse</TableCell>           
             <TableCell className={classes.acoes}>Ações</TableCell>   
           </TableRow>
         </TableHead>
@@ -54,13 +53,11 @@ function ViewPublication(props) {
                     <TableRow 
                         key={doc.id}
                         hover
-                        onClick={event => handleClick(event, doc.id)}
                         selected={selectedIndex === doc.id}
                     >
                         <TableCell>{doc.data.title}</TableCell>
                         <TableCell>{doc.data.subtitle}</TableCell>
-                        <TableCell>{doc.data.sinopsys}</TableCell>
-                        <TableCell>{doc.data.urlFolder}</TableCell>                    
+                        <TableCell>{doc.data.sinopsys}</TableCell>                  
                         <TableCell>                            
                             <Button 
                                 variant="fab" 
@@ -68,7 +65,7 @@ function ViewPublication(props) {
                                 aria-label="Edit" 
                                 className={classNames(classes.button, classes.buttonEdit)}
                                 mini
-                                onClick={() => console.log('Edit')}
+                                onClick={event => handleEdit(event, doc.id)}
                             >
                                 <Icon fontSize="small">edit_icon</Icon>                                
                             </Button>
@@ -78,7 +75,7 @@ function ViewPublication(props) {
                                 aria-label="Delete" 
                                 className={classes.button}
                                 mini
-                                onClick={() => console.log('Delete')}
+                                onClick={event => handleDelete(event, doc.id)}
                             >
                                 <Icon fontSize="small">delete_icon</Icon>
                             </Button>                           
