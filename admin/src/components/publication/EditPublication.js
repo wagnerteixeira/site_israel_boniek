@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     container: {
+        marginTop: theme.spacing.unit * 3,
         display: 'block',        
     },
     back: {
@@ -14,7 +15,7 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',  
         flexDirection: 'column',  
-        padding: theme.spacing.unit, 
+        padding: theme.spacing.unit * 2, 
         borderColor: '#C0C0C0',
         borderStyle: 'solid',      
         borderWidth: '1px',
@@ -35,44 +36,44 @@ const styles = theme => ({
     divRow: {
         display: 'flex',
         flexDirection: 'row',
-    }
+    },
 });
 
-class EditSchedule extends React.Component {
+class EditPublication extends Component {
     render() {
         const { classes, 
                 handleValueChange, 
-                data,  
-                file,
+                title,
+                subtitle,
+                sinopsys,   
+                file,    
                 handleSave,
                 handleCancel,
-                handleFileValue
+                handleFileValue,
+                emAlteracao,
             } = this.props;
-        const fileName = file.name != null ? file.name : '';
         return (
             <div>
                 <form className={classes.container} noValidate autoComplete="off">    
                     <div className={classes.back}>
                         <TextField
-                            id='data'
-                            label='Data'
-                            type='datetime-local'
-                            value={data.date}      
-                            onChange={handleValueChange('date')}                                  
-                            width='80px'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />                    
-                        <TextField
                             id="title"
                             label="Título"
                             className={classes.textField}
-                            value={data.title}
+                            value={title}
                             onChange={handleValueChange('title')}
                             margin="normal"
                             fullWidth
-                        />   
+                        />
+                        <TextField
+                            id="subtitle"
+                            label="Subtítulo"
+                            className={classes.textField}
+                            value={subtitle}
+                            onChange={handleValueChange('subtitle')}
+                            margin="normal"
+                            fullWidth
+                        />                         
                         <div className={classes.divRow}>
                             <TextField                    
                                 style={{ flex: 1 }}                    
@@ -81,7 +82,8 @@ class EditSchedule extends React.Component {
                                 className={classes.textField}
                                 margin="normal"
                                 fullWidth
-                                value={fileName}
+                                value={file}
+                                disabled={emAlteracao}
                             /> 
                             <input
                                 accept="image/*"
@@ -92,12 +94,22 @@ class EditSchedule extends React.Component {
                             />                
                             <label htmlFor="outlined-button-file">
                                 <div className={classes.containerFile}>
-                                    <Button variant="outlined" component="span" className={classes.button}>
+                                    <Button variant="outlined" component="span" className={classes.button} disabled={emAlteracao}>
                                         ...
                                     </Button>                            
                                 </div>
-                        </label>  
-                        </div>       
+                            </label>
+                        </div>
+                        <TextField
+                            id="sinopsys"
+                            label="Sinopse"
+                            rows="6"
+                            className={classes.textField}
+                            value={sinopsys}
+                            onChange={handleValueChange('sinopsys')}
+                            margin="normal"
+                            multiline
+                        />         
                         <br />
                         <div className={classes.divRow}>
                             <Button 
@@ -116,7 +128,7 @@ class EditSchedule extends React.Component {
                             >
                                 Cancelar
                             </Button>           
-                        </div>              
+                        </div>    
                     </div>                    
                 </form>
             </div>       
@@ -124,13 +136,15 @@ class EditSchedule extends React.Component {
     }
 }
 
-EditSchedule.propTypes = {
+EditPublication.propTypes = {
     classes: PropTypes.object.isRequired,
     handleValueChange: PropTypes.func.isRequired,
-    data: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    sinopsys: PropTypes.string.isRequired,    
     handleSave: PropTypes.func.isRequired,
     handleCancel: PropTypes.func.isRequired,
     handleFileValue: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(EditSchedule);
+export default withStyles(styles)(EditPublication);

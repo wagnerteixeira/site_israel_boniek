@@ -11,8 +11,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import classNames from 'classnames';
 
-import { dateAndTimeFormat } from '../../utils/dateHelper';
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -33,55 +31,41 @@ const styles = theme => ({
     },
   },
   acoes: {
-      paddingLeft: theme.spacing.unit * 6
+      paddingLeft: theme.spacing.unit * 8
   }
 });
 
-function ViewSchedule(props) {
-  const { classes, handleClick, selectedIndex, docs } = props;
+function ViewPublication(props) {
+  const { classes, handleEdit, handleDelete, selectedIndex, docs } = props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Data</TableCell>
             <TableCell>Título</TableCell>
-            <TableCell>Localização</TableCell>
-            <TableCell>Imagem</TableCell>   
+            <TableCell>Subtítulo</TableCell>
+            <TableCell>Sinopse</TableCell>           
             <TableCell className={classes.acoes}>Ações</TableCell>   
           </TableRow>
         </TableHead>
         <TableBody>
-            {Object.keys(docs).map(key => (
+            {docs.map(doc => (
                     <TableRow 
-                        key={key}
+                        key={doc.id}
                         hover
-                        onClick={event => handleClick(event, key)}
-                        selected={selectedIndex === key}
+                        selected={selectedIndex === doc.id}
                     >
-                        <TableCell>{dateAndTimeFormat(docs[key].data.date)}</TableCell>
-                        <TableCell>{docs[key].data.title}</TableCell>
-                        <TableCell>{docs[key].data.location}</TableCell>
-                        <TableCell>
-                            <Button 
-                                variant="fab" 
-                                color="default" 
-                                aria-label="Edit" 
-                                className={classes.button}
-                                mini
-                                onClick={() => console.log(docs[key].data.urlFolder)}
-                            >
-                                <Icon fontSize="small">photo_camera</Icon>                                
-                            </Button>
-                        </TableCell>                    
-                        <TableCell>                                                        
+                        <TableCell>{doc.data.title}</TableCell>
+                        <TableCell>{doc.data.subtitle}</TableCell>
+                        <TableCell>{doc.data.sinopsys}</TableCell>                  
+                        <TableCell>                            
                             <Button 
                                 variant="fab" 
                                 color="primary" 
                                 aria-label="Edit" 
                                 className={classNames(classes.button, classes.buttonEdit)}
                                 mini
-                                onClick={() => console.log('Edit')}
+                                onClick={event => handleEdit(event, doc.id)}
                             >
                                 <Icon fontSize="small">edit_icon</Icon>                                
                             </Button>
@@ -91,7 +75,7 @@ function ViewSchedule(props) {
                                 aria-label="Delete" 
                                 className={classes.button}
                                 mini
-                                onClick={() => console.log('Delete')}
+                                onClick={event => handleDelete(event, doc.id)}
                             >
                                 <Icon fontSize="small">delete_icon</Icon>
                             </Button>                           
@@ -105,8 +89,8 @@ function ViewSchedule(props) {
   );
 }
 
-ViewSchedule.propTypes = {
+ViewPublication.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ViewSchedule);
+export default withStyles(styles)(ViewPublication);

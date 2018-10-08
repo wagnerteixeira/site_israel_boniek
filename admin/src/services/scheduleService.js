@@ -3,11 +3,11 @@ import baseService from './baseService';
 
 const imageService = baseService('schedules');
 
-const createSchedule = (id, file) => firebase.storage.child(`schedules/'${id}`).put(file);
-const deleteSchedule = (id) => firebase.storage.child(`schedules/'${id}`).delete();
+const createFileImage = (id, file) => firebase.storage.child(`schedules/'${id}`).put(file);
+const deleteFileImage = (id) => firebase.storage.child(`schedules/'${id}`).delete();
 
 export default {
     ...imageService,
-    createSchedule,
-    deleteSchedule
+    createFileImage,
+    deleteFileImage
 };

@@ -1,6 +1,6 @@
-const dateAndTimeFormat = seconds => {
-    const date = new Date(seconds * 1000);
-    return `${(`0${(date.getDay())}`).slice(-2)}/${(`0${(date.getMonth() + 1)}`).slice(-2)}/${date.getFullYear()} ${(`0${(date.getHours())}`).slice(-2)}:${(`0${(date.getMinutes())}`).slice(-2)}:${(`0${(date.getSeconds())}`).slice(-2)}`;
+const dateAndTimeFormat = date => {    
+    const objDate = new Date(date);    
+    return `${(`0${(objDate.getDay())}`).slice(-2)}/${(`0${(objDate.getMonth() + 1)}`).slice(-2)}/${objDate.getFullYear()} ${(`0${(objDate.getHours())}`).slice(-2)}:${(`0${(objDate.getMinutes())}`).slice(-2)}:${(`0${(objDate.getSeconds())}`).slice(-2)}`;    
 };
 
 export {
