@@ -3,7 +3,8 @@
     background: white;
     width: 100%;  
     display: flex; 
-    height: 900px;                     
+    height: 900px;  
+    z-index: 20;                  
 }
 
 .imgContainer {
@@ -30,12 +31,13 @@
 @media screen and (max-width: 1224px) {
     .fides {
         align-self: auto;
-    }
+        height: 1050px;
+    }      
 }
 
 @media screen and (min-width: 1224px) {
     .imgContainer {
-        width: 50%;
+        width: 50%;        
         display: flex;
         float: left;
         padding: 1em;

@@ -13,7 +13,7 @@
 
 .container > h2 {
     margin: 0;
-    font-size: 2.827em;
+    font-size: 2.827em;    
 }
 
 .container > h3 {
@@ -23,14 +23,12 @@
 }
 
 .container > h4 {
-    color: #222;
     margin: 1em;
     font-weight: lighter;
     font-size: 1.414em;
 }
 
 .container > h5 {
-    color: #222;
     margin: 1em;
     font-weight: lighter;
     font-size: 1em;

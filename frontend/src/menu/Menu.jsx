@@ -9,7 +9,8 @@ class Menu extends Component {
                 <div className="navbar">
                     <a href="#home">HOME</a>
                     <a href="#fides">FIDES EDUCACIONAL</a>
-                    <a href="#publication">PUBLICAÇÕES</a>
+                    <a href="#lecture">PALESTRAS</a>
+                    <a href="#publication">PUBLICAÇÕES</a>                    
                     <a href="#picture">FOTOS</a>
                     <a href="#contact">CONTATO</a>
                 </div>

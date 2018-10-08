@@ -46,12 +46,12 @@ class Publication extends Component {
     renderPublication(){
         console.log(this.state.pubs);    
         return Object.keys(this.state.pubs).map(pub => 
-            <div key={this.state.pubs[pub].id} className="card">                
+            <div key={this.state.pubs[pub].id} className="card-pub">                
               <img  alt={this.state.pubs[pub].data.title} 
                     className="picture-pub" 
                     src={this.state.pubs[pub].data.urlFolder} 
                     onClick={event => this.showModal(event, this.state.pubs[pub].id)} />
-                <h3 className="name">
+                <h3 className="name-pub">
                   <a>
                     {this.state.pubs[pub].data.title}                    
                   </a>
@@ -65,21 +65,19 @@ class Publication extends Component {
     
     render() {  
         return (
-            <div id="publication">
-                <div className="container-publication">
-                    <Text title="Publicações" reverse />
-                    <div className="cards">
-                        <Modal show={this.state.show} 
-                            handleClose={this.hideModal} 
-                            children={this.state.childrenModal}
-                            sinopsys={this.state.sinopsysModal}
-                            urlFolder={this.state.urlFolderModal}
-                            >                   
-                        </Modal>
-                            {this.renderPublication()}
-                    </div>
+            <div className="container-publication" id="publication">
+                <Text title="Publicações" colortitle="#333333" reverse />
+                <div className="cards-pub">
+                    <Modal show={this.state.show} 
+                        handleClose={this.hideModal} 
+                        children={this.state.childrenModal}
+                        sinopsys={this.state.sinopsysModal}
+                        urlFolder={this.state.urlFolderModal}
+                        >                   
+                    </Modal>
+                        {this.renderPublication()}
                 </div>
-            </div>
+            </div>            
           );
         }      
     }

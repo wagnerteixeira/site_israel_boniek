@@ -5,7 +5,7 @@ import { blue, red, green } from '@material-ui/core/colors';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Menu from './components/layout/Menu';
-import Lecture from './components/Lecture';
+import Lecture from './components/lecture/Lecture';
 import Image from './components/Image';
 import Publication from './components/publication/Publication';
 import Schedule from './components/schedule/Schedule';
