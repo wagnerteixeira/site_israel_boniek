@@ -1,142 +1,138 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 
 import EditPublication from './EditPublication';
 import ViewPublication from './ViewPublication';
 
 import publicationService from '../../services/publicationService';
 
-
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3
   },
 });
 
 class Publication extends Component {
   state = {
-    value: 0,
-    emAlteracao: false,
-    title: '',
-    subtitle: '',
-    sinopsys: '',
+    tabValue: 'LIST',
+    inEdit: false,
+    imageChanged: false,
     file: {},
-    urlFolder: '',
-    selectedIndex: 0,
-    docs: []
+    selectedIndex: '0',
+    image: '',            
+    docs: [],
+    id : '',
+    data: {
+      title: '',
+      subtitle: '',
+      sinopsys: '',      
+      urlImage: '',
+    }    
   };
 
   componentWillMount() {
-    this.fetchImages();
+    this.fetchPublications();
   }
 
-  fetchImages = () => {    
+  fetchPublications = () => {    
     publicationService.getDocs()
       .then(documents => {               
-        this.setState({    
+        this.setState({   
             ...this.state,         
-            value: 0, 
-            emAlteracao: false,
-            title: '',
-            subtitle: '',
-            sinopsys: '',
+            tabValue: 'LIST', 
+            inEdit: false,
             file: {},
-            urlFolder: '',
-            selectedIndex: 0,
+            selectedIndex: '0',
             docs: documents,
+            image: '',
+            id : '',
+            imageChanged: false,
+            data: {
+              title: '',
+              subtitle: '',
+              sinopsys: '',      
+              urlImage: '',
+            }                
         });            
       })
       .catch(error => console.log(error));
   }
 
   handleTabChange = (event, value) => {
-    this.setState({ value });
+    this.setState({...this.state,  tabValue: value });
   };
 
   handleValueChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
+    this.setState({...this.state, data: { ...this.state.data, [name]: event.target.value}});
   };
 
+  handleImgaeChanged = () => this.setState({ ...this.state, imageChanged: true });
+
   handleCancel = () => {
-    this.setState({...this.state, value: 0});
-    this.fetchImages();
+    this.setState({...this.state, tabValue: 'LIST'});
+    this.fetchPublications();
   }
 
-  handleSave = () => {              
-    let publication = {
-      id : '',
-      data : {
-        title: this.state.title,
-        subtitle: this.state.subtitle,
-        sinopsys: this.state.sinopsys,
-        urlFolder: this.state.urlFolder,        
-      } 
-    }
+  handleSave = () => {   
+    console.log(this.state);
+    if (this.state.inEdit){
+      let publication = {
+        id : this.state.id,
+        data : {...this.state.data}
+      }
 
-    if (this.state.emAlteracao){
-        publication.id = this.state.selectedIndex;
-        publication.data.id = this.state.selectedIndex;
-        console.log(publication);
-        publicationService.updateDoc(publication.data)
+      publicationService.updateDoc(publication)
+        .then(() => {
+            if (this.state.imageChanged)
+              this.updateImage(publication)
+            else
+              this.handleCancel();
+          })
+        .catch((error) => console.log(error));
+    }
+    else {
+      let publication = {
+        id : '',
+        data : {...this.state.data}
+      }
+      publicationService.createDoc(publication.data)
         .then((id) => {
-            console.log('Alterado');            
-            this.setState({...this.state, value: 0, emAlteracao: false});
+            console.log('Criado')
+            publication.id = id;            
+            this.saveFileImage(publication, this.state.file);
         })
         .catch((error) => console.log(error));
-    } else {
-    publicationService.createDoc(publication.data)
-      .then((id) => {
-          publication.id = id;
-          this.saveFileImage(publication, this.state.file);
-          this.setState({...this.state, value: 0});
-      })
-      .catch((error) => console.log(error));
-    }    
+    }
   }    
 
-  handleDelete = (event, id) => {              
-       publicationService.deleteDoc(id)
-        .then((doc) => {
-            console.log('Deletado');
-            this.deleteFileImage(id);            
-            this.fetchImages();
-        })
-        .catch((error) => console.log(error));    
+  updateImage(publication) {
+    this.saveFileImage(publication, this.state.file);
   }
 
-handleEdit = (event, id) => {
-    const vTitle = this.state.docs.filter((e) => e.id === id)[0].data.title;
-    console.log(vTitle);
-    this.setState({ ...this.state,                     
-                    selectedIndex: id, 
-                    title : vTitle, 
-                    subtitle : this.state.docs.filter((e) => e.id === id)[0].data.subtitle,
-                    sinopsys : this.state.docs.filter((e) => e.id === id)[0].data.sinopsys,
-                    urlFolder: this.state.docs.filter((e) => e.id === id)[0].data.urlFolder,
-                    emAlteracao : true,
-                    value: 1});
-    console.log(this.state);    
-}
+  handleDelete = (key) => {
+    publicationService.deleteFileImage(this.state.docs[key].id)
+      .then(() => { 
+        publicationService.deleteDoc(this.state.docs[key].id)
+          .then(() =>  this.fetchPublications());
+      });
+  }
+
+  handleEdit = (key) => {      
+    this.setState({    
+      ...this.state,         
+      tabValue: 'EDIT', 
+      selectedIndex: key,
+      inEdit: true,
+      id : this.state.docs[key].id,
+      data: this.state.docs[key].data
+    });     
+  }
 
   deleteFileImage(id){
     publicationService.deleteFileImage(id);        
@@ -148,6 +144,8 @@ handleEdit = (event, id) => {
     var uploadTask = publicationService.createFileImage(publication.id, file);
 
     uploadTask.on('state_changed', function(snapshot){
+      // Observe state change events such as progress, pause, and resume
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log('Upload is ' + progress + '% done');
       console.log(snapshot.state);
@@ -158,64 +156,82 @@ handleEdit = (event, id) => {
         case 'running': // or 'running'
           console.log('Upload is running');
           break;
+        default:            
+          break;
+          
       }
     }, error => {
       console.log('error in save file image ' + error)// Handle unsuccessful uploads
     }, () => {
+      // Handle successful uploads on complete
+      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
       uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
         console.log('File available at', downloadURL);
-        publication.data.urlFolder = downloadURL;        
+        publication.data.urlImage = downloadURL;        
         publicationService.updateDoc(publication)
           .then(() => {                              
-              this.fetchImages();
+            this.handleCancel();
           })
           .catch((error) => console.log(error)) 
       });
     });
-  }  
+  } 
 
-  handleFileValue = (fileObject) => {
-    console.log(fileObject);      
+  handleFile = (e) => {            
+    this.setState({ ...this.state, image: e.target.result});
+  }
 
-    this.setState({ ...this.state, urlFolder: fileObject.name, file: fileObject });
+  handleFileValue = (fileObject) => {      
+    const fileReader = new FileReader();
+    fileReader.onloadend = this.handleFile;
+    
+    this.setState({ ...this.state, imageChanged: true, fileValue: fileObject.name, file: fileObject }, 
+      () => fileReader.readAsDataURL(fileObject)
+    );      
   }
 
   render() {
     const { classes } = this.props;
-    const { value, 
-        title,
-        subtitle,
-        sinopsys,
-        emAlteracao,
+    const { 
+      tabValue, 
+      inEdit, 
+      file,
+      docs,
+      selectedIndex,
+      data,
+      image
       } = this.state;   
 
     return (
         
       <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={this.handleTabChange}>
-            <Tab label="Listar" />
-            <Tab label="Incluir" />            
-          </Tabs>
-        </AppBar>
-        {value === 0 && <TabContainer>
+        <Tabs 
+            value={tabValue} 
+            onChange={this.handleTabChange}
+            indicatorColor='primary'
+            textColor='primary'
+        >
+              {!inEdit && <Tab value='LIST' label='LISTAR' />}
+              <Tab value='EDIT' label={inEdit ? 'ALTERAR' : 'INCLUIR'} />                    
+        </Tabs>   
+        {tabValue === 'LIST' && 
             <ViewPublication 
-                    handleClick={this.handleClick} 
-                    docs={this.state.docs}
-                    handleEdit={this.handleEdit}
-                    handleDelete={this.handleDelete}     
-            /></TabContainer>}
-        {value === 1 && <TabContainer>
+                selectedIndex={selectedIndex} 
+                handleClick={this.handleClick} 
+                docs={docs}
+                handleEdit={this.handleEdit}
+                handleDelete={this.handleDelete}
+            />}
+        {tabValue === 'EDIT' && 
             <EditPublication 
-                    handleValueChange={this.handleValueChange}
-                    title={title}
-                    subtitle={subtitle}
-                    sinopsys={sinopsys}
-                    handleCancel={this.handleCancel}
-                    handleSave={this.handleSave}                      
-                    handleFileValue={this.handleFileValue} 
-                    emAlteracao={emAlteracao}                 
-            /></TabContainer>}
+                handleValueChange={this.handleValueChange}
+                file={file}
+                data={data}
+                handleCancel={this.handleCancel}
+                handleSave={this.handleSave}                    
+                handleFileValue={this.handleFileValue}                    
+                image={image}                
+            />}
       </div>
     );
   }

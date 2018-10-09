@@ -49,15 +49,16 @@ function ViewLecture(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-            {docs.map(doc => (
+            {Object.keys(docs).map(key => (
                     <TableRow 
-                        key={doc.id}
+                        key={key}
                         hover
-                        selected={selectedIndex === doc.id}
+                        //onClick={event => handleClick(event, key)}
+                        selected={selectedIndex === key}
                     >
-                        <TableCell>{doc.data.title}</TableCell>
-                        <TableCell>{doc.data.sinopsys}</TableCell>                  
-                        <TableCell>{doc.data.keyword}</TableCell> 
+                        <TableCell>{docs[key].data.title}</TableCell>
+                        <TableCell>{docs[key].data.sinopsys}</TableCell>                  
+                        <TableCell>{docs[key].data.keyword}</TableCell> 
                         <TableCell>                            
                             <Button 
                                 variant="fab" 
@@ -65,7 +66,7 @@ function ViewLecture(props) {
                                 aria-label="Edit" 
                                 className={classNames(classes.button, classes.buttonEdit)}
                                 mini
-                                onClick={event => handleEdit(event, doc.id)}
+                                onClick={() => handleEdit(key)}
                             >
                                 <Icon fontSize="small">edit_icon</Icon>                                
                             </Button>
@@ -75,7 +76,7 @@ function ViewLecture(props) {
                                 aria-label="Delete" 
                                 className={classes.button}
                                 mini
-                                onClick={event => handleDelete(event, doc.id)}
+                                onClick={() => handleDelete(key)}
                             >
                                 <Icon fontSize="small">delete_icon</Icon>
                             </Button>                           
@@ -91,6 +92,11 @@ function ViewLecture(props) {
 
 ViewLecture.propTypes = {
   classes: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  selectedIndex: PropTypes.string.isRequired,
+  docs: PropTypes.array.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ViewLecture);

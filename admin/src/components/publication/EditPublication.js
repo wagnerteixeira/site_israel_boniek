@@ -37,21 +37,28 @@ const styles = theme => ({
         display: 'flex',
         flexDirection: 'row',
     },
+    img: {
+        height: theme.spacing.unit * 25,
+        width: theme.spacing.unit * 40,       
+    },
 });
 
 class EditPublication extends Component {
     render() {
-        const { classes, 
-                handleValueChange, 
-                title,
-                subtitle,
-                sinopsys,   
-                file,    
-                handleSave,
-                handleCancel,
-                handleFileValue,
-                emAlteracao,
+        const { 
+            classes, 
+            handleValueChange, 
+            data,                  
+            handleSave,
+            handleCancel,
+            handleFileValue,
+            image
             } = this.props;
+        let imgSrc = '';
+        if ((image === '') && (data.urlImage !== ''))
+            imgSrc = data.urlImage;
+        else
+            imgSrc = image;
         return (
             <div>
                 <form className={classes.container} noValidate autoComplete="off">    
@@ -60,7 +67,7 @@ class EditPublication extends Component {
                             id="title"
                             label="Título"
                             className={classes.textField}
-                            value={title}
+                            value={data.title}
                             onChange={handleValueChange('title')}
                             margin="normal"
                             fullWidth
@@ -69,22 +76,13 @@ class EditPublication extends Component {
                             id="subtitle"
                             label="Subtítulo"
                             className={classes.textField}
-                            value={subtitle}
+                            value={data.subtitle}
                             onChange={handleValueChange('subtitle')}
                             margin="normal"
                             fullWidth
                         />                         
                         <div className={classes.divRow}>
-                            <TextField                    
-                                style={{ flex: 1 }}                    
-                                id="file-name"
-                                label="Imagem"
-                                className={classes.textField}
-                                margin="normal"
-                                fullWidth
-                                value={file}
-                                disabled={emAlteracao}
-                            /> 
+                            <img className={classes.img} alt='Selecione uma imagem' src={imgSrc} />
                             <input
                                 accept="image/*"
                                 className={classes.inputFile}
@@ -94,7 +92,7 @@ class EditPublication extends Component {
                             />                
                             <label htmlFor="outlined-button-file">
                                 <div className={classes.containerFile}>
-                                    <Button variant="outlined" component="span" className={classes.button} disabled={emAlteracao}>
+                                    <Button variant="outlined" component="span" className={classes.button}>
                                         ...
                                     </Button>                            
                                 </div>
@@ -105,7 +103,7 @@ class EditPublication extends Component {
                             label="Sinopse"
                             rows="6"
                             className={classes.textField}
-                            value={sinopsys}
+                            value={data.sinopsys}
                             onChange={handleValueChange('sinopsys')}
                             margin="normal"
                             multiline
@@ -139,12 +137,10 @@ class EditPublication extends Component {
 EditPublication.propTypes = {
     classes: PropTypes.object.isRequired,
     handleValueChange: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
-    sinopsys: PropTypes.string.isRequired,    
     handleSave: PropTypes.func.isRequired,
     handleCancel: PropTypes.func.isRequired,
     handleFileValue: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(EditPublication);

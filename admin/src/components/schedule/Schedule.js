@@ -11,6 +11,8 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,    
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3
   },
   container: {
     display: 'flex',
@@ -29,6 +31,7 @@ class Schedule extends React.Component {
             selectedIndex: '0',
             image: '',            
             docs: [],
+            id : '',
             data: {
               date: new Date().toISOString().slice(0, 16),
               title: '',                
@@ -91,7 +94,7 @@ class Schedule extends React.Component {
            })
           .catch((error) => console.log(error));
       }
-      else{
+      else {
         let schedule = {
           id : '',
           data : {...this.state.data}

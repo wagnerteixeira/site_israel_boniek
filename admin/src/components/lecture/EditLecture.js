@@ -42,13 +42,10 @@ const styles = theme => ({
 class EditLecture extends Component {
     render() {
         const { classes, 
-                handleValueChange, 
-                title,
-                sinopsys, 
-                keyword,  
+                handleValueChange,                 
+                data,
                 handleSave,
                 handleCancel,
-                emAlteracao,
             } = this.props;
         return (
             <div>
@@ -58,7 +55,7 @@ class EditLecture extends Component {
                             id="title"
                             label="Título"
                             className={classes.textField}
-                            value={title}
+                            value={data.title}
                             onChange={handleValueChange('title')}
                             margin="normal"
                             fullWidth
@@ -68,7 +65,7 @@ class EditLecture extends Component {
                             label="Sinopse"
                             rows="10"
                             className={classes.textField}
-                            value={sinopsys}
+                            value={data.sinopsys}
                             onChange={handleValueChange('sinopsys')}
                             margin="normal"
                             multiline
@@ -77,7 +74,7 @@ class EditLecture extends Component {
                             id="keyword"
                             label="Palavras Chave"
                             className={classes.textField}
-                            value={keyword}
+                            value={data.keyword}
                             onChange={handleValueChange('keyword')}
                             margin="normal"                            
                         />         
@@ -109,11 +106,10 @@ class EditLecture extends Component {
 
 EditLecture.propTypes = {
     classes: PropTypes.object.isRequired,
-    handleValueChange: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
-    sinopsys: PropTypes.string.isRequired,        
+    handleValueChange: PropTypes.func.isRequired,    
     handleSave: PropTypes.func.isRequired,
     handleCancel: PropTypes.func.isRequired,    
+    data: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(EditLecture);
