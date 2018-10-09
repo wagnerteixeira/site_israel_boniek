@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Menu from './components/layout/Menu';
 import Lecture from './components/lecture/Lecture';
-import Image from './components/Image';
+import Image from './components/image/Image';
 import Publication from './components/publication/Publication';
 import Schedule from './components/schedule/Schedule';
 import Users from './components/Users';

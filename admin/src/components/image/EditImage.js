@@ -42,7 +42,7 @@ const styles = theme => ({
     },
 });
 
-class EditSchedule extends React.Component {
+class EditImage extends React.Component {
     render() {
         const { classes, 
                 handleValueChange, 
@@ -53,31 +53,20 @@ class EditSchedule extends React.Component {
                 image
             } = this.props;           
         let imgSrc = '';
-        if ((image === '') && (data.urlFolder !== ''))
-            imgSrc = data.urlFolder;
+        if ((image === '') && (data.url !== ''))
+            imgSrc = data.url;
         else
             imgSrc = image;
         return (
             <div>
                 <form className={classes.container} noValidate autoComplete="off">    
-                    <div className={classes.back}>
+                    <div className={classes.back}>                        
                         <TextField
-                            id='data'
-                            label='Data'
-                            type='datetime-local'
-                            value={data.date}      
-                            onChange={handleValueChange('date')}                                  
-                            width='80px'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />                    
-                        <TextField
-                            id="title"
-                            label="Título"
+                            id="description"
+                            label="Descrição"
                             className={classes.textField}
-                            value={data.title}
-                            onChange={handleValueChange('title')}
+                            value={data.description}
+                            onChange={handleValueChange('description')}
                             margin="normal"
                             fullWidth
                         />   
@@ -124,7 +113,7 @@ class EditSchedule extends React.Component {
     }
 }
 
-EditSchedule.propTypes = {
+EditImage.propTypes = {
     classes: PropTypes.object.isRequired,
     handleValueChange: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired,
@@ -134,4 +123,4 @@ EditSchedule.propTypes = {
     image: PropTypes.string.isRequired,    
 };
 
-export default withStyles(styles)(EditSchedule);
+export default withStyles(styles)(EditImage);

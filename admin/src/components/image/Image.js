@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import EditShedule from './EditSchedule';
-import ViewSchedule from './ViewSchedule';
-import scheduleService from '../../services/scheduleService';
+import EditImage from './EditImage';
+import ViewImage from './ViewImage';
+import imageService from '../../services/imageService';
 
 const styles = theme => ({
   root: {
@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-class Schedule extends React.Component {
+class Image extends React.Component {
     constructor(props) {
         super(props);        
         this.state = {
@@ -30,10 +30,8 @@ class Schedule extends React.Component {
             image: '',            
             docs: [],
             data: {
-              date: new Date().toISOString().slice(0, 16),
-              title: '',                
-              urlFolder: '',
-              location: '',  
+              description: '',
+              url: '',
             },
         };        
     }
@@ -43,7 +41,7 @@ class Schedule extends React.Component {
     }
 
     fetchImages = () => {          
-      scheduleService.getDocs()
+      imageService.getDocs()
         .then(documents => {               
           this.setState({    
             ...this.state,         
@@ -56,10 +54,8 @@ class Schedule extends React.Component {
             id : '',
             imageChanged: false,
             data: {
-              date: new Date().toISOString().slice(0, 16),
-              title: '',                
-              urlFolder: '',
-              location: '',  
+              description: '',
+              url: '',
             },
           });            
         })
@@ -70,37 +66,37 @@ class Schedule extends React.Component {
       this.setState({ ...this.state, selectedIndex: id });
     }
 
-    updateImage(schedule) {
-      this.saveFileImage(schedule, this.state.file);
+    updateImage(image) {
+      this.saveFileImage(image, this.state.file);
     }
 
     handleSave = () => {    
       console.log(this.state);
       if (this.state.inEdit){
-        let schedule = {
+        let image = {
           id : this.state.id,
           data : {...this.state.data}
         }
 
-        scheduleService.updateDoc(schedule)
+        imageService.updateDoc(image)
           .then(() => {
               if (this.state.imageChanged)
-                this.updateImage(schedule)
+                this.updateImage(image)
               else
                 this.handleCancel();
            })
           .catch((error) => console.log(error));
       }
       else{
-        let schedule = {
+        let image = {
           id : '',
           data : {...this.state.data}
         }
-        scheduleService.createDoc(schedule.data)
+        imageService.createDoc(image.data)
           .then((id) => {
               console.log('Criado')
-              schedule.id = id;            
-              this.saveFileImage(schedule, this.state.file);
+              image.id = id;            
+              this.saveFileImage(image, this.state.file);
           })
           .catch((error) => console.log(error));
       }
@@ -118,17 +114,17 @@ class Schedule extends React.Component {
     }
 
     handleDelete = (key) => {
-      scheduleService.deleteFileImage(this.state.docs[key].id)
+      imageService.deleteFileImage(this.state.docs[key].id)
         .then(() => { 
-          scheduleService.deleteDoc(this.state.docs[key].id)
+          imageService.deleteDoc(this.state.docs[key].id)
             .then(() =>  this.fetchImages());
         });
     }
 
-    saveFileImage(schedule, file){
+    saveFileImage(image, file){
       console.log('saveFileImage');
-      console.log(schedule)    
-      var uploadTask = scheduleService.createFileImage(schedule.id, file);
+      console.log(image)    
+      var uploadTask = imageService.createFileImage(image.id, file);
   
       uploadTask.on('state_changed', function(snapshot){
         // Observe state change events such as progress, pause, and resume
@@ -154,8 +150,8 @@ class Schedule extends React.Component {
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
           console.log('File available at', downloadURL);
-          schedule.data.urlFolder = downloadURL;        
-          scheduleService.updateDoc(schedule)
+          image.data.url = downloadURL;        
+          imageService.updateDoc(image)
             .then(() => {                              
               this.handleCancel();
             })
@@ -202,7 +198,7 @@ class Schedule extends React.Component {
                 selectedIndex,
                 data,
                 image
-              } = this.state; 
+              } = this.state;         
         return (
             <div className={classes.root}>                
                 <Tabs 
@@ -215,7 +211,7 @@ class Schedule extends React.Component {
                      <Tab value='EDIT' label={inEdit ? 'ALTERAR' : 'INCLUIR'} />                    
                 </Tabs>                
                 {tabValue === 'LIST' && 
-                  <ViewSchedule 
+                  <ViewImage 
                     selectedIndex={selectedIndex} 
                     handleClick={this.handleClick} 
                     docs={docs}
@@ -224,7 +220,7 @@ class Schedule extends React.Component {
                   />
                 }
                 {tabValue === 'EDIT' && 
-                  <EditShedule 
+                  <EditImage 
                     handleValueChange={this.handleValueChange}
                     file={file}
                     data={data}
@@ -239,9 +235,9 @@ class Schedule extends React.Component {
     }
 }
 
-Schedule.propTypes = {
+Image.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Schedule);
+export default withStyles(styles)(Image);
 

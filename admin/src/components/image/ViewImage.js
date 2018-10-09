@@ -11,8 +11,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import classNames from 'classnames';
 
-import { dateAndTimeFormat } from '../../utils/dateHelper';
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -37,7 +35,7 @@ const styles = theme => ({
   }
 });
 
-function ViewSchedule(props) {
+function ViewImage(props) {
   const { classes, selectedIndex, docs, handleEdit, handleDelete } = props; //handleClick, 
   
   return (
@@ -45,9 +43,7 @@ function ViewSchedule(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Data</TableCell>
-            <TableCell>Título</TableCell>
-            <TableCell>Localização</TableCell>
+            <TableCell>Descrição</TableCell>            
             <TableCell>Imagem</TableCell>   
             <TableCell className={classes.acoes}>Ações</TableCell>   
           </TableRow>
@@ -59,10 +55,8 @@ function ViewSchedule(props) {
                         hover                        
                         //onClick={event => handleClick(event, key)}
                         selected={selectedIndex === key}
-                    >
-                        <TableCell>{dateAndTimeFormat(docs[key].data.date)}</TableCell>
-                        <TableCell>{docs[key].data.title}</TableCell>
-                        <TableCell>{docs[key].data.location}</TableCell>
+                    >                       
+                        <TableCell>{docs[key].data.description}</TableCell>                        
                         <TableCell>
                             <Button 
                                 variant="fab" 
@@ -70,7 +64,7 @@ function ViewSchedule(props) {
                                 aria-label="Edit" 
                                 className={classes.button}
                                 mini
-                                onClick={() => console.log(docs[key].data.urlFolder)}
+                                onClick={() => console.log(docs[key].data.url)}
                             >
                                 <Icon fontSize="small">photo_camera</Icon>                                
                             </Button>
@@ -106,7 +100,7 @@ function ViewSchedule(props) {
   );
 }
 
-ViewSchedule.propTypes = {
+ViewImage.propTypes = {
   classes: PropTypes.object.isRequired,
   handleClick: PropTypes.func.isRequired,
   selectedIndex: PropTypes.string.isRequired,
@@ -115,4 +109,4 @@ ViewSchedule.propTypes = {
   handleDelete: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ViewSchedule);
+export default withStyles(styles)(ViewImage);
