@@ -11,7 +11,7 @@ class Menu extends Component {
                     <a href="#fides">FIDES EDUCACIONAL</a>
                     <a href="#lecture">PALESTRAS</a>
                     <a href="#publication">PUBLICAÇÕES</a>                    
-                    <a href="#picture">FOTOS</a>
+                    <a href="#image">FOTOS</a>
                     <a href="#contact">CONTATO</a>
                 </div>
             </div>

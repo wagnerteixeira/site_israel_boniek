@@ -1,5 +1,5 @@
 .flex-container {
-    background-color: #ffcc00;
+    background-color: #663300;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,7 +12,7 @@
   
 .navbar {
     overflow: hidden;
-    background-color: #ffcc00;
+    background-color: #663300;
     position: center;
     top: 0;
     width: 800px;
@@ -28,7 +28,7 @@
     display: block;
     cursor: pointer; 
     margin: 0 auto;
-    color: #333333;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;    
@@ -38,6 +38,6 @@
   }
   
   .navbar a:hover {    
-    color: white;
+    color: #ffcc00;
   }    
     

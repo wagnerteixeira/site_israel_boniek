@@ -4,6 +4,7 @@ import './App.css';
 import Principal from './principal/Principal';
 import Fides from './fides/Fides';
 import Publication from './publication/Publication';
+import Image from  './image/Image';
 import Lecture from './lecture/Lecture';
 import Menu from './menu/Menu';
 import Footer from './footer/Footer';
@@ -23,6 +24,7 @@ class App extends Component {
         <Fides />  
         <Lecture />                     
         <Publication />  
+        <Image />  
         <Footer />          
       </div>
     );

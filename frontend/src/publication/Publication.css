@@ -64,7 +64,8 @@
 }
 
 .picture-pub:hover {
-    filter: grayscale(0%);    
+    filter: grayscale(0%);  
+    cursor: pointer;  
 }
 
 @media(min-width: 720px) {
