@@ -51,23 +51,11 @@ class Image extends Component {
     }
 
     showImage(key, index) {
-        this.setState({ ...this.state, index: index, urlCurrent: this.state.docs[key].url})
-    }
-
-    renderImage() {        
-        const { docs } = this.state;  
-                              
-        var index = 0;
-        return Object.keys(docs).map(key => {
-            <span key={docs[key].id} className="im-badge" onClick={() => this.showImage(key, index)} /> 
-            index++;
-            }
-        );               
-    }
+        this.setState({ ...this.state, index: index, urlCurrent: this.state.docs[key].data.url})
+    }   
 
     render() {
-        const { urlCurrent } = this.state;
-        console.log(urlCurrent)
+        const { urlCurrent } = this.state;        
         return (    
             <div className="image" id="image">      
                 <Text title="Fotos" colortitle="#333333" reverse />          
@@ -75,8 +63,7 @@ class Image extends Component {
                     <img className="im-current" src={ urlCurrent }/>                   
                     <div className="im-buttons">
                         <img className="im-left" onClick={this.prevProperty} src={Left}/>
-                        <img className="im-right" onClick={this.nextProperty} src={Right}/>
-                        {this.renderImage()}                        
+                        <img className="im-right" onClick={this.nextProperty} src={Right}/>                                        
                     </div>
                 </div>
             </div>        
