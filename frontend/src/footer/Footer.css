@@ -11,15 +11,16 @@
 
 .footer a {    
     text-decoration: none;
+    font-size-adjust: 1;
     font-family: 'OpenSans';  
     font-size: 12px;      
-    font-weight: bold;  
+    font-weight: bold;      
     color: white;
-    padding: 2px;
 }
 
 .footer > img {
     height: 15px;
     width: 15px;
-    padding: 2px;
+    padding: 0px 5px 2px 0px;
+    vertical-align: text-bottom;
 }
