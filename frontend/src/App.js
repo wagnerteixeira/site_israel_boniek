@@ -8,7 +8,7 @@ import Image from  './image/Image';
 import Lecture from './lecture/Lecture';
 import Menu from './menu/Menu';
 import Footer from './footer/Footer';
-
+import Video from './video/Video';
 import baseService from './services/baseService';
 
 const teste = baseService('teste');
@@ -25,7 +25,8 @@ class App extends Component {
         <Lecture />                     
         <Publication />  
         <Image />  
-        <Footer />          
+        <Video />
+        <Footer />                  
       </div>
     );
   }

@@ -23,7 +23,7 @@ const styles = theme => ({
 
 class Video extends Component {
   state = {
-    tabValue: 'EDIT',
+    tabValue: 'LIST',
     inEdit: false,    
     selectedIndex: '0',
     docs: [],
@@ -39,7 +39,7 @@ class Video extends Component {
   };
 
   componentWillMount() {
-    //this.fetchVideos();
+    this.fetchVideos();
   }
 
   handleUrlValueChange = event => {
