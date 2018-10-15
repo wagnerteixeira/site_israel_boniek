@@ -1,0 +1,58 @@
+.modal-menu {
+    position: fixed;    
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 20;
+}
+  
+.modal-main-menu {
+    position: relative;
+    background: white;
+    width: 90%;    
+    height: 100%;       
+    max-width: 500px;
+    text-align: left;   
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+  
+.modal-main-menu a {
+    color: #663300;
+    float: left;
+    display: block;    
+    cursor: pointer; 
+    margin: 0 auto;
+    padding: 14px 16px;
+    text-decoration: none;    
+    font-size: 17px;    
+    z-index: 7;  
+    font-weight: bold;
+}
+
+.display-block {
+    display: block;
+}
+  
+.display-none {
+    display: none;
+}
+
+.md-close-menu {
+    display: block;
+    margin: 0 auto;
+    font-size: 1em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.md-close-menu > img {
+  width: 30px;
+  height: 30px;
+}
+

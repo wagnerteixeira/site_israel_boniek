@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Modal from '../utils/Modal';
+import Modal from './Modal';
 import Text from '../utils/Text';
 import './Publication.css';
 import baseService from '../services/baseService';

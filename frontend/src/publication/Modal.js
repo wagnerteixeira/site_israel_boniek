@@ -4,25 +4,23 @@ import "./Modal.css";
 import CloseImage from '../media/images/close.svg';
 
 const Modal = ({ handleClose, show, children, sinopsys, urlFolder }) => {
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
+  const showHideClassName = show ? "modal-pub display-block" : "modal-pub display-none";
 
   return (
     <div className={showHideClassName}>
-        <section className="modal-main">
-            <div className="avatar">
-                <img width="103" 
-                    height="103" 
-                    src={urlFolder}                    
+        <section className="modal-main-pub">
+            <div className="avatar-pub">
+                <img src={urlFolder}                    
                     alt={children}                    
                     />
             </div>
-            <div className="modal-title">
+            <div className="modal-title-pub">
                 <strong>{children}</strong>                
             </div>
-            <div className="modal-text">
+            <div className="modal-text-pub">
                 {sinopsys}
             </div>
-            <button className="md-close" onClick={handleClose}>
+            <button className="md-close-pub" onClick={handleClose}>
                 <img src={CloseImage}/>                
             </button>            
       </section>

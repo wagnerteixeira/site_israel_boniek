@@ -23,7 +23,7 @@
     margin: 0 auto;    
   }
   
-  .navbar a {
+.navbar a {
     float: left;
     display: block;
     cursor: pointer; 
@@ -35,9 +35,37 @@
     font-size: 17px;    
     z-index: 7;  
     font-weight: bold;
-  }
+}
   
-  .navbar a:hover {    
+.navbar a:hover {    
     color: #ffcc00;
-  }    
+} 
+
+.menu-sidebar {
+    visibility: hidden;
+    display: none;
+}
+
+.button-menu {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+    visibility: hidden;
+    background-color: #663300;
+    color: #ffcc00;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1224px) {
+    .navbar {
+        visibility: hidden;        
+    }    
+    .button-menu {
+        visibility: visible;
+        display: block;
+    }   
+}
     

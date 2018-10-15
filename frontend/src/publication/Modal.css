@@ -1,4 +1,4 @@
-.modal {
+.modal-pub {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     z-index: 25;
 }
   
-.modal-main {
+.modal-main-pub {
     position:fixed;
     background: white;
     width: 50%;
@@ -29,7 +29,7 @@
     display: none;
 }
 
-.md-close {
+.md-close-pub {
     display: block;
     margin: 0 auto;
     font-size: 1em;
@@ -41,25 +41,25 @@
     top: 10px;
 }
 
-.md-close > img {
+.md-close-pub > img {
   width: 30px;
   height: 30px;
 }
 
-.avatar {
+.avatar-pub {
   text-align: center;
 }
 
-.avatar > img {
+.avatar-pub > img {
     background-repeat: no-repeat;
     background-position: center center;
     background-color: #ffffff;
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 50%;    
 }
 
-.modal-title {
+.modal-title-pub {
     border-bottom: 1px solid rgba(33, 39, 57, 0.15);
     margin-top: 20px;
     padding-bottom: 20px;
@@ -70,7 +70,7 @@
     color: #ffcc00;
 }
 
-.modal-text {
+.modal-text-pub {
     margin-top: 20px;
     text-align: left;
     padding: 0px 0px 30px;
