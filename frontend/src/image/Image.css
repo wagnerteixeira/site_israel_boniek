@@ -63,3 +63,16 @@
     height: 5%;
     width: 5%;
 }
+
+@media(max-width: 720px) {
+    .image {   
+        width: 100vw;
+        height: 50vh;
+        text-align: center;
+        position: relative;
+    }
+
+    .im-current {
+        height: 30%;
+    }
+}
