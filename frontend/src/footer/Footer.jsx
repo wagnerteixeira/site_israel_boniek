@@ -9,7 +9,7 @@ class Footer extends Component {
     render() {
         return (
             <div className="footer" >                
-                <h3>Contato</h3>
+                <h2>Contato</h2>
                 <img src={Email}/>
                 <a>boniekmg@yahoo.com.br</a>
                 <br/>

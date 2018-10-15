@@ -1,7 +1,8 @@
 .container-publication {
     background: white;
     width: 100vw;
-    align-items: center;      
+    align-items: center;  
+    padding: 15px;    
 }
 
 .name-pub {

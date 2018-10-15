@@ -3,6 +3,7 @@
     height: 100vh;
     text-align: center;
     position: relative;
+    padding: 15px;
 }
 
 .im-content {

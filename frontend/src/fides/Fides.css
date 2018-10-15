@@ -3,7 +3,8 @@
     background: white;
     width: 100%;  
     display: flex; 
-    z-index: 20;                      
+    z-index: 20;    
+    padding: 15px;                 
 }
 
 .imgContainer {
