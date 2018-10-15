@@ -24,14 +24,15 @@ class Menu extends Component {
     render() {
         return (
             <div className="flex-container" >
+                <button className="button-menu" onClick={() => this.showModal()}>☰</button> 
                 <div className="navbar">
                     <a href="#home">HOME</a>
                     <a href="#fides">FIDES EDUCACIONAL</a>
                     <a href="#lecture">PALESTRAS</a>
                     <a href="#publication">PUBLICAÇÕES</a>                    
                     <a href="#image">FOTOS</a>
-                </div>
-                <button className="button-menu" onClick={() => this.showModal()}>☰</button>  
+                    <a href="#video">VIDEOS</a>
+                </div>                 
                 <Modal 
                     show={this.state.show} 
                     handleClose={this.hideModal} 

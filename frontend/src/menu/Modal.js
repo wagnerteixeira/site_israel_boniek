@@ -17,6 +17,7 @@ const Modal = ({ handleClose, show, children, sinopsys, urlFolder }) => {
             <div><a href="#lecture" onClick={handleClose}>PALESTRAS</a> </div>
             <div><a href="#publication" onClick={handleClose}>PUBLICAÇÕES</a> </div>
             <div><a href="#image" onClick={handleClose}>FOTOS</a> </div>
+            <div><a href="#video" onClick={handleClose}>VIDEOS</a> </div>
         </div>
     </div>    
   );

@@ -48,8 +48,10 @@ class Video extends Component {
     render() {  
         return (
             <div className='container-video' id='video'>
-                <Text title='Videos' colortitle='#333333' reverse />                
-                {this.renderVideos()}                
+                <Text title='Videos' colortitle='#333333' reverse />  
+                <div className="cards-video">
+                {this.renderVideos()}      
+                </div>                        
             </div>            
           );
         }      

@@ -57,9 +57,10 @@
     background-color: #663300;
     color: #ffcc00;
     cursor: pointer;
+    font-size: 25px;
 }
 
-@media screen and (max-width: 1224px) {
+@media screen and (max-width: 900px) {
     .navbar {
         visibility: hidden;        
     }    
