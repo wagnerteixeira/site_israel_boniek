@@ -10,10 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
-import IconListButton from '../common/iconListButton';
+import IconListButton from '../common/IconListButton';
+import IconListButtonSvg from '../common/IconListButtonSvg';
+
+import youtube from '../svgIcons/youtube';
 
 const drawerWidth = 300;
 
@@ -104,6 +106,9 @@ const styles = theme => ({
     color: theme.palette.common.white,
     ...theme.mixins.toolbar,
   },  
+  icon: {
+    margin: theme.spacing.unit * 2,
+  },
 });
 
 class Header extends React.Component {
@@ -118,7 +123,7 @@ class Header extends React.Component {
   }
   
   render() {
-    const { classes } = this.props;    
+    const { classes } = this.props;     
     return (
       <div className={classes.root}>
         <Drawer 
@@ -138,8 +143,7 @@ class Header extends React.Component {
           <List>
             <IconListButton 
               linkTo='/' 
-              iconType='schedule' 
-              onClickButton={this.clickList} 
+              iconType='schedule'               
               primaryText='Agenda'               
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
@@ -147,8 +151,7 @@ class Header extends React.Component {
             />
             <IconListButton 
               linkTo='/image' 
-              iconType='camera_alt' 
-              onClickButton={this.clickList}  
+              iconType='camera_alt'                
               primaryText='Fotos' 
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
@@ -156,8 +159,7 @@ class Header extends React.Component {
             />             
             <IconListButton 
               linkTo='/lecture' 
-              iconType='accessibility_new' 
-              onClickButton={this.clickList}  
+              iconType='accessibility_new'                
               primaryText='Palestras' 
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
@@ -165,8 +167,7 @@ class Header extends React.Component {
             />
             <IconListButton 
               linkTo='/publication' 
-              iconType='library_books' 
-              onClickButton={this.clickList}  
+              iconType='library_books'                
               primaryText='Publicações' 
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
@@ -174,12 +175,20 @@ class Header extends React.Component {
             />
             <IconListButton 
               linkTo='/user' 
-              iconType='person' 
-              onClickButton={this.clickList}  
+              iconType='person'                
               primaryText='Usuários' 
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
+            />
+            <IconListButtonSvg 
+              linkTo='/video'               
+              className={classes.icon}               
+              primaryText='Videos' 
+              listItemClassName={classes.listItemClassName} 
+              iconClassName={classes.iconClassName}
+              listItemTextClassName={classes.listItemTextClassName}    
+              path={youtube}          
             />
           </List>          
         </Drawer>             

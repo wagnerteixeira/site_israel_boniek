@@ -4,12 +4,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import EditLecture from './EditLecture';
-import ViewLecture from './ViewLecture';
+import EditVideo from './EditVideo';
+import ViewVideo from './ViewVideo';
+import { youtubeUrlParser } from '../../utils/youtubeHelper';
 
 import baseService from '../../services/baseService';
 
-const lectureService = baseService('lectures')
+const videoService = baseService('video')
 
 const styles = theme => ({
   root: {
@@ -20,26 +21,40 @@ const styles = theme => ({
   }
 });
 
-class Lecture extends Component {
+class Video extends Component {
   state = {
-    tabValue: 'LIST',
+    tabValue: 'EDIT',
     inEdit: false,    
     selectedIndex: '0',
     docs: [],
+    modalOpen : false,
+    messageOpen: false,
+    variantMessage: 'success',
+    messageText: '',
+    isUrlOk: false,
     data: {
-      title: '',
-      sinopsys: '',
-      keyword: '',
+      url: '',  
+      idYoutube: '',
     }
   };
 
   componentWillMount() {
-    this.fetchLectures();
+    //this.fetchVideos();
   }
 
-  fetchLectures = () => {   
+  handleUrlValueChange = event => {
+    let id = youtubeUrlParser(event.target.value);
+    const isUrlOk = (id !== '');
+    this.setState({ ...this.state, isUrlOk: isUrlOk, data: {...this.data, idYoutube: id, url: event.target.value }});  
+  }
+
+  handleMessageClose = () => {
+    this.setState({ ...this.state, messageOpen: false });
+  }
+
+  fetchVideos = () => {   
     console.log('Carregando registro') 
-    lectureService.getDocs()
+    videoService.getDocs()
       .then(documents => {               
         this.setState({    
             ...this.state,         
@@ -47,11 +62,15 @@ class Lecture extends Component {
             inEdit: false,            
             selectedIndex: '0',
             docs: documents,
+            modalOpen : false,
+            messageOpen: false,
+            variantMessage: 'success',
+            messageText: '',
+            isUrlOk: false,
             id : '',
             data: {
-              title: '',
-              sinopsys: '',
-              keyword: '',
+              url: '',        
+              idYoutube: '',                    
             }
         });            
       })
@@ -68,28 +87,31 @@ class Lecture extends Component {
 
   handleCancel = () => {
     this.setState({...this.state, inEdit: false, tabValue: 'LIST'});
-    this.fetchLectures();
+    this.fetchVideos();
   }
 
   handleSave = () => {              
-    console.log('salvar');
+    if (this.state.data.idYoutube === ''){
+      this.setState({ ...this.state, messageOpen: true, messageText: 'Verifique a url do vídeo! ', variantMessage: 'error' });
+      return;
+    }
     if (this.state.inEdit){         
-        let lecture = {
+        let video = {
           id : this.state.id,
           data : {...this.state.data}
         }   
-        lectureService.updateDoc(lecture)
+        videoService.updateDoc(video)
         .then(() => {
             console.log('Alterado');            
             this.handleCancel();
         })
         .catch((error) => console.log(error));
     } else {
-      let lecture = {
+      let video = {
         id : '',
         data : {...this.state.data}
       }  
-      lectureService.createDoc(lecture.data)
+      videoService.createDoc(video.data)
       .then(() => {              
           console.log('Criado');            
           this.handleCancel();
@@ -103,7 +125,7 @@ class Lecture extends Component {
   }
 
   handleDelete = (key) => {          
-    lectureService.deleteDoc(this.state.docs[key].id)
+    videoService.deleteDoc(this.state.docs[key].id)
       .then((doc) => {
           console.log('Deletado');                     
           this.handleCancel();
@@ -117,6 +139,7 @@ class Lecture extends Component {
       tabValue: 'EDIT', 
       selectedIndex: key,
       inEdit: true,
+      isUrlOk: true,
       id : this.state.docs[key].id,
       data: this.state.docs[key].data
     });      
@@ -127,7 +150,11 @@ class Lecture extends Component {
     const { tabValue, 
         inEdit,
         data,
-        selectedIndex
+        selectedIndex,
+        isUrlOk,
+        messageOpen,
+        variantMessage,
+        messageText,
       } = this.state;   
 
     return (
@@ -143,7 +170,7 @@ class Lecture extends Component {
               <Tab value='EDIT' label={inEdit ? 'ALTERAR' : 'INCLUIR'} />                    
         </Tabs>   
         {tabValue === 'LIST' &&
-            <ViewLecture 
+            <ViewVideo 
                     handleClick={this.handleClick} 
                     docs={this.state.docs}
                     handleEdit={this.handleEdit}
@@ -151,20 +178,27 @@ class Lecture extends Component {
                     selectedIndex={selectedIndex}  
             />}
         {tabValue === 'EDIT' &&
-            <EditLecture 
+            <EditVideo 
                     handleValueChange={this.handleValueChange}
+                    handleUrlValueChange={this.handleUrlValueChange}
                     data={data}
                     handleCancel={this.handleCancel}
                     handleSave={this.handleSave}                      
-                    inEdit={inEdit}                 
+                    inEdit={inEdit}
+                    isUrlOk={isUrlOk}
+                    messageOpen={messageOpen}
+                    handleMessageClose={this.handleMessageClose}
+                    variantMessage={variantMessage}
+                    messageText={messageText}
+
             />}
       </div>
     );
   }
 }
 
-Lecture.propTypes = {
+Video.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Lecture);
+export default withStyles(styles)(Video);

@@ -9,6 +9,7 @@ import Lecture from './components/lecture/Lecture';
 import Image from './components/image/Image';
 import Publication from './components/publication/Publication';
 import Schedule from './components/schedule/Schedule';
+import Video from './components/video/Video';
 import Users from './components/Users';
 
 /*const styles = theme => ({
@@ -60,6 +61,7 @@ class App extends Component {
               <Route path="/lecture" component={Lecture} />              
               <Route path="/publication" component={Publication} />
               <Route path="/user" component={Users} />
+              <Route path="/video" component={Video} />
             </Switch>
           </Menu>        
           {/*<div className={classes.content} >
