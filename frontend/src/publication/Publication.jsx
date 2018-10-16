@@ -31,11 +31,11 @@ class Publication extends Component {
         this.fetchPublications();
     }
 
-    showModal = (event, id) => {           
+    showModal = (key) => {           
         this.setState({ show: true, 
-                        childrenModal: this.state.pubs.filter((e) => e.id === id)[0].data.title,
-                        sinopsysModal: this.state.pubs.filter((e) => e.id === id)[0].data.sinopsys,
-                        urlFolderModal: this.state.pubs.filter((e) => e.id === id)[0].data.urlFolder
+                        childrenModal: this.state.pubs[key].data.title,
+                        sinopsysModal: this.state.pubs[key].data.sinopsys,
+                        urlFolderModal: this.state.pubs[key].data.urlFolder
                         });
     };
     
@@ -45,19 +45,19 @@ class Publication extends Component {
 
     renderPublication(){
         console.log(this.state.pubs);    
-        return Object.keys(this.state.pubs).map(pub => 
-            <div key={this.state.pubs[pub].id} className="card-pub">                
-              <img  alt={this.state.pubs[pub].data.title} 
+        return Object.keys(this.state.pubs).map(key => 
+            <div key={key} className="card-pub">                
+              <img  alt={this.state.pubs[key].data.title} 
                     className="picture-pub" 
-                    src={this.state.pubs[pub].data.urlFolder} 
-                    onClick={event => this.showModal(event, this.state.pubs[pub].id)} />
+                    src={this.state.pubs[key].data.urlFolder} 
+                    onClick={() => this.showModal(key)} />
                 <h3 className="name-pub">
                   <a>
-                    {this.state.pubs[pub].data.title}                    
+                    {this.state.pubs[key].data.title}                    
                   </a>
                 </h3>                      
                 <h4 className="title-pub">
-                  {this.state.pubs[pub].data.subtitle}
+                  {this.state.pubs[key].data.subtitle}
                 </h4>                      
               </div> 
             );        

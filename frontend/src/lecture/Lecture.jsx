@@ -27,18 +27,18 @@ class Lecture extends Component {
     
     renderLecture(){
         console.log(this.state.docs);    
-        return Object.keys(this.state.docs).map(doc => 
-            <div key={this.state.docs[doc].id} className="card-lecture">                              
+        return Object.keys(this.state.docs).map(key => 
+            <div key={key} className="card-lecture">                              
                 <h3 className="name-lecture">
                   <a>
-                    {this.state.docs[doc].data.title}                    
+                    {this.state.docs[key].data.title}                    
                   </a>
                 </h3>                      
                 <h4 className="title-lecture">
-                  {this.state.docs[doc].data.keyword}
+                  {this.state.docs[key].data.keyword}
                 </h4> 
                 <div className="sinopsys-lecture">
-                    {this.state.docs[doc].data.sinopsys}
+                    {this.state.docs[key].data.sinopsys}
                 </div>                     
               </div> 
             );        
