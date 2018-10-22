@@ -62,6 +62,7 @@
     border-radius: 4px;
     filter: grayscale(100%);
     z-index: 20;
+    cursor: pointer;
 }
 
 .picture-pub:hover {

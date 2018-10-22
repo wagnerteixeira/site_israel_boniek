@@ -1,9 +1,12 @@
 .container-lecture {
     background: #333333;
-    width: 100vw;
-    align-items: center;  
+    width: 70%;    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;   
     z-index: 20;  
     padding: 15px 5px 10px 5px;      
+    margin: 0 auto;    
 }
 
 .name-lecture {

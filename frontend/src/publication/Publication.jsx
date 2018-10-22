@@ -5,17 +5,20 @@ import Text from '../utils/Text';
 import './Publication.css';
 import baseService from '../services/baseService';
 
-
 const publicationService = baseService('publications');
 
 class Publication extends Component {
     constructor(props){
         super(props);
-        this.state = { pubs : {}, 
-                       show: false, 
-                       childrenModal: '', 
-                       sinopsysModal: '', 
-                       urlFolderModal: '' };      
+        this.state = { 
+            pubs : {}, 
+            show: false, 
+            data : { 
+                children: '', 
+                sinopsys: '', 
+                urlFolder: ''
+            }
+        };       
         this.fetchPublications.bind(this);  
     }
 
@@ -31,11 +34,9 @@ class Publication extends Component {
         this.fetchPublications();
     }
 
-    showModal = (key) => {           
+    showModal = (key) => {            
         this.setState({ show: true, 
-                        childrenModal: this.state.pubs[key].data.title,
-                        sinopsysModal: this.state.pubs[key].data.sinopsys,
-                        urlFolderModal: this.state.pubs[key].data.urlFolder
+                        data: this.state.pubs[key].data
                         });
     };
     
@@ -44,35 +45,38 @@ class Publication extends Component {
     };
 
     renderPublication(){
-        console.log(this.state.pubs);    
-        return Object.keys(this.state.pubs).map(key => 
-            <div key={key} className="card-pub">                
-              <img  alt={this.state.pubs[key].data.title} 
+        const { pubs } = this.state;                
+        return Object.keys(pubs).map(key => 
+            <div key={pubs[key].id} className="card-pub">                
+                <img alt={pubs[key].data.title} 
+                    title="Clique para mais informações"
                     className="picture-pub" 
-                    src={this.state.pubs[key].data.urlFolder} 
-                    onClick={() => this.showModal(key)} />
+                    src={pubs[key].data.urlFolder} 
+                    onClick={() => this.showModal(key)} 
+                />                
                 <h3 className="name-pub">
-                  <a>
-                    {this.state.pubs[key].data.title}                    
-                  </a>
+                    <a>
+                    {pubs[key].data.title}                    
+                    </a>
                 </h3>                      
                 <h4 className="title-pub">
-                  {this.state.pubs[key].data.subtitle}
+                  {pubs[key].data.subtitle}
                 </h4>                      
-              </div> 
-            );        
-        }
+            </div> 
+        );        
+    }
     
     render() {  
+        const { data, show } = this.state;
         return (
             <div className="container-publication" id="publication">
                 <Text title="Publicações" colortitle="#333333" reverse />
                 <div className="cards-pub">
-                    <Modal show={this.state.show} 
+                    <Modal show={show} 
                         handleClose={this.hideModal} 
-                        children={this.state.childrenModal}
-                        sinopsys={this.state.sinopsysModal}
-                        urlFolder={this.state.urlFolderModal}
+                        children={data.children}
+                        sinopsys={data.sinopsys}
+                        urlFolder={data.urlFolder}
                         >                   
                     </Modal>
                         {this.renderPublication()}

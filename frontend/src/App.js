@@ -4,11 +4,13 @@ import './App.css';
 import Principal from './principal/Principal';
 import Fides from './fides/Fides';
 import Publication from './publication/Publication';
-import Image from  './image/Image';
 import Lecture from './lecture/Lecture';
+import Image from './image/Image';
 import Menu from './menu/Menu';
 import Footer from './footer/Footer';
 import Video from './video/Video';
+
+
 
 class App extends Component {
   render() {
@@ -19,9 +21,9 @@ class App extends Component {
         <Fides />  
         <Lecture />                     
         <Publication />  
-        <Image />  
+        <Image />
         <Video />
-        <Footer />                  
+        <Footer />          
       </div>
     );
   }
