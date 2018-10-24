@@ -1,10 +1,11 @@
 .fides {
     align-self: flex-end;
     background: white;
-    width: 100%;  
+    width: 80%;  
     display: flex; 
     z-index: 20;    
-    padding: 15px;                 
+    padding: 15px;  
+    margin: 0 auto;               
 }
 
 .imgContainer {
@@ -32,6 +33,10 @@
     .fides {
         align-self: auto;
     }      
+    .imgContainer {
+        max-width: 450px;
+        max-height: 450px;     
+    }
 }
 
 @media screen and (min-width: 1224px) {
@@ -41,7 +46,7 @@
         float: left;
         padding: 1em;
         margin: 3em 0 3em 0;
-        border: 1px solid lightgray;
+        border: 1px solid lightgray;        
     }
     .textContainer {
         padding: 2em 3em 0 3em;

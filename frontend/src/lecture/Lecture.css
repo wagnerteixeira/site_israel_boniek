@@ -1,6 +1,6 @@
 .container-lecture {
     background: #333333;
-    width: 70%;    
+    width: 80%;    
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;   
@@ -66,7 +66,7 @@
     max-width: 1300px;
 }
 
-@media(min-width: 720px) {
+@media(min-width: 720px) {    
     .card-lecture {
         margin: 10px 10px 1em;
     }
@@ -75,5 +75,6 @@
 @media(max-width: 720px) {
     .container-lecture {
         align-self: auto;
-    }
+        width: 100%;    
+    }    
 }
