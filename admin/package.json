@@ -18,7 +18,8 @@
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "delete-map": "rm build/static/js/*.map"
   },
   "devDependencies": {
     "eslint": "^5.6.1",

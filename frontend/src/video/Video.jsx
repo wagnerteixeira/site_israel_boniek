@@ -3,7 +3,6 @@ import Text from '../utils/Text';
 import './Video.css';
 import baseService from '../services/baseService';
 
-
 const videoService = baseService('video');
 
 class Video extends Component {
@@ -27,10 +26,8 @@ class Video extends Component {
         this.fetchVideos();
     }
     
-    renderVideos(){
-        console.log(this.state.videos);    
-        return Object.keys(this.state.videos).map(key => {
-            console.log(this.state.videos[key].data);
+    renderVideos(){        
+        return Object.keys(this.state.videos).map(key => {            
             return (
                 <iframe className='item-video' key={key}
                     width='32.5%' 

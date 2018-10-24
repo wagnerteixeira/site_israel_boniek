@@ -25,8 +25,7 @@ class Lecture extends Component {
         this.fetchLectures();
     }
     
-    renderLecture(){
-        console.log(this.state.docs);    
+    renderLecture(){        
         return Object.keys(this.state.docs).map(key => 
             <div key={key} className="card-lecture">                              
                 <h3 className="name-lecture">
