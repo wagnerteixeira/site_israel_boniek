@@ -37,6 +37,7 @@ class Schedule extends React.Component {
               title: '',                
               urlFolder: '',
               location: '',  
+              position: 0,
             },
         };        
     }
@@ -46,7 +47,7 @@ class Schedule extends React.Component {
     }
 
     fetchImages = () => {          
-      scheduleService.getDocs()
+      scheduleService.getDocsOrderBy('position')
         .then(documents => {               
           this.setState({    
             ...this.state,         
@@ -62,7 +63,8 @@ class Schedule extends React.Component {
               date: new Date().toISOString().slice(0, 16),
               title: '',                
               urlFolder: '',
-              location: '',  
+              location: '', 
+              position: 0, 
             },
           });            
         })

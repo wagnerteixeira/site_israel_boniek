@@ -55,10 +55,11 @@ class EditPublication extends Component {
             image
             } = this.props;
         let imgSrc = '';
+        
         if ((image === '') && (data.urlImage !== ''))
             imgSrc = data.urlImage;
         else
-            imgSrc = image;
+            imgSrc = image;            
         return (
             <div>
                 <form className={classes.container} noValidate autoComplete="off">    
@@ -107,7 +108,19 @@ class EditPublication extends Component {
                             onChange={handleValueChange('sinopsys')}
                             margin="normal"
                             multiline
-                        />         
+                        />       
+                        <TextField
+                            id="position"
+                            label="Posição"
+                            className={classes.textField}
+                            value={data.position}                            
+                            onChange={(e) => handleValueChange('position')({...e, target: { ...e.target, value: parseInt(e.target.value) }})}
+                            margin="normal"
+                            type="number"                            
+                            InputLabelProps={{
+                                shrink: true,
+                            }}                            
+                        />  
                         <br />
                         <div className={classes.divRow}>
                             <Button 

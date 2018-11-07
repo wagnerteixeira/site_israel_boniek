@@ -14,7 +14,7 @@ class Lecture extends Component {
     }
 
     fetchLectures(){    
-        lectureService.getDocs()
+        lectureService.getDocsOrderBy('position')
           .then(docs => {
             this.setState({ docs: docs })      
           })

@@ -23,7 +23,7 @@ class Publication extends Component {
     }
 
     fetchPublications(){    
-        publicationService.getDocs()
+        publicationService.getDocsOrderBy('position')
           .then(docs => {
             this.setState({ pubs: docs })      
           })

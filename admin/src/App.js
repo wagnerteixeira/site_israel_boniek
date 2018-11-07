@@ -11,6 +11,7 @@ import Publication from './components/publication/Publication';
 import Schedule from './components/schedule/Schedule';
 import Video from './components/video/Video';
 import Users from './components/Users';
+import Counter from './components/counter/Counter';
 
 /*const styles = theme => ({
   content: {    
@@ -54,7 +55,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <MuiThemeProvider theme={muiTheme}>
-          <Menu theme={muiTheme}>
+          <Menu theme={muiTheme} initialheaderText='Agenda'>
             <Switch>
               <Route path="/" exact component={Schedule} />
               <Route path="/image" component={Image} />
@@ -62,6 +63,7 @@ class App extends Component {
               <Route path="/publication" component={Publication} />
               <Route path="/user" component={Users} />
               <Route path="/video" component={Video} />
+              <Route path="/counter" component={Counter} />
             </Switch>
           </Menu>        
           {/*<div className={classes.content} >

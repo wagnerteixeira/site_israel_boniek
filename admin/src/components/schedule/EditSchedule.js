@@ -96,8 +96,20 @@ class EditSchedule extends React.Component {
                                         ...
                                     </Button>                            
                                 </div>
-                        </label>  
-                        </div>       
+                            </label>  
+                        </div>     
+                        <TextField
+                            id="position"
+                            label="Posição"
+                            className={classes.textField}
+                            value={data.position}
+                            onChange={(e) => handleValueChange('position')({...e, target: { ...e.target, value: parseInt(e.target.value) }})}
+                            margin="normal"
+                            type="number"                            
+                            InputLabelProps={{
+                                shrink: true,
+                            }}                            
+                        /> 
                         <br />
                         <div className={classes.divRow}>
                             <Button 

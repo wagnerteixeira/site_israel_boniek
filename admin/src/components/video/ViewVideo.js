@@ -43,6 +43,7 @@ function ViewVideo(props) {
         <TableHead>
           <TableRow>
             <TableCell>Url</TableCell>            
+            <TableCell>Posição</TableCell>
             <TableCell className={classes.acoes}>Ações</TableCell>   
           </TableRow>
         </TableHead>
@@ -54,7 +55,8 @@ function ViewVideo(props) {
                         //onClick={event => handleClick(event, key)}
                         selected={selectedIndex === key}
                     >
-                        <TableCell><a href={docs[key].data.url}>{docs[key].data.url}</a></TableCell>                                                
+                        <TableCell><a href={docs[key].data.url}>{docs[key].data.url}</a></TableCell>      
+                        <TableCell>{docs[key].data.position}</TableCell>                                          
                         <TableCell>                            
                             <Button 
                                 variant="fab" 

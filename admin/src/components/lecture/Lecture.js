@@ -30,6 +30,7 @@ class Lecture extends Component {
       title: '',
       sinopsys: '',
       keyword: '',
+      position: 0,
     }
   };
 
@@ -39,7 +40,7 @@ class Lecture extends Component {
 
   fetchLectures = () => {   
     console.log('Carregando registro') 
-    lectureService.getDocs()
+    lectureService.getDocsOrderBy('position')
       .then(documents => {               
         this.setState({    
             ...this.state,         
@@ -52,6 +53,7 @@ class Lecture extends Component {
               title: '',
               sinopsys: '',
               keyword: '',
+              position: 0,
             }
         });            
       })

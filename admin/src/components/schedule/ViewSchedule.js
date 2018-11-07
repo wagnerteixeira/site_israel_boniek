@@ -49,6 +49,7 @@ function ViewSchedule(props) {
             <TableCell>Título</TableCell>
             <TableCell>Localização</TableCell>
             <TableCell>Imagem</TableCell>   
+            <TableCell>Posição</TableCell>
             <TableCell className={classes.acoes}>Ações</TableCell>   
           </TableRow>
         </TableHead>
@@ -62,7 +63,7 @@ function ViewSchedule(props) {
                     >
                         <TableCell>{dateAndTimeFormat(docs[key].data.date)}</TableCell>
                         <TableCell>{docs[key].data.title}</TableCell>
-                        <TableCell>{docs[key].data.location}</TableCell>
+                        <TableCell>{docs[key].data.location}</TableCell>                        
                         <TableCell>
                             <Button 
                                 variant="fab" 
@@ -75,6 +76,7 @@ function ViewSchedule(props) {
                                 <Icon fontSize="small">photo_camera</Icon>                                
                             </Button>
                         </TableCell>                    
+                        <TableCell>{docs[key].data.position}</TableCell>
                         <TableCell>                                                        
                             <Button 
                                 variant="fab" 

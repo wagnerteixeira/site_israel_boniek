@@ -3,21 +3,29 @@ schedules:
     title: string,
     location: GeoPoint,
     urlFolder: string,
+    position: int
 
 lectures:
     title: string,
     sinopsys: string,
     keyword: string,
+    position: int
     
 images:
     description: string,
-    url: string,
+    url: string,    
 
 publications: 
     title: string,
     subtitle: string,
     urlImage: string,
     sinopsys: string,
+    position: int,
+    
+video:
+    url: string,        
+    idYoutube: string,
+    position: int
 
 users:
     name: string,

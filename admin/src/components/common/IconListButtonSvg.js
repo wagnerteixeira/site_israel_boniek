@@ -17,7 +17,7 @@ const IconListButtonSvg = props => {
   const { classes } = props;
   return (
     <Link to={props.linkTo} style={{ textDecoration: 'none' }} >
-      <ListItem href={props.linkTo} button className={props.listItemClassName} >        
+      <ListItem href={props.linkTo} button className={props.listItemClassName} onClick={props.onClickButton}>        
         <SvgIcon color='primary' className={classes.icon} fontSize="large">            
             {props.path}
         </SvgIcon> 

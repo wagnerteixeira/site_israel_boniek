@@ -45,6 +45,7 @@ function ViewLecture(props) {
             <TableCell>Título</TableCell>
             <TableCell>Sinopse</TableCell>    
             <TableCell>Palavras Chaves</TableCell>       
+            <TableCell>Posição</TableCell>
             <TableCell className={classes.acoes}>Ações</TableCell>   
           </TableRow>
         </TableHead>
@@ -59,6 +60,7 @@ function ViewLecture(props) {
                         <TableCell>{docs[key].data.title}</TableCell>
                         <TableCell>{docs[key].data.sinopsys}</TableCell>                  
                         <TableCell>{docs[key].data.keyword}</TableCell> 
+                        <TableCell>{docs[key].data.position}</TableCell>
                         <TableCell>                            
                             <Button 
                                 variant="fab" 

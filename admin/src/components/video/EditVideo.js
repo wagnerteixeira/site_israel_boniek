@@ -47,6 +47,7 @@ const styles = theme => ({
 function EditLecture(props) {    
     const { classes, 
             handleUrlValueChange,                     
+            handleValueChange,
             data,
             handleSave,
             handleCancel,
@@ -68,7 +69,19 @@ function EditLecture(props) {
                     error={!isUrlOk}
                     margin="normal"
                     fullWidth
-                />                            
+                />    
+                <TextField
+                    id="position"
+                    label="Posição"
+                    className={classes.textField}
+                    value={data.position}
+                    onChange={(e) => handleValueChange('position')({...e, target: { ...e.target, value: parseInt(e.target.value) }})}
+                    margin="normal"
+                    type="number"                            
+                    InputLabelProps={{
+                        shrink: true,
+                    }}                            
+                />                         
                 <br />
                 <div className={classes.divRow}>
                     <Button 

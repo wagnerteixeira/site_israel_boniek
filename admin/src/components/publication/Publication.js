@@ -33,6 +33,7 @@ class Publication extends Component {
       subtitle: '',
       sinopsys: '',      
       urlImage: '',
+      position: 0,
     }    
   };
 
@@ -41,15 +42,23 @@ class Publication extends Component {
   }
 
   fetchPublications = () => {    
-    publicationService.getDocs()
-      .then(documents => {               
+    publicationService.getDocsOrderBy('position')
+      .then(documents => {         
+        let docs = documents.map(document => {
+          //console.log(`${document.data.position} ${typeof  document.data.position}`);
+          if (typeof  document.data.urlImage === 'undefined')
+            return {...document, data: {...document.data, 'urlImage': document.data.urlFolder }}
+          else
+            return document;
+        })
+        //console.log(docs)
         this.setState({   
             ...this.state,         
             tabValue: 'LIST', 
             inEdit: false,
             file: {},
             selectedIndex: '0',
-            docs: documents,
+            docs: docs,
             image: '',
             id : '',
             imageChanged: false,
@@ -58,6 +67,7 @@ class Publication extends Component {
               subtitle: '',
               sinopsys: '',      
               urlImage: '',
+              position: 0,
             }                
         });            
       })
@@ -69,6 +79,7 @@ class Publication extends Component {
   };
 
   handleValueChange = name => event => {
+    console.log(event)
     this.setState({...this.state, data: { ...this.state.data, [name]: event.target.value}});
   };
 

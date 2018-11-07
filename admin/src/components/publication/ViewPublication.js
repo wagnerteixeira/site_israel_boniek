@@ -44,7 +44,8 @@ function ViewPublication(props) {
           <TableRow>
             <TableCell>Título</TableCell>
             <TableCell>Subtítulo</TableCell>
-            <TableCell>Sinopse</TableCell>           
+            <TableCell>Sinopse</TableCell>  
+            <TableCell>Posição</TableCell>         
             <TableCell className={classes.acoes}>Ações</TableCell>   
           </TableRow>
         </TableHead>
@@ -58,7 +59,8 @@ function ViewPublication(props) {
                     >
                         <TableCell>{docs[key].data.title}</TableCell>
                         <TableCell>{docs[key].data.subtitle}</TableCell>
-                        <TableCell>{docs[key].data.sinopsys}</TableCell>                  
+                        <TableCell>{docs[key].data.sinopsys}</TableCell>   
+                        <TableCell>{docs[key].data.position}</TableCell>               
                         <TableCell>                            
                             <Button 
                                 variant="fab" 

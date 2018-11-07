@@ -25,10 +25,22 @@ export default (collection) => {
         });
     };
 
+    const getDocsOrderBy = (field) => {
+        return new Promise((resolve, reject) => {
+            firebase.db.baseApi.doGetOrderBy(collection, field)
+                .then(querySnapshot =>
+                    resolve(querySnapshot.docs.map(doc => {         
+                        return { data: doc.data(), id: doc.id };
+                    })))
+                .catch(error => reject(error));
+        });
+    }
+
     return {
         createDoc,
         deleteDoc,
         updateDoc,
-        getDocs
+        getDocs,
+        getDocsOrderBy
     };
 };

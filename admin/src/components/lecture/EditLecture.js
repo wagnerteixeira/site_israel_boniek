@@ -77,7 +77,19 @@ class EditLecture extends Component {
                             value={data.keyword}
                             onChange={handleValueChange('keyword')}
                             margin="normal"                            
-                        />         
+                        />  
+                        <TextField
+                            id="position"
+                            label="Posição"
+                            className={classes.textField}
+                            value={data.position}
+                            onChange={(e) => handleValueChange('position')({...e, target: { ...e.target, value: parseInt(e.target.value) }})}
+                            margin="normal"
+                            type="number"                            
+                            InputLabelProps={{
+                                shrink: true,
+                            }}                            
+                        />
                         <br />
                         <div className={classes.divRow}>
                             <Button 

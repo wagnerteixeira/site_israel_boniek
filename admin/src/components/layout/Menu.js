@@ -114,12 +114,17 @@ const styles = theme => ({
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { drawerOpen: false };
+    this.state = { drawerOpen: false, headerText: props.initialheaderText };
     this.handleDrawer.bind(this);
+    this.handleHeaderText.bind(this);
   }
 
   handleDrawer(value) {
-    this.setState({ drawerOpen: value });
+    this.setState({...this.state, drawerOpen: value });
+  }
+
+  handleHeaderText(value) {
+    this.setState({...this.state, headerText: value });
   }
   
   render() {
@@ -144,7 +149,8 @@ class Header extends React.Component {
             <IconListButton 
               linkTo='/' 
               iconType='schedule'               
-              primaryText='Agenda'               
+              primaryText='Agenda'    
+              onClickButton={() => this.handleHeaderText('Agenda')}
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
@@ -153,6 +159,7 @@ class Header extends React.Component {
               linkTo='/image' 
               iconType='camera_alt'                
               primaryText='Fotos' 
+              onClickButton={() => this.handleHeaderText('Fotos')}
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
@@ -161,6 +168,7 @@ class Header extends React.Component {
               linkTo='/lecture' 
               iconType='accessibility_new'                
               primaryText='Palestras' 
+              onClickButton={() => this.handleHeaderText('Palestras')}
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
@@ -169,6 +177,7 @@ class Header extends React.Component {
               linkTo='/publication' 
               iconType='library_books'                
               primaryText='Publicações' 
+              onClickButton={() => this.handleHeaderText('Publicações')}
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
@@ -177,6 +186,7 @@ class Header extends React.Component {
               linkTo='/user' 
               iconType='person'                
               primaryText='Usuários' 
+              onClickButton={() => this.handleHeaderText('Usuários')}
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
@@ -185,10 +195,20 @@ class Header extends React.Component {
               linkTo='/video'               
               className={classes.icon}               
               primaryText='Videos' 
+              onClickButton={() => this.handleHeaderText('Videos')}
               listItemClassName={classes.listItemClassName} 
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}    
               path={youtube}          
+            />
+             <IconListButton 
+              linkTo='/counter' 
+              iconType='person'                
+              primaryText='Contador' 
+              onClickButton={() => this.handleHeaderText('Contador')}
+              listItemClassName={classes.listItemClassName} 
+              iconClassName={classes.iconClassName}
+              listItemTextClassName={classes.listItemTextClassName}
             />
           </List>          
         </Drawer>             
@@ -210,7 +230,7 @@ class Header extends React.Component {
                 variant="title" color="inherit" 
                 noWrap
               >
-                Admin
+                {this.state.headerText}
               </Typography>
             </Toolbar>
           </AppBar>    

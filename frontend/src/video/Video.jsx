@@ -15,7 +15,8 @@ class Video extends Component {
     }
 
     fetchVideos(){    
-        videoService.getDocs()
+        console.log(videoService)
+        videoService.getDocsOrderBy('position')
           .then(docs => {
             this.setState({ videos: docs })      
           })

@@ -54,7 +54,7 @@ class Video extends Component {
 
   fetchVideos = () => {   
     console.log('Carregando registro') 
-    videoService.getDocs()
+    videoService.getDocsOrderBy('position')
       .then(documents => {               
         this.setState({    
             ...this.state,         
