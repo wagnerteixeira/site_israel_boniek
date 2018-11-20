@@ -1,0 +1,30 @@
+.image-bg-partner {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0);
+    background-size: cover;
+    height: 100%;
+	width: 80%;		
+	z-index: -999999;
+}
+
+.container-partner {
+	background: transparent;
+	color: #222;
+	width: 100vw;        
+	height: 100vh; 
+	display: flex;
+	justify-content: center;
+	display: -webkit-flex; 
+    -webkit-justify-content: center; 
+}
+
+@media(max-width: 720px) {
+    .image-bg-partner {
+		width: 100%;		
+	}
+	.container-partner {
+		height: calc(100vw /1.5);
+	}
+}
+

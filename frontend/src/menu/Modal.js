@@ -13,11 +13,15 @@ const Modal = ({ handleClose, show, children, sinopsys, urlFolder }) => {
                 <img src={CloseImage}/>                
             </button>   
             <div><a href="#home" onClick={handleClose}>HOME</a> </div>
-            <div><a href="#fides" onClick={handleClose}>FIDES EDUCACIONAL</a> </div>
-            <div><a href="#lecture" onClick={handleClose}>PALESTRAS</a> </div>
-            <div><a href="#publication" onClick={handleClose}>PUBLICAÇÕES</a> </div>
+            <div><a href="#aboutMe" onClick={handleClose}>SOBRE MIM</a> </div>
+            <div><a href="#publication" onClick={handleClose}>PUBLICAÇÕES</a> </div>            
+            <div><a href="#event" onClick={handleClose}>EVENTOS</a> </div>
+            <div><a href="#lecture" onClick={handleClose}>PALESTRAS</a> </div>            
             <div><a href="#image" onClick={handleClose}>FOTOS</a> </div>
             <div><a href="#video" onClick={handleClose}>VIDEOS</a> </div>
+            <div><a href="#fides" onClick={handleClose}>FIDES EDUCACIONAL</a> </div>
+            <div><a href="#contact" onClick={handleClose}>CONTATO</a> </div>
+            <div><a href="#partner" onClick={handleClose}>PARCEIROS</a> </div>
         </div>
     </div>    
   );

@@ -42,7 +42,7 @@ class Footer extends Component {
                 <a> / </a>
                 <a href="https://www.facebook.com/digite.meu.nome" target="_blank" without rel="noopener noreferrer">Wagner Teixeira</a>                
                 <br />
-                Contador: {this.state.counter}                                              
+                <a>Visitantes: {this.state.counter}</a>
                 <br />                          
             </div>
         );

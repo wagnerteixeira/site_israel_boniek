@@ -1,0 +1,138 @@
+.event {   
+    width: 100vw;
+    height: 450px;
+    text-align: center;
+    position: relative;
+    padding: 15px;
+}
+
+
+#carouselEvent {
+    position: relative;
+    height: 400px;
+    top: 200px;
+    transform: translateY(-50%);
+    overflow: hidden;
+}
+
+
+#carouselEvent div {
+    position: absolute;
+    transition: transform 1s, left 1s, opacity 1s, z-index 0s;
+    opacity: 1;
+}
+
+#carouselEvent div img {
+    width: 400px;
+    transition: width 1s;
+}
+
+#carouselEvent div img {
+    width: 400px;
+    transition: width 1s;
+}
+
+
+#carouselEvent div.hideLeft {
+    left: 0%;
+    opacity: 0;
+    transform: translateY(50%) translateX(-50%);
+}
+
+#carouselEvent div.hideLeft img {
+    width: 200px;
+}
+
+#carouselEvent div.hideRight {
+    left: 100%;
+    opacity: 0;
+    transform: translateY(50%) translateX(-50%);
+}
+
+#carouselEvent div.hideRight img {
+    width: 200px;
+}
+
+#carouselEvent div.prev {
+    z-index: 5;
+    left: 30%;
+    transform: translateY(50px) translateX(-50%);
+}
+
+#carouselEvent div.prev img {
+    width: 300px;
+}
+
+#carouselEvent div.prevLeftSecond {
+    z-index: 4;
+    left: 15%;
+    transform: translateY(50%) translateX(-50%);
+    opacity: 0.7;
+}
+
+#carouselEvent div.prevLeftSecond img {
+    width: 200px;
+}
+
+#carouselEvent div.selected {
+    z-index: 10;
+    left: 50%;
+    transform: translateY(0px) translateX(-50%);
+}
+
+#carouselEvent div.next {
+    z-index: 5;
+    left: 70%;
+    transform: translateY(50px) translateX(-50%);
+}
+
+#carouselEvent div.next img {
+    width: 300px;
+}
+
+#carouselEvent div.nextRightSecond {
+    z-index: 4;
+    left: 85%;
+    transform: translateY(50%) translateX(-50%);
+    opacity: 0.7;
+}
+
+#carouselEvent div.nextRightSecond img {
+    width: 200px;
+}
+
+.buttons {
+    position: relative;
+    top: -100px;
+    padding: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+}
+
+.im-buttons {
+    position: relative;
+    top: -100px;
+    left: 50%;    
+    transform:translate(-50%,0%);
+    -ms-transform:translate(-50%,0%);
+    width: 50vw;    
+    display: block;
+}
+
+.im-left{    
+    height: 5%;
+    width: 5%;
+    padding-right: 10px;
+    fill: red
+}
+
+.im-right {    
+    height: 5%;
+    width: 5%;
+    padding-left: 10px;
+}
+
+.im-left, .im-right, .im-badge {
+    cursor: pointer
+}

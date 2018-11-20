@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Menu from './menu/Menu';
 import Principal from './principal/Principal';
-import Fides from './fides/Fides';
+import AboutMe from './aboutMe/AboutMe';
 import Publication from './publication/Publication';
+import Event from './event/Event';
 import Lecture from './lecture/Lecture';
 import Image from './image/Image';
-import Menu from './menu/Menu';
-import Footer from './footer/Footer';
 import Video from './video/Video';
+import Fides from './fides/Fides';
+//contato
+import Partner from './partner/Partner';
+import Footer from './footer/Footer';
 
 
 
@@ -18,11 +22,14 @@ class App extends Component {
       <div>
         <Menu />            
         <Principal />  
-        <Fides />  
-        <Lecture />                     
+        <AboutMe />
         <Publication />  
+        <Event />
+        <Lecture />                             
         <Image />
         <Video />
+        <Fides />  
+        <Partner />        
         <Footer />          
       </div>
     );

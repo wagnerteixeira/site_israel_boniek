@@ -27,11 +27,15 @@ class Menu extends Component {
                 <button className="button-menu" onClick={() => this.showModal()}>☰</button> 
                 <div className="navbar">
                     <a href="#home">HOME</a>
-                    <a href="#fides">FIDES EDUCACIONAL</a>
-                    <a href="#lecture">PALESTRAS</a>
+                    <a href="#aboutMe">SOBRE MIM</a>                    
                     <a href="#publication">PUBLICAÇÕES</a>                    
+                    <a href="#event">EVENTOS</a>
+                    <a href="#lecture">PALESTRAS</a>                    
                     <a href="#image">FOTOS</a>
-                    <a href="#video">VIDEOS</a>
+                    <a href="#video">VIDEOS</a>     
+                    <a href="#fides">FIDES EDUCACIONAL</a>               
+                    <a href="#contact">CONTATO</a>               
+                    <a href="#partner">PARCEIROS</a>               
                 </div>                 
                 <Modal 
                     show={this.state.show} 

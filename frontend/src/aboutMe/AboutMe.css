@@ -1,0 +1,22 @@
+.aboutMe {
+    align-self: auto;
+    background: white;
+    width: 90%;  
+    display: flex; 
+    z-index: 20;    
+    padding: 15px;  
+    margin: 0 auto;               
+}
+
+.textContainerAbout {
+    display: flex;
+    line-height: 2;
+    text-align: justify; 
+}
+
+.subtitleContainerAbout {
+    display: flex;
+    line-height: 2;
+    text-align: justify;
+    color: rgba(0,0,0,0.6);
+}
