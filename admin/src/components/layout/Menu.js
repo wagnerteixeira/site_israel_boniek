@@ -210,6 +210,15 @@ class Header extends React.Component {
               iconClassName={classes.iconClassName}
               listItemTextClassName={classes.listItemTextClassName}
             />
+            <IconListButton 
+              linkTo='/event' 
+              iconType='camera_alt'                
+              primaryText='Eventos' 
+              onClickButton={() => this.handleHeaderText('Eventos')}
+              listItemClassName={classes.listItemClassName} 
+              iconClassName={classes.iconClassName}
+              listItemTextClassName={classes.listItemTextClassName}
+            />
           </List>          
         </Drawer>             
         <div className={classes.mainContent}>
