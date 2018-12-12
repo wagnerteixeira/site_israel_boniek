@@ -13,6 +13,7 @@ import Fides from './fides/Fides';
 //contato
 import Partner from './partner/Partner';
 import Footer from './footer/Footer';
+import ContactMe from './contactMe/ContactMe';
 
 
 
@@ -29,7 +30,8 @@ class App extends Component {
         <Image />
         <Video />
         <Fides />  
-        <Partner />        
+        <Partner />   
+        <ContactMe />     
         <Footer />          
       </div>
     );

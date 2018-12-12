@@ -22,7 +22,8 @@ const Globals = {
       'É Bacharel em Filosofia/UFSC. Licenciando em Ciências Biológicas. Pós-graduado em Psicanálise. Pós-graduando em Neuroeducação com atualização em Neuropsicologia da memória pelo Instituto Israelita Albert Einstein. Mestre em Teologia. Doutorando em Educação – PUC RS',
     email:
       'boniekmg@yahoo.com.br',
-  }
+  },
+  email: 'wagnerbernardesteixeira@gmail.com',
 };
 
 export default Globals;

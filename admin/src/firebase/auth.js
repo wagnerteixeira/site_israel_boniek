@@ -21,5 +21,5 @@ export const doPasswordReset = (email) =>
 export const doPasswordUpdate = (password) =>
   auth.currentUser.updatePassword(password);
 
-export const doFetchProvidersForEmail = (email) => 
-    auth.fetchProvidersForEmail(email);
+export const doFetchProvidersForEmail = (email) =>
+  auth.fetchProvidersForEmail(email);

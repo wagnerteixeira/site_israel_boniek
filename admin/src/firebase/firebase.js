@@ -5,11 +5,11 @@ import 'firebase/storage'
 import config from './config'
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);  
+  firebase.initializeApp(config);
 }
 
 const db = firebase.firestore();
-db.settings({timestampsInSnapshots: true});
+db.settings({ timestampsInSnapshots: true });
 
 const auth = firebase.auth();
 
@@ -20,7 +20,3 @@ export {
   auth,
   storage
 };
-
-
-
-

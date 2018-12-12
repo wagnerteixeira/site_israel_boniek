@@ -1,6 +1,6 @@
 import { db } from '../firebase';
 
-export const doCreate = (collection, data) => db.collection(collection).add({...data});
+export const doCreate = (collection, data) => db.collection(collection).add({ ...data });
 
 export const doGet = (collection) => db.collection(collection).get();
 

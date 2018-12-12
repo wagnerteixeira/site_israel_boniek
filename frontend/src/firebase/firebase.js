@@ -1,8 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore'
-import 'firebase/storage'
-import config from './config'
+import 'firebase/firestore';
+import 'firebase/storage';
+import 'firebase/functions';
+import config from './config';  
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);  
@@ -13,12 +14,16 @@ db.settings({timestampsInSnapshots: true});
 
 const auth = firebase.auth();
 
-var storage = firebase.storage().ref();
+const storage = firebase.storage().ref();
+
+const functions = firebase.functions();
+
 
 export {
   db,
   auth,
-  storage
+  storage,
+  functions
 };
 
 
