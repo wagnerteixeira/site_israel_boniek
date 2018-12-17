@@ -23,7 +23,7 @@ const Globals = {
     email:
       'boniekmg@yahoo.com.br',
   },
-  email: 'wagnerbernardesteixeira@gmail.com',
+  email: 'israelboniek@gmail.com',
 };
 
 export default Globals;
