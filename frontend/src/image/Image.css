@@ -1,10 +1,10 @@
-  
-.image {   
+ .image {   
     width: 100vw;
-    height: 450px;
+    height: 100vh;
     text-align: center;
     position: relative;
     padding: 15px;
+    min-height: 700px;
 }
 
 
