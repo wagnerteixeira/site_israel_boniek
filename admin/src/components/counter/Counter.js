@@ -61,12 +61,23 @@ class Counter extends Component {
       data : { counter: this.state.counter }
     }   
     console.log(counter)
-    counterService.updateDoc(counter)
-    .then(() => {
-        console.log('Alterado');  
-        this.setState({ ...this.state, messageOpen: true, messageText: 'Contador alterado com sucesso!', variantMessage: 'success' });                  
-    })
-    .catch((error) => console.log(error));    
+    if (counter.id === ""){
+      counterService.createDoc(counter.data)
+      .then(() => {
+          console.log('Criado');  
+          this.setState({ ...this.state, messageOpen: true, messageText: 'Contador alterado com sucesso!', variantMessage: 'success' });                  
+      })
+      .catch((error) => console.log(error));
+    }
+    else
+    {
+      counterService.updateDoc(counter)
+      .then(() => {
+          console.log('Alterado');  
+          this.setState({ ...this.state, messageOpen: true, messageText: 'Contador alterado com sucesso!', variantMessage: 'success' });                  
+      })
+      .catch((error) => console.log(error));    
+    }
   }     
   
   handleMessageClose = () => {
