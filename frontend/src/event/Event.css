@@ -4,7 +4,8 @@
 	width: 100vw;        
 	height: 100vh; 
 	display: flex;
-	justify-content: center;
+    justify-content: center;
+    min-height: 700px;
 }
 
 .event {   
@@ -15,7 +16,7 @@
 }
 
 
-#carouselEvent {
+#carousel-event {
     position: relative;
     height: 400px;
     top: 200px;
@@ -24,87 +25,87 @@
 }
 
 
-#carouselEvent div {
+#carousel-event div {
     position: absolute;
     transition: transform 1s, left 1s, opacity 1s, z-index 0s;
     opacity: 1;
 }
 
-#carouselEvent div img {
+#carousel-event div img {
     width: 400px;
     transition: width 1s;
 }
 
-#carouselEvent div.hideLeft {
+#carousel-event div.hideLeft {
     left: 0%;
     opacity: 0;
     transform: translateY(50%) translateX(-50%);
 }
 
-#carouselEvent div.hideLeft img {
+#carousel-event div.hideLeft img {
     width: 200px;
 }
 
-#carouselEvent div.hideRight {
+#carousel-event div.hideRight {
     left: 100%;
     opacity: 0;
     transform: translateY(50%) translateX(-50%);
 }
 
-#carouselEvent div.hideRight img {
+#carousel-event div.hideRight img {
     width: 200px;
 }
 
-#carouselEvent div.prev {
+#carousel-event div.prev {
     z-index: 5;
     left: 30%;
     transform: translateY(50px) translateX(-50%);
 }
 
-#carouselEvent div.prev img {
+#carousel-event div.prev img {
     width: 300px;
 }
 
-#carouselEvent div.prevLeftSecond {
+#carousel-event div.prevLeftSecond {
     z-index: 4;
     left: 15%;
     transform: translateY(50%) translateX(-50%);
     opacity: 0.7;
 }
 
-#carouselEvent div.prevLeftSecond img {
+#carousel-event div.prevLeftSecond img {
     width: 200px;
 }
 
-#carouselEvent div.selected {
+#carousel-event div.selected {
     z-index: 10;
     left: 50%;
     transform: translateY(0px) translateX(-50%);
 }
 
-#carouselEvent div.next {
+#carousel-event div.next {
     z-index: 5;
     left: 70%;
     transform: translateY(50px) translateX(-50%);
 }
 
-#carouselEvent div.next img {
+#carousel-event div.next img {
     width: 300px;
 }
 
-#carouselEvent div.nextRightSecond {
+#carousel-event div.nextRightSecond {
     z-index: 4;
     left: 85%;
     transform: translateY(50%) translateX(-50%);
     opacity: 0.7;
 }
 
-#carouselEvent div.nextRightSecond img {
+#carousel-event div.nextRightSecond img {
     width: 200px;
 }
 
 
-.im-buttonsEvent {
+.im-buttons-event {
     position: relative;
     top: 50px;
     left: 50%;    
@@ -129,4 +130,27 @@
 
 .im-left, .im-right, .im-badge {
     cursor: pointer
+}
+
+
+
+@media screen and (min-width: 600px) {
+    .container-event {
+        min-width: 600px;
+    }    
+}  
+
+@media screen and (max-width: 600px) {
+    .im-left {    
+        height: 30%;
+        width: 30%;
+        padding-right: 10px;
+        fill: red
+    }
+    
+    .im-right {    
+        height: 30%;
+        width: 30%;
+        padding-left: 10px;
+    }
 }

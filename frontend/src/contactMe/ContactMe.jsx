@@ -70,11 +70,11 @@ class ContactMe extends Component {
   
   render() {    
       return (  
-          <div className="contact-me">
+          <div id="contact" className="contact-me">
             <div className="title-contact-me">
-              <Text title="Contato">                
-              </Text>
-            </div>
+              <Text title="Contato"/>            
+              </div>    
+
             <div className='container-contact-me'>
               <h4>
                   Preencha o formulário abaixo para entrar em contato.
@@ -106,7 +106,7 @@ class ContactMe extends Component {
                 placeholder="exemplo@email.com"
               />          
               <br />          
-              <br />
+              <br />              
               <label htmlFor="phone">Telefone</label>
               <br />  
               <input 

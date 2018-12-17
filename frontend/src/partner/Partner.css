@@ -4,27 +4,53 @@
     background-color: rgba(0, 0, 0, 0);
     background-size: cover;
     height: 100%;
-	width: 80%;		
+	width: 55%;		
 	z-index: -999999;
 }
 
 .container-partner {
 	background: transparent;
+	text-align: center;
 	color: #222;
 	width: 100vw;        
 	height: 100vh; 
 	display: flex;
 	justify-content: center;
-	display: -webkit-flex; 
-    -webkit-justify-content: center; 
+	margin: 0 auto;      
+    min-height: 700px;
+
 }
 
-@media(max-width: 720px) {
+@media(max-width:720px) and (min-width:450px) {
     .image-bg-partner {
 		width: 100%;		
 	}
+
 	.container-partner {
-		height: calc(100vw /1.5);
+		height: 80vh;
 	}
 }
 
+@media(min-width:720px)and (max-width:1000px){
+	.image-bg-partner {
+		width: 100%;		
+	}
+	.container-partner {
+		height: 95vh;
+	}
+}
+
+@media (max-width:450px) {
+	.image-bg-partner {
+		width: 100%;		
+	}
+	.container-partner {
+		height: 50vh;
+	}
+}
+
+@media(min-width:1400px){
+	.image-bg-partner {
+		width: 60%;		
+	}
+}

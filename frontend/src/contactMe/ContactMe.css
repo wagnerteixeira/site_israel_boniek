@@ -1,19 +1,28 @@
 .contact-me {
-  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
   background: white;
   width: 80%;  
-
   z-index: 20;    
   padding: 15px;  
-  margin: 0 auto;               
+  margin: 0 auto; 
+  align-items: center;              
 }
 
 .input {
   border: none; 
 }
+
+.container-contact-me {
+  text-align: left;  
+  max-width: 800px;
+}
+
 .container-contact-me > * {
   left: 0;
+  text-align: left;  
 }
+
 textarea:focus, input:focus {
   outline: none;
 }
@@ -71,4 +80,18 @@ textarea:focus, input:focus {
 
 .display-none-contact-me {
   display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .container-contact-me {
+    max-width: calc(100vw * 0.8);
+  }
+ 
+  .container-contact-me > input {
+    max-width: calc(100vw * 0.8);
+  }
+  
+  .container-contact-me > textarea {
+    max-width: calc(100vw * 0.8);
+  }
 }

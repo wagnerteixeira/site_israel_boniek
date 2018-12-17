@@ -30,8 +30,8 @@ class App extends Component {
         <Image />
         <Video />
         <Fides />  
-        <Partner />   
         <ContactMe />     
+        <Partner />   
         <Footer />          
       </div>
     );

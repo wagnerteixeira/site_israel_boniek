@@ -7,8 +7,15 @@ import Fundo from '../media/images/partner.jpg';
 class Partner extends Component {
     render() {
         return (
-            <div id="partner" className="container-partner">
-                <img className="image-bg-partner" src={Fundo}/>                                
+            <div id="partner">
+            <div className="container-partner">
+                <Text title="Parceiros">
+                    <div />                    
+                    <div >
+                        <img src={Fundo} className="image-bg-partner" />
+                    </div>
+                    </Text>                                    
+            </div>                
             </div>        
         );
     }

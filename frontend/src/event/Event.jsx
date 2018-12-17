@@ -73,16 +73,16 @@ class Event extends Component {
             <div id="event" className="container-event">  
             <div className="event" >  
                 <Text title="Eventos" colortitle="#333333" reverse />  
-                <div id="carouselEvent">
+                <div id="carousel-event">
                     {this.renderEvents(midIndex)}
                 </div>                
-                <div className="im-buttonsEvent">
+                <div className="im-buttons-event">
                     <img className="im-left" onClick={() => this.setIndex(this.state.midIndex - 1)}src={Left}/>             
                     <img className="im-right" onClick={() => this.setIndex(this.state.midIndex + 1)} src={Right}/>                                        
                 </div>
             </div>     
             </div>
-        );
+        );       
     }
 }
 

@@ -73,18 +73,16 @@ class Image extends Component {
     render() {
         const { urlCurrent, midIndex } = this.state;                
         return (                
-            <div className="image" id="image">  
-                <Text title="Fotos" colortitle="#333333" reverse />  
-                <div id="carousel">
-                    {this.renderImages(midIndex)}
-                </div>
-                {/*<div class="buttons">
-                    <button id="prev" onClick={() => this.setIndex(this.state.midIndex - 1)}>Próximo</button>
-                    <button id="next" onClick={() => this.setIndex(this.state.midIndex + 1)}>Anterior</button>                    
-                </div>*/}
-                <div className="im-buttons">
-                    <img className="im-left" onClick={() => this.setIndex(this.state.midIndex - 1)}src={Left}/>             
-                    <img className="im-right" onClick={() => this.setIndex(this.state.midIndex + 1)} src={Right}/>                                        
+            <div className="container-image" id="image">  
+                <div className="image" > 
+                    <Text title="Fotos" colortitle="#333333" reverse />  
+                    <div id="carousel">
+                        {this.renderImages(midIndex)}
+                    </div>
+                    <div className="im-buttons">
+                        <img className="im-left" onClick={() => this.setIndex(this.state.midIndex - 1)}src={Left}/>             
+                        <img className="im-right" onClick={() => this.setIndex(this.state.midIndex + 1)} src={Right}/>                                        
+                    </div>
                 </div>
             </div>     
         );
