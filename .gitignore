@@ -22,3 +22,5 @@ yarn-error.log*
 admin/src/firebase/config.js
 
 config.js
+
+*.cache
