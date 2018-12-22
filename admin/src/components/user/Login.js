@@ -29,7 +29,12 @@ const styles = theme => ({
 });
 
 function Login(props){
-  const { classes, email, password, handleLogin, handleValueChange } = props;    
+  const { classes, 
+          email, 
+          password, 
+          handleLogin, 
+          handleValueChange,
+        } = props;    
   return (
     <div>
       <AppBar position="static">
@@ -74,8 +79,8 @@ function Login(props){
           onClick={() => handleLogin()}
         >
           Entrar
-        </Button>
-      </div>
+        </Button>        
+      </div>       
     </div>
   );
 }

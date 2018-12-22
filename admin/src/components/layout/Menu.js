@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
+import MessageSnackbar from '../common/MessageSnackbar';
 import Login from '../user/Login';
 
 import IconListButton from '../common/IconListButton';
@@ -133,6 +134,9 @@ class Menu extends React.Component {
                    email: '',
                    password:'',
                    displayName: '',
+                   messageOpen: false,
+                   variantMessage: 'success',
+                   messageText: '',
                   };
   }
 
@@ -154,19 +158,44 @@ class Menu extends React.Component {
     .then(user => 
     {
       console.log(user)
-      this.setState({...this.state, user: user, logged: true, displayName: user.user.displayName})
+      this.setState({...this.state, 
+                     user: user, 
+                     logged: true, 
+                     displayName: 
+                     user.user.displayName,
+                     messageOpen: true, 
+                     messageText: 'Usuário logado com sucesso!', 
+                     variantMessage: 'success' 
+                    })
       localStorage.setItem('displayName', user.user.displayName);
       localStorage.setItem('logged', true);
     })
     .catch(error => {
       console.log(error)
-      this.setState({...this.state, user: {}, logged: false})
+      this.setState({...this.state, 
+                     user: {}, 
+                     logged: false,
+                     messageOpen: true, 
+                     messageText: 'Verifique usuário e/ou senha!', 
+                     variantMessage: 'error'
+                    });
     })
+  }
+
+  handleMessageClose = () => {
+    this.setState({ ...this.state, messageOpen: false });
   }
   
   render() {
     const { classes } = this.props;     
-    const { logged, email, password, displayName } = this.state;
+    const { logged, 
+            email, 
+            password, 
+            displayName,
+            messageOpen,
+            variantMessage,
+            messageText
+          } = this.state;
     let _logged = logged;
     let _displayName = displayName;
     if (!_logged){
@@ -182,6 +211,10 @@ class Menu extends React.Component {
                       handleLogin={this.handleLogin}
                       password={password}
                       handleValueChange={this.handleValueChange}
+                      handleMessageClose={this.handleMessageClose}
+                      messageOpen={messageOpen}
+                      variantMessage={variantMessage}
+                      messageText={messageText}
                     /> :         
         <div className={classes.root}>        
           <Drawer 
@@ -310,6 +343,12 @@ class Menu extends React.Component {
             </div>
           </div>
         </div>}
+        <MessageSnackbar
+          handleClose={this.handleMessageClose}
+          open={messageOpen}
+          variant={variantMessage}
+          message={messageText}
+        />
       </div>
     );
   }
