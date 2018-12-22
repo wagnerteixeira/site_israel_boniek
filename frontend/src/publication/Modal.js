@@ -3,14 +3,14 @@ import React, { Component } from "react";
 import "./Modal.css";
 import CloseImage from '../media/images/close.svg';
 
-const Modal = ({ handleClose, show, children, sinopsys, urlFolder }) => {
+const Modal = ({ handleClose, show, children, sinopsys, urlImage }) => {
   const showHideClassName = show ? "modal-pub display-block" : "modal-pub display-none";
 
   return (
     <div className={showHideClassName}>
         <section className="modal-main-pub">
             <div className="avatar-pub">
-                <img src={urlFolder}                    
+                <img src={urlImage}                    
                     alt={children}                    
                     />
             </div>

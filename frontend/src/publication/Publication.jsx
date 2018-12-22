@@ -16,7 +16,7 @@ class Publication extends Component {
             data : { 
                 children: '', 
                 sinopsys: '', 
-                urlFolder: ''
+                urlImage: ''
             }
         };       
         this.fetchPublications.bind(this);  
@@ -51,7 +51,7 @@ class Publication extends Component {
                 <img alt={pubs[key].data.title} 
                     title="Clique para mais informações"
                     className="picture-pub" 
-                    src={pubs[key].data.urlFolder} 
+                    src={pubs[key].data.urlImage} 
                     onClick={() => this.showModal(key)} 
                 />                
                 <h3 className="name-pub">
@@ -76,7 +76,7 @@ class Publication extends Component {
                         handleClose={this.hideModal} 
                         children={data.children}
                         sinopsys={data.sinopsys}
-                        urlFolder={data.urlFolder}
+                        urlImage={data.urlImage}
                         >                   
                     </Modal>
                         {this.renderPublication()}
