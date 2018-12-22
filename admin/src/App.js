@@ -10,7 +10,7 @@ import Image from './components/image/Image';
 import Publication from './components/publication/Publication';
 import Schedule from './components/schedule/Schedule';
 import Video from './components/video/Video';
-import Users from './components/Users';
+//import Users from './components/Users';
 import Events from './components/event/Event';
 import Counter from './components/counter/Counter';
 
@@ -62,7 +62,7 @@ class App extends Component {
               <Route path="/image" component={Image} />
               <Route path="/lecture" component={Lecture} />              
               <Route path="/publication" component={Publication} />
-              <Route path="/user" component={Users} />
+              {/*<Route path="/user" component={Users} />*/}
               <Route path="/video" component={Video} />
               <Route path="/counter" component={Counter} />
               <Route path="/event" component={Events} />

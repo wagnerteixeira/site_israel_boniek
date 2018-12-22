@@ -21,5 +21,14 @@ export const doPasswordReset = (email) =>
 export const doPasswordUpdate = (password) =>
   auth.currentUser.updatePassword(password);
 
+//get providers from email
 export const doFetchProvidersForEmail = (email) =>
   auth.fetchProvidersForEmail(email);
+
+//send email verification
+export const doSendEmailVerification = () =>
+  auth.currentUser.sendEmailVerification();
+
+//update Display Name
+export const doUpdateDisplayName = (displayName) =>
+  auth.currentUser.updateProfile({displayName: displayName})

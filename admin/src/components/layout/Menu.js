@@ -12,10 +12,15 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
+import MessageSnackbar from '../common/MessageSnackbar';
+import Login from '../user/Login';
+
 import IconListButton from '../common/IconListButton';
 import IconListButtonSvg from '../common/IconListButtonSvg';
 
 import youtube from '../svgIcons/youtube';
+
+import firebase from '../../firebase';
 
 const drawerWidth = 300;
 
@@ -109,152 +114,249 @@ const styles = theme => ({
   icon: {
     margin: theme.spacing.unit * 2,
   },
+  grow: {
+    flexGrow: 1,
+  },
+  userText: {
+    position: 'relative',
+    marginRight: theme.spacing.unit * 4,
+  }
 });
+class Menu extends React.Component {
 
-class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { drawerOpen: false, headerText: props.initialheaderText };
-    this.handleDrawer.bind(this);
-    this.handleHeaderText.bind(this);
+    this.state = { user: {}, 
+                   logged: false, 
+                   drawerOpen: false, 
+                   headerText: 
+                   props.initialheaderText,
+                   email: '',
+                   password:'',
+                   displayName: '',
+                   messageOpen: false,
+                   variantMessage: 'success',
+                   messageText: '',
+                  };
   }
 
-  handleDrawer(value) {
+  handleValueChange = name => event => {
+    this.setState({...this.state, [name]: event.target.value});
+  };
+
+  handleDrawer = (value) => {
     this.setState({...this.state, drawerOpen: value });
   }
 
-  handleHeaderText(value) {
+  handleHeaderText = (value)=> {
     this.setState({...this.state, headerText: value });
+  }
+
+  handleLogin = () => {
+    console.log(this.state)
+    firebase.auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
+    .then(user => 
+    {
+      console.log(user)
+      this.setState({...this.state, 
+                     user: user, 
+                     logged: true, 
+                     displayName: 
+                     user.user.displayName,
+                     messageOpen: true, 
+                     messageText: 'Usuário logado com sucesso!', 
+                     variantMessage: 'success' 
+                    })
+      localStorage.setItem('displayName', user.user.displayName);
+      localStorage.setItem('logged', true);
+    })
+    .catch(error => {
+      console.log(error)
+      this.setState({...this.state, 
+                     user: {}, 
+                     logged: false,
+                     messageOpen: true, 
+                     messageText: 'Verifique usuário e/ou senha!', 
+                     variantMessage: 'error'
+                    });
+    })
+  }
+
+  handleMessageClose = () => {
+    this.setState({ ...this.state, messageOpen: false });
   }
   
   render() {
     const { classes } = this.props;     
-    return (
-      <div className={classes.root}>
-        <Drawer 
-          variant="permanent"
-          classes={{
-            paper: classNames(classes.drawerPaper, 
-                             !this.state.drawerOpen && classes.drawerPaperClose),
-          }}
-          open={this.state.drawerOpen}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={() => this.handleDrawer(false)} color="inherit">
-               <ChevronLeft />
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            <IconListButton 
-              linkTo='/' 
-              iconType='schedule'               
-              primaryText='Agenda'    
-              onClickButton={() => this.handleHeaderText('Agenda')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}
-            />
-            <IconListButton 
-              linkTo='/image' 
-              iconType='camera_alt'                
-              primaryText='Fotos' 
-              onClickButton={() => this.handleHeaderText('Fotos')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}
-            />             
-            <IconListButton 
-              linkTo='/lecture' 
-              iconType='accessibility_new'                
-              primaryText='Palestras' 
-              onClickButton={() => this.handleHeaderText('Palestras')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}
-            />
-            <IconListButton 
-              linkTo='/publication' 
-              iconType='library_books'                
-              primaryText='Publicações' 
-              onClickButton={() => this.handleHeaderText('Publicações')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}
-            />
-            <IconListButton 
-              linkTo='/user' 
-              iconType='person'                
-              primaryText='Usuários' 
-              onClickButton={() => this.handleHeaderText('Usuários')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}
-            />
-            <IconListButtonSvg 
-              linkTo='/video'               
-              className={classes.icon}               
-              primaryText='Videos' 
-              onClickButton={() => this.handleHeaderText('Videos')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}    
-              path={youtube}          
-            />
-             <IconListButton 
-              linkTo='/counter' 
-              iconType='person'                
-              primaryText='Contador' 
-              onClickButton={() => this.handleHeaderText('Contador')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}
-            />
-            <IconListButton 
-              linkTo='/event' 
-              iconType='camera_alt'                
-              primaryText='Eventos' 
-              onClickButton={() => this.handleHeaderText('Eventos')}
-              listItemClassName={classes.listItemClassName} 
-              iconClassName={classes.iconClassName}
-              listItemTextClassName={classes.listItemTextClassName}
-            />
-          </List>          
-        </Drawer>             
-        <div className={classes.mainContent}>
-          <AppBar
-            className={classNames(classes.appBar, this.state.drawerOpen && classes.appBarShift)}
+    const { logged, 
+            email, 
+            password, 
+            displayName,
+            messageOpen,
+            variantMessage,
+            messageText
+          } = this.state;
+    let _logged = logged;
+    let _displayName = displayName;
+    if (!_logged){
+      if (localStorage.getItem('logged')){
+        _logged = true;
+        _displayName = localStorage.getItem('displayName')
+      }
+    }
+    return (       
+      <div>
+        {!_logged ? <Login 
+                      email={email}
+                      handleLogin={this.handleLogin}
+                      password={password}
+                      handleValueChange={this.handleValueChange}
+                      handleMessageClose={this.handleMessageClose}
+                      messageOpen={messageOpen}
+                      variantMessage={variantMessage}
+                      messageText={messageText}
+                    /> :         
+        <div className={classes.root}>        
+          <Drawer 
+            variant="permanent"
+            classes={{
+              paper: classNames(classes.drawerPaper, 
+                              !this.state.drawerOpen && classes.drawerPaperClose),
+            }}
+            open={this.state.drawerOpen}
           >
-            <Toolbar disableGutters={!this.state.drawerOpen}>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={() => this.handleDrawer(true)}
-                className={classNames(classes.menuButton, this.state.drawerOpen && classes.hide)}
-              >
-                <MenuIcon />
+            <div className={classes.toolbar}>
+              <IconButton onClick={() => this.handleDrawer(false)} color="inherit">
+                <ChevronLeft />
               </IconButton>
-              <Typography 
-                className={classes.typographyDawerOpen} 
-                variant="title" color="inherit" 
-                noWrap
-              >
-                {this.state.headerText}
-              </Typography>
-            </Toolbar>
-          </AppBar>    
-          <div className={classes.content}>
-            {this.props.children}
+            </div>
+            <Divider />
+            <List>
+              <IconListButton 
+                linkTo='/' 
+                iconType='schedule'               
+                primaryText='Agenda'    
+                onClickButton={() => this.handleHeaderText('Agenda')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}
+              />
+              <IconListButton 
+                linkTo='/image' 
+                iconType='camera_alt'                
+                primaryText='Fotos' 
+                onClickButton={() => this.handleHeaderText('Fotos')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}
+              />             
+              <IconListButton 
+                linkTo='/lecture' 
+                iconType='accessibility_new'                
+                primaryText='Palestras' 
+                onClickButton={() => this.handleHeaderText('Palestras')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}
+              />
+              <IconListButton 
+                linkTo='/publication' 
+                iconType='library_books'                
+                primaryText='Publicações' 
+                onClickButton={() => this.handleHeaderText('Publicações')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}
+              />
+             {/*} <IconListButton 
+                linkTo='/user' 
+                iconType='person'                
+                primaryText='Usuários' 
+                onClickButton={() => this.handleHeaderText('Usuários')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}
+              />*/}
+              <IconListButtonSvg 
+                linkTo='/video'               
+                className={classes.icon}               
+                primaryText='Videos' 
+                onClickButton={() => this.handleHeaderText('Videos')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}    
+                path={youtube}          
+              />
+              <IconListButton 
+                linkTo='/counter' 
+                iconType='person'                
+                primaryText='Contador' 
+                onClickButton={() => this.handleHeaderText('Contador')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}
+              />
+              <IconListButton 
+                linkTo='/event' 
+                iconType='camera_alt'                
+                primaryText='Eventos' 
+                onClickButton={() => this.handleHeaderText('Eventos')}
+                listItemClassName={classes.listItemClassName} 
+                iconClassName={classes.iconClassName}
+                listItemTextClassName={classes.listItemTextClassName}
+              />
+            </List>          
+          </Drawer>             
+          <div className={classes.mainContent}>
+            <AppBar
+              className={classNames(classes.appBar, this.state.drawerOpen && classes.appBarShift)}
+            >
+              <Toolbar disableGutters={!this.state.drawerOpen}>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={() => this.handleDrawer(true)}
+                  className={classNames(classes.menuButton, this.state.drawerOpen && classes.hide)}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography 
+                  className={classes.typographyDawerOpen} 
+                  variant="title" 
+                  color="inherit" 
+                  noWrap
+                >
+                  {this.state.headerText}
+                </Typography>
+                <div className={classes.grow} />
+                <Typography 
+                  variant="title" 
+                  color="inherit" 
+                  className={classes.userText}
+                >
+                  { _displayName }
+                </Typography>
+              </Toolbar>
+            </AppBar>    
+            <div className={classes.content}>
+              {this.props.children}
+            </div>
           </div>
-        </div>
+        </div>}
+        <MessageSnackbar
+          handleClose={this.handleMessageClose}
+          open={messageOpen}
+          variant={variantMessage}
+          message={messageText}
+        />
       </div>
     );
   }
 }
 
-Header.propTypes = {
+Menu.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Header);
+export default withStyles(styles, { withTheme: true })(Menu);
