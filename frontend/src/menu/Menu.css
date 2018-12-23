@@ -27,10 +27,10 @@
     float: left;
     display: block;
     cursor: pointer; 
-    margin: 0 auto;
+    margin: 0px 0px;
     color: white;
     text-align: center;
-    padding: 14px 9px;
+    padding: 14px 5px;
     text-decoration: none;    
     font-size: 17px;    
     z-index: 7;  
@@ -51,7 +51,7 @@
     float: left;
     width: auto;
     border: none;
-    display: block;
+    display: none;
     outline: 0;
     visibility: hidden;
     background-color: #333333;
@@ -60,7 +60,7 @@
     font-size: 25px;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 810px) {
     .navbar {
         visibility: hidden;        
     }    

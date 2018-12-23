@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-scroll";
 
 import './Menu.css';
 
@@ -12,7 +13,7 @@ class Menu extends Component {
             show: false, 
             };      
     }
-    
+
     showModal = () => {      
         this.setState({ show: true });
     };
@@ -20,22 +21,112 @@ class Menu extends Component {
     hideModal = () => {
         this.setState({ show: false });
     };
-
+  
     render() {
         return (
             <div className="flex-container" >
                 <button className="button-menu" onClick={() => this.showModal()}>☰</button> 
                 <div className="navbar">
-                    <a href="#home">HOME</a>
-                    <a href="#aboutMe">SOBRE</a>                    
-                    <a href="#publication">PUBLICAÇÕES</a>                    
-                    <a href="#event">EVENTOS</a>
-                    <a href="#lecture">PALESTRAS</a>                    
-                    <a href="#image">FOTOS</a>
-                    <a href="#video">VIDEOS</a>     
-                    <a href="#fides">FIDES</a>               
-                    <a href="#contact">CONTATO</a>               
-                    <a href="#partner">PARCEIROS</a>               
+                  <Link
+                    activeClass="active"
+                    to="home"
+                    spy={true}
+                    smooth={true}
+                    offset={0}
+                    duration={1000}
+                  >
+                    HOME
+                  </Link>
+                  <Link
+                    activeClass="active"
+                    to="aboutMe"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    SOBRE
+                  </Link>
+                  <Link
+                    activeClass="active"
+                    to="publication"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    PUBLICAÇÕES
+                  </Link>
+                  <Link
+                    activeClass="active"
+                    to="event"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    EVENTOS
+                  </Link>
+                  <Link
+                    activeClass="active"
+                    to="lecture"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    PALESTRAS
+                  </Link>
+                  <Link
+                    activeClass="active"
+                    to="image"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    FOTOS
+                  </Link> 
+                  <Link
+                    activeClass="active"
+                    to="video"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    VIDEOS
+                  </Link>
+                  <Link
+                    activeClass="active"
+                    to="fides"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    FIDES
+                  </Link>                  
+                  <Link
+                    activeClass="active"
+                    to="contact"
+                    spy={true}
+                    smooth={true}
+                    offset={-10}
+                    duration={1000}
+                  >
+                    CONTATO
+                  </Link>
+                  <Link
+                    activeClass="active"
+                    to="partner"
+                    spy={true}
+                    smooth={true}
+                    offset={-20}
+                    duration={1000}
+                  >
+                    PARCEIROS
+                  </Link>
                 </div>                 
                 <Modal 
                     show={this.state.show} 

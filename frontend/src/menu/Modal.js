@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-scroll";
 
 import "./Modal.css";
 import CloseImage from '../media/images/close.svg';
@@ -12,16 +13,136 @@ const Modal = ({ handleClose, show, children, sinopsys, urlFolder }) => {
             <button className="md-close-menu" onClick={handleClose}>
                 <img src={CloseImage}/>                
             </button>   
-            <div><a href="#home" onClick={handleClose}>HOME</a> </div>
-            <div><a href="#aboutMe" onClick={handleClose}>SOBRE</a> </div>
-            <div><a href="#publication" onClick={handleClose}>PUBLICAÇÕES</a> </div>            
-            <div><a href="#event" onClick={handleClose}>EVENTOS</a> </div>
-            <div><a href="#lecture" onClick={handleClose}>PALESTRAS</a> </div>            
-            <div><a href="#image" onClick={handleClose}>FOTOS</a> </div>
-            <div><a href="#video" onClick={handleClose}>VIDEOS</a> </div>
-            <div><a href="#fides" onClick={handleClose}>FIDES</a> </div>
-            <div><a href="#contact" onClick={handleClose}>CONTATO</a> </div>
-            <div><a href="#partner" onClick={handleClose}>PARCEIROS</a> </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="home"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={1000}
+                onClick={handleClose}
+              >
+                HOME
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="aboutMe"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                SOBRE
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="publication"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                PUBLICAÇÕES
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="event"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                EVENTOS
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="lecture"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                PALESTRAS
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="image"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                FOTOS
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="video"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                VIDEOS
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="fides"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                FIDES
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="contact"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                CONTATO
+              </Link>
+            </div>
+            <div>
+              <Link
+                activeClass="active"
+                to="partner"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={1000}
+                onClick={handleClose}
+              >
+                PARCEIROS
+              </Link>
+            </div>
         </div>
     </div>    
   );
