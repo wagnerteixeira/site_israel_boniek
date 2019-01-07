@@ -22,16 +22,7 @@ class App extends Component {
     return (
       <div>
         <Menu />            
-        <Principal />  
-        <AboutMe />
-        <Publication />  
-        <Event />
-        <Lecture />                             
-        <Image />
-        <Video />
-        <Fides />  
         <ContactMe />     
-        <Partner />   
         <Footer />          
       </div>
     );

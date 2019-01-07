@@ -11,6 +11,9 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import MaterialMenu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 import MessageSnackbar from '../common/MessageSnackbar';
 import Login from '../user/Login';
@@ -21,6 +24,8 @@ import IconListButtonSvg from '../common/IconListButtonSvg';
 import youtube from '../svgIcons/youtube';
 
 import firebase from '../../firebase';
+
+import localStorageService from '../../localStorage/localStorageService';
 
 const drawerWidth = 300;
 
@@ -137,7 +142,36 @@ class Menu extends React.Component {
                    messageOpen: false,
                    variantMessage: 'success',
                    messageText: '',
+                   anchorEl: null,
                   };
+  }
+
+  handleOpenMenu = event => {
+    this.setState({ ...this.state, anchorEl: event.currentTarget });
+  };
+
+  handleLogout = () => {    
+    localStorageService.setItem('data', '');
+  }
+
+  handleCloseMenu = () => {
+    this.handleLogout();
+    this.setState({ 
+      ...this.state, 
+      displayName: '', 
+      logged: false, 
+      anchorEl: null,
+      messageOpen: true, 
+      messageText: 'Usuário saiu do sistema.', 
+      variantMessage: 'success',
+    });
+  };
+
+  keyPress = (e) => {
+    if(e.keyCode === 13){
+      console.log(e.target.value)
+      this.handleLogin();
+    }
   }
 
   handleValueChange = name => event => {
@@ -158,17 +192,18 @@ class Menu extends React.Component {
     .then(user => 
     {
       console.log(user)
-      this.setState({...this.state, 
-                     user: user, 
-                     logged: true, 
-                     displayName: 
-                     user.user.displayName,
-                     messageOpen: true, 
-                     messageText: 'Usuário logado com sucesso!', 
-                     variantMessage: 'success' 
-                    })
-      localStorage.setItem('displayName', user.user.displayName);
-      localStorage.setItem('logged', true);
+      this.setState({
+        ...this.state, 
+        user: user, 
+        logged: true, 
+        displayName: user.user.displayName,
+        messageOpen: true, 
+        messageText: 'Usuário logado com sucesso!', 
+        variantMessage: 'success',
+        email: '',
+        password: ''
+      })
+      localStorageService.setItem('data', user.user.displayName);
     })
     .catch(error => {
       console.log(error)
@@ -194,15 +229,20 @@ class Menu extends React.Component {
             displayName,
             messageOpen,
             variantMessage,
-            messageText
+            messageText,
+            anchorEl
           } = this.state;
+    const open = Boolean(anchorEl);
+
     let _logged = logged;
     let _displayName = displayName;
     if (!_logged){
-      if (localStorage.getItem('logged')){
+      _displayName = localStorageService.getItem('data')
+      if ((_displayName != '') && (_displayName != null)){
         _logged = true;
-        _displayName = localStorage.getItem('displayName')
       }
+      else
+        _displayName = '';
     }
     return (       
       <div>
@@ -215,6 +255,7 @@ class Menu extends React.Component {
                       messageOpen={messageOpen}
                       variantMessage={variantMessage}
                       messageText={messageText}
+                      keyPress={this.keyPress}
                     /> :         
         <div className={classes.root}>        
           <Drawer 
@@ -329,13 +370,35 @@ class Menu extends React.Component {
                   {this.state.headerText}
                 </Typography>
                 <div className={classes.grow} />
-                <Typography 
-                  variant="title" 
-                  color="inherit" 
-                  className={classes.userText}
-                >
-                  { _displayName }
-                </Typography>
+                <div>
+                  <ButtonBase
+                    onClick={this.handleOpenMenu}
+                  >
+                    <Typography 
+                      variant="title" 
+                      color="inherit" 
+                      className={classes.userText}
+                    >
+                      { _displayName }
+                    </Typography> 
+                  </ButtonBase>
+                  <MaterialMenu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={open}
+                    onClose={this.handleClose}
+                  >
+                    <MenuItem onClick={this.handleCloseMenu}>&nbsp;&nbsp;&nbsp;&nbsp;Sair&nbsp;&nbsp;&nbsp;&nbsp;</MenuItem>
+                  </MaterialMenu>                
+                </div>
               </Toolbar>
             </AppBar>    
             <div className={classes.content}>

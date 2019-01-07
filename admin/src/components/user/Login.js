@@ -34,6 +34,7 @@ function Login(props){
           password, 
           handleLogin, 
           handleValueChange,
+          keyPress
         } = props;    
   return (
     <div>
@@ -54,6 +55,7 @@ function Login(props){
           fullWidth
           onChange={handleValueChange('email')}
           margin="normal"
+          onKeyDown={keyPress}
           InputLabelProps={{
             shrink: true,
           }}
@@ -68,6 +70,7 @@ function Login(props){
           autoComplete="current-password"
           fullWidth
           margin="normal"
+          onKeyDown={keyPress}
           InputLabelProps={{
             shrink: true,
           }}

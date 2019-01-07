@@ -3,6 +3,10 @@ import Text from '../utils/Text';
 import Globals from '../utils/Globals';
 import './ContactMe.css';
 import firebase  from '../firebase'
+import Social from '../utils/Social';
+import Phone from '../media/images/phone.svg';
+import Email from '../media/images/email.svg';
+
 const sendEmail = firebase.functions.httpsCallable('sendEmail');
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -51,6 +55,7 @@ class ContactMe extends Component {
     
   }
 
+
   handleValueChange = name => event => {     
     if (name === 'email') {
       let valid = false;
@@ -75,67 +80,82 @@ class ContactMe extends Component {
               <Text title="Contato"/>            
               </div>    
 
-            <div className='container-contact-me'>
-              <h4>
-                  Preencha o formulário abaixo para entrar em contato.
-              </h4>               
-              <label htmlFor="name">Nome</label>
-              <br />
-              <input 
-                type="text" 
-                id="name" 
-                size="80" 
-                required 
-                value={this.state.name}
-                onChange={this.handleValueChange('name')} 
-                className={`input input-normal`}
-                placeholder="Digite seu nome"
-              />      
-              <br />          
-              <br />
-              <label htmlFor="email">Email</label>
-              <br />  
-              <input 
-                type="text" 
-                id="email" 
-                size="80" 
-                required 
-                value={this.state.email}
-                onChange={this.handleValueChange('email')} 
-                className={`input ${this.state.valid ? 'input-normal' : 'input-error'}`}
-                placeholder="exemplo@email.com"
-              />          
-              <br />          
-              <br />              
-              <label htmlFor="phone">Telefone</label>
-              <br />  
-              <input 
-                type="text" 
-                id="phone" 
-                size="80" 
-                required 
-                value={this.state.phone}
-                onChange={this.handleValueChange('phone')} 
-                className={`input input-normal`}
-                placeholder="(99) 99999-9999"
-              />      
-              <br />
-              <br />
-              <label htmlFor="message">Mensagem</label>
-              <br />
-              <textarea 
-                id="message" 
-                cols="80" 
-                rows="8" 
-                required 
-                value={this.state.text}
-                className='text-area-contact-me'
-                onChange={this.handleValueChange('text')} 
-                placeholder="Digite sua mensagem aqui">
-              </textarea>
-              <br />
-              <input type='button' onClick={() => this.handleSendEmail()} className='button-contact-me' value='Enviar' />       
-              &nbsp;&nbsp;<label className={this.state.showingMessage ? '' : 'display-none-contact-me'}>{this.state.message}</label>          
+            <div className='container-contact-me'>              
+              <div className='contact-me-form'>
+                <h4>
+                    Preencha o formulário abaixo para entrar em contato.
+                </h4>               
+                <label htmlFor="name">Nome</label>
+                <br />
+                <input 
+                  type="text" 
+                  id="name" 
+                  size="40"
+                  required 
+                  value={this.state.name}
+                  onChange={this.handleValueChange('name')} 
+                  className={`input input-normal`}
+                  placeholder="Digite seu nome"
+                />      
+                <br />          
+                <br />
+                <label htmlFor="email">Email</label>
+                <br />  
+                <input 
+                  type="text" 
+                  id="email" 
+                  size="40"
+                  required 
+                  value={this.state.email}
+                  onChange={this.handleValueChange('email')} 
+                  className={`input ${this.state.valid ? 'input-normal' : 'input-error'}`}
+                  placeholder="exemplo@email.com"
+                />          
+                <br />          
+                <br />              
+                <label htmlFor="phone">Telefone</label>
+                <br />  
+                <input 
+                  type="text" 
+                  id="phone" 
+                  size="40" 
+                  required 
+                  value={this.state.phone}
+                  onChange={this.handleValueChange('phone')} 
+                  className={`input input-normal`}
+                  placeholder="(99) 99999-9999"
+                />      
+                <br />
+                <br />
+                <label htmlFor="message">Mensagem</label>
+                <br />
+                <textarea 
+                  id="message" 
+                  size="40"
+                  cols="80" 
+                  rows="8" 
+                  required 
+                  value={this.state.text}
+                  className='text-area-contact-me'
+                  onChange={this.handleValueChange('text')} 
+                  placeholder="Digite sua mensagem aqui">
+                </textarea>
+                <br />
+                <input type='button' onClick={() => this.handleSendEmail()} className='button-contact-me' value='Enviar' />       
+                &nbsp;&nbsp;<label className={this.state.showingMessage ? '' : 'display-none-contact-me'}>{this.state.message}</label>          
+              </div>
+              <div className='contact-me-email'>
+                <p className='contact-email-header'>Entre em contato</p>
+                <p>
+                  <img className='contact-me-img' src={Email}/>
+                  <a>boniekmg@yahoo.com.br</a>
+                </p>
+                <p>                
+                  <img  className='contact-me-img' src={Phone}/>
+                  <a>(49) 99957-6584</a>
+                </p>
+                <Social />   
+              </div>
             </div>   
             
           </div>                      
