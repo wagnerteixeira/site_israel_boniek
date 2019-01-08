@@ -81,16 +81,15 @@ class ContactMe extends Component {
               </div>    
 
             <div className='container-contact-me'>              
-              <div className='contact-me-form'>
+              <div className='container-contact-me-div'>
                 <h4>
-                    Preencha o formulário abaixo para entrar em contato.
+                    Formulário de contato.
                 </h4>               
                 <label htmlFor="name">Nome</label>
                 <br />
                 <input 
                   type="text" 
                   id="name" 
-                  size="40"
                   required 
                   value={this.state.name}
                   onChange={this.handleValueChange('name')} 
@@ -104,7 +103,6 @@ class ContactMe extends Component {
                 <input 
                   type="text" 
                   id="email" 
-                  size="40"
                   required 
                   value={this.state.email}
                   onChange={this.handleValueChange('email')} 
@@ -118,22 +116,21 @@ class ContactMe extends Component {
                 <input 
                   type="text" 
                   id="phone" 
-                  size="40" 
                   required 
                   value={this.state.phone}
                   onChange={this.handleValueChange('phone')} 
                   className={`input input-normal`}
                   placeholder="(99) 99999-9999"
                 />      
-                <br />
-                <br />
+              </div>
+              <div className='container-contact-me-div container-contact-padding'>
                 <label htmlFor="message">Mensagem</label>
                 <br />
-                <textarea 
+                <br />
+                <textarea
                   id="message" 
-                  size="40"
                   cols="80" 
-                  rows="8" 
+                  rows="6" 
                   required 
                   value={this.state.text}
                   className='text-area-contact-me'
@@ -141,10 +138,18 @@ class ContactMe extends Component {
                   placeholder="Digite sua mensagem aqui">
                 </textarea>
                 <br />
-                <input type='button' onClick={() => this.handleSendEmail()} className='button-contact-me' value='Enviar' />       
-                &nbsp;&nbsp;<label className={this.state.showingMessage ? '' : 'display-none-contact-me'}>{this.state.message}</label>          
+                <input
+                  type='button' 
+                  onClick={() => this.handleSendEmail()} 
+                  className='button-contact-me' 
+                  value='Enviar' 
+                />       
+                &nbsp;&nbsp;
+                <label className={this.state.showingMessage ? '' : 'display-none-contact-me'}>
+                  {this.state.message}
+                </label>   
               </div>
-              <div className='contact-me-email'>
+              <div className='container-contact-me-div contact-me-email'>
                 <p className='contact-email-header'>Entre em contato</p>
                 <p>
                   <img className='contact-me-img' src={Email}/>
