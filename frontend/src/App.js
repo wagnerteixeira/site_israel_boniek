@@ -21,9 +21,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Menu />            
-        <ContactMe />     
-        <Footer />          
+        <Menu />
+        <Principal />
+        <AboutMe />
+        <Publication />
+        <Event />
+        <Lecture />
+        <Image />
+        <Video />
+        <Fides />
+        <ContactMe />
+        <Partner />
+        <Footer />
       </div>
     );
   }
