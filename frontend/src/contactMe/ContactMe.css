@@ -16,21 +16,33 @@
   align-items: center;
   margin: 0 auto;
   padding: 10px;
+  max-width: 95%;
+}
+
+.container-contact-me-div {
+  width: 30%;
+  padding-left: 2%;
+}
+
+.container-contact-padding {
+  padding-top: 60px;
 }
 
 .contact-me-email {
-  background-color: #000000;
-  width: 500px;
-  height: 400px;
-  padding-left: 100px;
-  margin-left: 10px;
+  background-color: #333333;
+  height: 250px;
+  margin-top: 20px;
+}
+
+.contact-me-email p {
+  padding-left: 20px;
 }
 
 .contact-email-header {
   color: #ffffff;
+  padding-top: 30px;
   font-weight: 800;
   letter-spacing: 0.1em;
-  padding-top: 30px;
 }
 
 .contact-me-email a {    
@@ -51,6 +63,7 @@
 
 .input {
   border: none; 
+  width: 90%;
 }
 
 textarea:focus, input:focus {
@@ -96,14 +109,9 @@ textarea:focus, input:focus {
   width: 100%;
 }
 
-.container-contact-me > textarea {
-  margin-top: 5px; 
-  
-}
-
 .text-area-contact-me {
   white-space: pre-line;
-  width: 330px;
+  width: 90%;
 }
 
 
@@ -111,16 +119,15 @@ textarea:focus, input:focus {
   display: none;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 600px) {
   .container-contact-me {
-    max-width: calc(100vw * 0.8);
+    flex-direction: column;
   }
- 
-  .container-contact-me > input {
-    max-width: calc(100vw * 0.8);
+
+  .container-contact-me-div {
+    width: 80%;
   }
-  
-  .container-contact-me > textarea {
-    max-width: calc(100vw * 0.8);
+  .container-contact-padding {
+    padding-top: 20px;
   }
 }

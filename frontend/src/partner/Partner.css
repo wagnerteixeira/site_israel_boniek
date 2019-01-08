@@ -1,13 +1,12 @@
-.image-bg-partner {
+.div-bg-partner {
+  height: 90%;
+  width: 100%;
   background-repeat: no-repeat;
-  background-position: center center;
-  background-color: rgba(0, 0, 0, 0);
-  background-size: cover;
-  height: 100%;
-	width: 55%;		
-	z-index: -999999;
+  background-position: center;
+  background-size: contain;
+  z-index: -999999;
+  position: relative;
 }
-
 .container-partner {
 	background: transparent;
 	text-align: center;
@@ -15,43 +14,13 @@
 	width: 100vw;        
 	display: flex;
 	justify-content: center;
-	margin: 0 auto;      
-  min-height: 700px;
+  margin: 0 auto;   
+  height: 100vh;  
+  z-index: -999999; 
 }
 
-@media(max-width:720px) and (min-width:450px) {
-    .image-bg-partner {
-		width: 100%;		
-	}
-
-	.container-partner {
+@media screen and (max-width: 600px) {
+  .container-partner {
     height: 70vh;
-    min-height: 70px;
-	}
-}
-
-@media(min-width:720px)and (max-width:1000px){
-	.image-bg-partner {
-		width: 100%;		
-	}
-	.container-partner {
-    height: 95vh;
-    min-height: 650px;
-	}
-}
-
-@media (max-width:450px) {
-	.image-bg-partner {
-		width: 100%;		
-	}
-	.container-partner {
-    height: 50vh;
-    min-height: 70px;
-	}
-}
-
-@media(min-width:1400px){
-	.image-bg-partner {
-		width: 60%;		
-	}
+  }
 }

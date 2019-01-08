@@ -1,23 +1,36 @@
 .container-video {
-    background: white;
-    width: 100vw;    
-    align-items: center;
-    padding: 15px;    
+  background: white;
+  width: 100vw;    
+  align-items: center; 
 }
 
 .item-video {
-    padding-left: 10px;    
-    padding-bottom: 5px;
-    min-width: 400px;
-    width: 40%;
+  padding-left: 10px;    
+  padding-bottom: 5px;
+  width: 40%;
 }
 
 .cards-video {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-around;
-    width: 90%;
-    margin: 0 auto;
-    max-width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1300px;
+}
+
+
+@media screen and (max-width: 700px) {
+  .item-video {
+    width: 95%;
+    padding-left: 0px;
+    padding-bottom: 10px;
+    height: 250px;
+  }
+
+  .cards-video {
+    flex-direction: column;
+    align-items: center;
+  }
 }

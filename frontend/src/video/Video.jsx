@@ -31,8 +31,8 @@ class Video extends Component {
         return Object.keys(this.state.videos).map(key => {            
             return (
                 <iframe className='item-video' key={key}
-                    width='32.5%' 
-                    height='315' 
+                    width='32%' 
+                    height='315px' 
                     title={this.state.videos[key].data.url}
                     src={`https://www.youtube.com/embed/${this.state.videos[key].data.idYoutube}`} 
                     frameBorder='0' 

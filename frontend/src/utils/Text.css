@@ -1,59 +1,59 @@
-.container {
+.container-text {
     width: 100%;
-    font-weight: lighter;
-   
+    font-weight: lighter;   
     margin: 2em auto;
-    text-align: center;    
+    text-align: center;  
+    height: auto;  
 }      
 
-.container > h1 {
+.container-text > h1 {
     font-size: 3.998em;
     margin: 0;
 }
 
-.container > h2 {
+.container-text > h2 {
     margin: 0;
     font-size: 2.827em;    
 }
 
-.container > h3 {
+.container-text > h3 {
     font-weight: lighter;
     font-size: 1.999em;
     margin: 0;
 }
 
-.container > h4 {
+.container-text > h4 {
     margin: 1em;
     font-weight: lighter;
     font-size: 1.414em;
 }
 
-.container > h5 {
+.container-text > h5 {
     margin: 1em;
     font-weight: lighter;
     font-size: 1em;
 }
 
-.container > p {
+.container-text > p {
     margin: 1em;
     font-size: 1em;
 }
 
-.container > span {
+.container-text > span {
     color: #222;
     display: inline-block;
     margin: 1em;
     font-size: 1em;
 }
 
-.container > p span {
+.container-text > p span {
     font-size: 1em;
     color: #222;
     display: inline-block;
     margin: 1em;
 }
 
-.container > img {
+.container-text > img {
     max-width: 100%;      
 }
   

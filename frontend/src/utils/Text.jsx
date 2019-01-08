@@ -7,7 +7,7 @@ class Text extends PureComponent {
     const { title, subtitle, children, colortitle } = this.props;
 
     return (
-        <div className="container">
+        <div className="container-text">
             <h2 style={{color: colortitle}}>
                 {title}
             </h2>
