@@ -9,7 +9,7 @@ import Email from '../media/images/email.svg';
 
 const sendEmail = firebase.functions.httpsCallable('sendEmail');
 
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 class ContactMe extends Component {
   state ={
@@ -152,12 +152,16 @@ class ContactMe extends Component {
               <div className='container-contact-me-div contact-me-email'>
                 <p className='contact-email-header'>Entre em contato</p>
                 <p>
-                  <img className='contact-me-img' src={Email}/>
-                  <a>boniekmg@yahoo.com.br</a>
+                  <a href='mailto:boniekmg@yahoo.com.br'>
+                    <img alt='Clique aqui para envia um email para boniekmg@yahoo.com.br' className='contact-me-img' src={Email}/>
+                    boniekmg@yahoo.com.br
+                  </a>
                 </p>
-                <p>                
-                  <img  className='contact-me-img' src={Phone}/>
-                  <a>(49) 99957-6584</a>
+                <p> 
+                  <a href='tel:+5549999576584'>               
+                    <img alt='Clique aqui para enviar um whatsapp para (49) 99957-6584' className='contact-me-img' src={Phone}/>
+                    (49) 99957-6584
+                  </a>
                 </p>
                 <Social />   
               </div>
