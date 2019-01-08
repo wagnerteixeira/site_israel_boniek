@@ -3,8 +3,7 @@
   flex-direction: column;
   background: white;
   width: 100%;  
-  z-index: 20;    
-  padding: 15px;  
+  z-index: 20;     
   margin: 0 auto; 
   align-items: center;              
 }
@@ -121,11 +120,12 @@ textarea:focus, input:focus {
 
 @media screen and (max-width: 600px) {
   .container-contact-me {
-    flex-direction: column;
+    flex-direction: column;   
   }
 
   .container-contact-me-div {
     width: 80%;
+    padding-left: 0px;
   }
   .container-contact-padding {
     padding-top: 20px;
