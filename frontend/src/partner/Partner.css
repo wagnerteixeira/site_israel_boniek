@@ -1,9 +1,9 @@
 .image-bg-partner {
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: rgba(0, 0, 0, 0);
-    background-size: cover;
-    height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(0, 0, 0, 0);
+  background-size: cover;
+  height: 100%;
 	width: 55%;		
 	z-index: -999999;
 }
@@ -13,12 +13,10 @@
 	text-align: center;
 	color: #222;
 	width: 100vw;        
-	height: 100vh; 
 	display: flex;
 	justify-content: center;
 	margin: 0 auto;      
-    min-height: 700px;
-
+  min-height: 700px;
 }
 
 @media(max-width:720px) and (min-width:450px) {
@@ -27,7 +25,8 @@
 	}
 
 	.container-partner {
-		height: 80vh;
+    height: 70vh;
+    min-height: 70px;
 	}
 }
 
@@ -36,7 +35,8 @@
 		width: 100%;		
 	}
 	.container-partner {
-		height: 95vh;
+    height: 95vh;
+    min-height: 650px;
 	}
 }
 
@@ -45,7 +45,8 @@
 		width: 100%;		
 	}
 	.container-partner {
-		height: 50vh;
+    height: 50vh;
+    min-height: 70px;
 	}
 }
 

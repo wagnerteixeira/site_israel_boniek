@@ -22,7 +22,7 @@ class Event extends Component {
     fetchEvents(){    
         eventService.getDocs()
             .then(docs => {
-                let midIndex = parseInt((docs.length / 2) - 1 + (docs.length % 2));
+                let midIndex = parseInt((docs.length / 2) - 1 + (docs.length % 2),10);
                 this.setState({ docs: docs, midIndex: midIndex })      
             })
             .catch( error => console.log(error));    
@@ -33,13 +33,13 @@ class Event extends Component {
     }
     
     renderEvents(index) {
-        let prev = 0, prevLeftSecond =0, next = 0, nextRightSecond = 0, midIndex = parseInt(index);
+        let prev = 0, prevLeftSecond =0, next = 0, nextRightSecond = 0, midIndex = parseInt(index,10);
         prev = midIndex - 1;
         prevLeftSecond = prev - 1;
         next = midIndex + 1;
         nextRightSecond = next + 1;       
         return Object.keys(this.state.docs).map(key => {
-            let keyIndex = parseInt(key);
+            let keyIndex = parseInt(key,10);
             let currentClass = '';
             if (keyIndex === midIndex)
                 currentClass = 'selected';
@@ -56,19 +56,19 @@ class Event extends Component {
             else if (keyIndex < prevLeftSecond)
                 currentClass = 'hideLeft';
             return (<div key={key} className={currentClass}>
-                        <img onClick={() => this.setIndex(key)} src={this.state.docs[key].data.url} />
+                        <img onClick={() => this.setIndex(key)} src={this.state.docs[key].data.url} alt="Evento" />
                     </div>);
         });
     }
 
     setIndex(index){
         if ((index < this.state.docs.length) && (index >= 0)){
-            this.setState({ ...this.state, midIndex: parseInt(index)});
+            this.setState({ ...this.state, midIndex: parseInt(index,10)});
         }
     }
     
     render() {
-        const { urlCurrent, midIndex } = this.state;                
+        const { midIndex } = this.state;                
         return (   
             <div id="event" className="container-event">  
             <div className="event" >  
@@ -77,8 +77,8 @@ class Event extends Component {
                     {this.renderEvents(midIndex)}
                 </div>                
                 <div className="im-buttons-event">
-                    <img className="im-left" onClick={() => this.setIndex(this.state.midIndex - 1)}src={Left}/>             
-                    <img className="im-right" onClick={() => this.setIndex(this.state.midIndex + 1)} src={Right}/>                                        
+                    <img className="im-left" onClick={() => this.setIndex(this.state.midIndex - 1)} src={Left} alt="Direita" />             
+                    <img className="im-right" onClick={() => this.setIndex(this.state.midIndex + 1)} src={Right} alt="Esquerda" />                                        
                 </div>
             </div>     
             </div>

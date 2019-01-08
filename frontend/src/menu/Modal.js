@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-scroll";
 
 import "./Modal.css";
@@ -11,7 +11,7 @@ const Modal = ({ handleClose, show, children, sinopsys, urlFolder }) => {
     <div className={showHideClassName}>  
         <div className="modal-main-menu">
             <button className="md-close-menu" onClick={handleClose}>
-                <img src={CloseImage}/>                
+                <img src={CloseImage} alt="Fechar"/>                
             </button>   
             <div>
               <Link

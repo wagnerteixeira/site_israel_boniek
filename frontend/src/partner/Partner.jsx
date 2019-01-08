@@ -12,7 +12,7 @@ class Partner extends Component {
                 <Text title="Parceiros">
                     <div />                    
                     <div >
-                        <img src={Fundo} className="image-bg-partner" />
+                        <img src={Fundo} className="image-bg-partner" alt="Parceiros" />
                     </div>
                     </Text>                                    
             </div>                

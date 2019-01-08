@@ -22,9 +22,7 @@ class Image extends Component {
     fetchImages(){    
         imageService.getDocs()
             .then(docs => {
-                let midIndex = parseInt((docs.length / 2) - 1 + (docs.length % 2));
-                //console.log(`length ${docs.length} mod ${docs.length % 2} media ${Math.round(docs.length / 2)} midIndex ${midIndex}`);
-                //console.log(this.state.docs[midIndex]);
+                let midIndex = parseInt((docs.length / 2) - 1 + (docs.length % 2), 10);
                 this.setState({ docs: docs, midIndex: midIndex })      
             })
             .catch( error => console.log(error));    
@@ -35,13 +33,13 @@ class Image extends Component {
     }
     
     renderImages(index) {
-        let prev = 0, prevLeftSecond =0, next = 0, nextRightSecond = 0, midIndex = parseInt(index);
+        let prev = 0, prevLeftSecond =0, next = 0, nextRightSecond = 0, midIndex = parseInt(index, 10);
         prev = midIndex - 1;
         prevLeftSecond = prev - 1;
         next = midIndex + 1;
         nextRightSecond = next + 1;       
         return Object.keys(this.state.docs).map(key => {
-            let keyIndex = parseInt(key);
+            let keyIndex = parseInt(key, 10);
             let currentClass = '';
             if (keyIndex === midIndex)
                 currentClass = 'selected';
@@ -59,19 +57,19 @@ class Image extends Component {
                 currentClass = 'hideLeft';
             //console.log(`index ${key}  prev ${prev} prevLeftSecond ${prevLeftSecond} next ${next} nextRightSecond ${nextRightSecond} class ${currentClass}`);
             return (<div key={key} className={currentClass}>
-                        <img onClick={() => this.setIndex(key)} src={this.state.docs[key].data.url} />
+                        <img onClick={() => this.setIndex(key)} src={this.state.docs[key].data.url} alt="Fotos" />
                     </div>);
         });
     }
 
     setIndex(index){
         if ((index < this.state.docs.length) && (index >= 0)){
-            this.setState({ ...this.state, midIndex: parseInt(index)});
+            this.setState({ ...this.state, midIndex: parseInt(index, 10)});
         }
     }
     
     render() {
-        const { urlCurrent, midIndex } = this.state;                
+        const { midIndex } = this.state;                
         return (                
             <div className="container-image" id="image">  
                 <div className="image" > 
@@ -80,8 +78,8 @@ class Image extends Component {
                         {this.renderImages(midIndex)}
                     </div>
                     <div className="im-buttons">
-                        <img className="im-left" onClick={() => this.setIndex(this.state.midIndex - 1)}src={Left}/>             
-                        <img className="im-right" onClick={() => this.setIndex(this.state.midIndex + 1)} src={Right}/>                                        
+                        <img className="im-left" onClick={() => this.setIndex(this.state.midIndex - 1)} src={Left} alt="Direita" />             
+                        <img className="im-right" onClick={() => this.setIndex(this.state.midIndex + 1)} src={Right} alt="Esquerda" />                                        
                     </div>
                 </div>
             </div>     

@@ -7,7 +7,7 @@ class Principal extends Component {
     render() {
         return (
             <div id="home" className="container-principal">
-                <img className="image-bg" src={Fundo}/>                
+                <img className="image-bg" src={Fundo} alt="Principal" />                
             </div>        
         );
     }

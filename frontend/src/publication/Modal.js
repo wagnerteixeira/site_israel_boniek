@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./Modal.css";
 import CloseImage from '../media/images/close.svg';
@@ -21,7 +21,7 @@ const Modal = ({ handleClose, show, children, sinopsys, urlImage }) => {
                 {sinopsys}
             </div>
             <button className="md-close-pub" onClick={handleClose}>
-                <img src={CloseImage}/>                
+                <img src={CloseImage} alt="Fechar" />                
             </button>            
       </section>
     </div>
